@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  background-color: #333;
+  color: #fff;
+  height: 140px;
+}
+
+.logo {
+  font-size: small;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+.terms {
+  max-width: 1400px;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  flex-direction: column;
+  margin: auto;
+}
+.subHeader {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 5px;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.75);
+}
+.termsList ul {
+  list-style: none;
+  padding: 10px;
+}
+.termsList li {
+  margin-bottom: 28px;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-weight: 300;
+}

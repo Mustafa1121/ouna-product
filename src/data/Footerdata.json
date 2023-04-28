@@ -1,0 +1,32 @@
+{
+  "footerItem": [
+    {
+      "heading": "POPULAR CATEGORIES",
+      "item1": { "text": "Smart Watch", "href": "/#" },
+      "item2": { "text": "TV", "href": "/#" },
+      "item3": { "text": "Mobile Phones", "href": "/#" },
+      "item4": { "text": "Microwaves", "href": "/#" }
+    },
+    {
+      "heading": "Quick links",
+      "item1": { "text": "Payment Policy", "href": "/paymentPolicy" },
+      "item2": { "text": "About Us", "href": "/aboutUs" },
+      "item3": { "text": "Privacy Policy", "href": "/privacyPolicy" },
+      "item4": { "text": "Terms & Conditions", "href": "/terms" }
+    },
+    {
+      "heading": "Get in touch",
+      "item1": { "text": "support@ouna.app", "href": "mailto:support@ouna.app" },
+      "item2": { "text": "70/528 539", "href": "/#" },
+      "item3": { "text": "Help", "href": "/#" },
+      "item4": { "text": "Contact Us", "href": "/#" }
+    },
+    {
+      "heading": "Stay updated",
+      "item1": { "text": "Help", "href": "/#" },
+      "item2": { "text": "Map", "href": "/#" },
+      "item3": { "text": "Terms of use", "href": "/#" },
+      "item4": { "text": "Privacy Policy", "href": "/#" }
+    }
+  ]
+}

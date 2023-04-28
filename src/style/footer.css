@@ -1,0 +1,168 @@
+/* Footer container */
+.footerF {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: #fff;
+}
+
+/* Top section of the footer */
+.footer__topF {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(44, 42, 42, 0.9) ; /* Lighter background color */
+}
+
+/* Center section of the footer */
+.centerF {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* Categories section of the footer */
+.categoriesF {
+  padding: 1rem;
+}
+
+.categoriesF h4 {
+  font-size: 1rem;
+  padding: 0.9rem 0;
+  margin-left: 30px;
+  font-weight: bolder;
+}
+
+.categoriesF ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+}
+
+.categoriesF ul li {
+  padding: 0.5rem 0;
+  display: block;
+}
+
+.categoriesF ul li a {
+  color: #fff;
+  font-size: 0.9rem;
+  transition: color 0.3s ease-in-out; /* Added transition */
+}
+
+.categoriesF ul li:hover a {
+  color: #3a77ff;
+}
+
+/* Follow us section of the footer */
+.follow__usF {
+  padding: 1rem;
+  margin-top: -2%;
+}
+
+.follow__usF h4 {
+  padding: 0.9rem 0;
+}
+
+.social__iconF {
+  list-style: none;
+  display: flex;
+  padding: 0.7rem 0;
+  justify-content: space-between;
+}
+
+.social__iconF li {
+  width: 27px;
+  height: 27px;
+  padding: 0.3rem;
+  border: 2px solid #fff;
+  border-radius: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.1rem;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added transition */
+}
+
+.social__iconF li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social__iconF li a svg {
+  font-size: 0.9rem;
+  color: white;
+}
+
+.social__iconF li:hover {
+  border-color: #3a77ff;
+  box-shadow: 0 0 6px 0 #3a77ff;
+}
+
+/* Download app section of the footer */
+.download_app_optionF {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+}
+
+.download_app_optionF a {
+  margin-left: 30px;
+  color: #fff;
+}
+
+/* Bottom section of the footer */
+.footer__bottomF {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #3a77ff;
+  padding: 1rem 2rem;
+  font-size: 0.8rem;
+  color: #1c1a1a;
+  position: relative;
+}
+
+.footerF {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.footer__bottomF p {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.footer__bottomF .copyrightF {
+  font-weight: normal;
+}
+
+@media screen and (max-width: 900px) {
+  .footerF .footer__topF .centerF {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .footerF .footer__bottomF {
+    justify-content: center;
+  }
+  .follow__usF{
+    margin-left: 10%;
+  }
+}

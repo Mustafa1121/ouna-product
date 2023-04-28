@@ -1,0 +1,208 @@
+.product-formp {
+  background-color: #ffff;
+  color: black;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 10px 1px rgba(15, 15, 15, 0.2);
+  max-width: 650px;
+  margin: 0 auto;
+}
+@media all and (max-width: 447px) {
+  .product-formp {
+    max-width: 400px;
+  }
+}
+.form-fieldp {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.form-fieldp input[type="text"],
+input[type="number"],
+select {
+  border: 1px solid grey;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: white;
+  color: black;
+}
+
+.form-fieldp input[type="file"] {
+  display: none;
+}
+.form-fieldp label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.product-formp button[type="submit"] {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.btn-submit-product {
+  display: flex;
+  justify-content: center;
+}
+.product-formp button[type="submit"]:hover {
+  background-color: #3477db;
+}
+.pricingp label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+.file-input-labelp {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  color: #3498db;
+  border: 1px solid grey;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.file-input-labelp:hover {
+  background-color: #e6e6e6;
+}
+
+.Rating {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+}
+.selectp {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  /* border: 2px solid red; */
+}
+.descriptionp {
+  border: 1px solid grey;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: white;
+  color: black;
+  resize: none;
+  width: 100%;
+}
+
+.imagesp {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 5px;
+  gap: 5px;
+  flex-direction: row;
+}
+.imagesp img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.imm {
+  position: relative;
+}
+
+.imm img:hover {
+  filter: brightness(0.8);
+}
+.removeImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-size: 1rem;
+  color: black;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 3px;
+  background-color: #fff;
+  border: none;
+}
+.imm:hover .removeImage {
+  opacity: 1;
+}
+.brand-div {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  /* border: 2px solid yellow; */
+}
+
+.title-div {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  /* border: 2px solid green; */
+}
+.inputsp {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: start;
+  flex-direction: row;
+  /* border: 2px solid red; */
+  gap: 10px;
+}
+.inputsp input {
+  width: 50%;
+}
+.titlesp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 56%;
+}
+.pricingp {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  width: 49%;
+  /* border: 2px solid red; */
+  position: relative;
+}
+@media all and (max-width: 600px) {
+  .Rating {
+    flex-direction: column;
+  }
+}
+
+#price {
+  border: 1px solid grey;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: white;
+  color: black;
+}
+.pricingp label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-top: 15px;
+}
+.pricingp input {
+  width: 100%;
+}
