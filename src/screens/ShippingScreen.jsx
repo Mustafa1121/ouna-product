@@ -40,7 +40,13 @@ const ShippingScreen = ({ history }) => {
   }, [dispatch, userInfo]);
 
   const submitHandler = async (e) => {
-    dispatch(saveShippingAddress(selectedAddress))
+    e.preventDefault();
+    console.log(selectedAddress);
+    if (selectedAddress === "") {
+      toast.error("Please select an address");
+      return;
+    }
+    dispatch(saveShippingAddress(selectedAddress));
     history.push("/placeorder");
   };
   return (

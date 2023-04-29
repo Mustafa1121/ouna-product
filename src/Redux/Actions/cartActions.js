@@ -1,6 +1,7 @@
 import axios from "../../axios/axios";
 import {
   CART_ADD_ITEM,
+  CART_ADD_LOADING,
   CART_REMOVE_ITEM,
   CART_SAVE_PAYMENT_METHOD,
   CART_SAVE_SHIPPING_ADDRESS,
@@ -37,8 +38,8 @@ export const getListCart = (userInfo) => async (dispatch) => {
           ...i.item,
           _id: i._id,
         })),
-        cartId: data.data.cart._id
-      }
+        cartId: data.data.cart._id,
+      },
     });
   } catch (error) {
     console.log(error);
@@ -49,12 +50,15 @@ export const getListCart = (userInfo) => async (dispatch) => {
 export const addToCart =
   (id, userInfo, product) => async (dispatch, getState) => {
     try {
+      dispatch({
+        type: CART_ADD_LOADING,
+      });
       const config = {
         headers: {
           token: `${userInfo.data.token}`,
         },
       };
-      const {data} = await axios.post(
+      const { data } = await axios.post(
         `/api/home/cart/addItemToCart/${id}`,
         {
           quantity: 1,
@@ -78,10 +82,7 @@ export const removefromcart = (id, userInfo) => async (dispatch, getState) => {
         token: `${userInfo.data.token}`,
       },
     };
-    await axios.delete(
-      `api/home/cart/deleteItemFromCart/${id}`,
-      config
-    );
+    await axios.delete(`api/home/cart/deleteItemFromCart/${id}`, config);
     dispatch({
       type: CART_REMOVE_ITEM,
       payload: id,

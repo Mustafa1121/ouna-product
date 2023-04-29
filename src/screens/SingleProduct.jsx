@@ -9,6 +9,7 @@ import Loading from "../components/LoadingError/Loading.jsx";
 // import { PRODUCT_CREATE_REVIEW_RESET } from "../Redux/Constants/ProductConstants";
 import { addToCart, getListCart } from "../Redux/Actions/cartActions";
 import { Link } from "react-router-dom";
+import { CircularProgress } from "@material-ui/core";
 
 const SingleProduct = ({ history, match }) => {
   // const [rating, setRating] = useState(0);
@@ -19,8 +20,9 @@ const SingleProduct = ({ history, match }) => {
   // const isRecycle = useState(false);
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-  console.log(product)
   const userLogin = useSelector((state) => state.userLogin);
+  const { loading: loading1 } = useSelector((state) => state.cart);
+  console.log(loading1);
   const { userInfo } = userLogin;
   // const productReviewCreate = useSelector((state) => state.productReviewCreate);
   // const {
@@ -149,9 +151,16 @@ const SingleProduct = ({ history, match }) => {
                           onClick={() =>
                             AddToCartHandle(productDetails?.product._id)
                           }
+                          disabled={loading}
                           className="round-black-btn"
                         >
-                          Add To Cart
+                          {loading1 && (
+                            <CircularProgress
+                              size={20}
+                              style={{ color: "white" }}
+                            />
+                          )}
+                          {!loading1 && "Add to Cart"}
                         </button>
                       ) : (
                         <Link to="/login">
