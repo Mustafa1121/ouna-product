@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 
 const ShippingScreen = ({ history }) => {
   window.scrollTo(0, 0);
-  const [selectedId, setSelectedId] = useState("");
+  const [selectedAddress, setSelectedAddress] = useState("");
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const cartItemIds = cartItems.map((item) => item._id);
@@ -31,7 +31,7 @@ const ShippingScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const handleSelectChange = (event) => {
-    setSelectedId(event.target.value);
+    setSelectedAddress(event.target.value);
   };
 
   useEffect(() => {
@@ -40,27 +40,8 @@ const ShippingScreen = ({ history }) => {
   }, [dispatch, userInfo]);
 
   const submitHandler = async (e) => {
-    e.preventDefault();
-    const config = {
-      headers: {
-        token: `${userInfo.data.token}`,
-      },
-    };
-    const formData = {
-      totalPrice: total,
-      itemsId: cartItemIds,
-      addressId: selectedId,
-      cartId: cart.cartId,
-    };
-    console.log(formData)
-    try {
-      const { data } = await axios.post("/api/home/checkout", formData, config);
-      console.log(data);
-    } catch (error) {
-      toast.error(error.response.data.message);
-    }
-    // dispatch(saveShippingAddress({ address, city, postalCode, country }));
-    history.push("/payment");
+    dispatch(saveShippingAddress(selectedAddress))
+    history.push("/placeorder");
   };
   return (
     <>
@@ -71,37 +52,6 @@ const ShippingScreen = ({ history }) => {
           onSubmit={submitHandler}
         >
           <h6 className="mb-5">DELIVERY ADDRESS</h6>
-          {/* <input
-            type="text"
-            placeholder="Enter address"
-            id="email"
-            required
-            value={total}
-            readOnly
-          />
-          <input type="text" placeholder="Enter city" required id="email" />
-          <input
-            type="text"
-            placeholder="Enter postal code"
-            required
-            id="email"
-          />
-          <input type="text" placeholder="Enter country" required id="email" /> */}
-          {/* <select
-            class="form-select mb-5"
-            size="3"
-            aria-label="size 3 select example"
-            onChange={(event) => {
-              // handle the select change here
-            }}
-          >
-            {cartItems.map((item) => (
-              <option key={item.id} value={item.name}>
-                {item.name}
-              </option>
-            ))}
-          </select> */}
-
           <FormControl style={{ minWidth: "100%", marginBottom: "50px" }}>
             <InputLabel shrink htmlFor="select-multiple-native">
               Purchased Items
@@ -125,7 +75,7 @@ const ShippingScreen = ({ history }) => {
 
           <FormControl style={{ minWidth: "100%" }}>
             <Select
-              value={selectedId}
+              value={selectedAddress}
               displayEmpty
               inputProps={{ "aria-label": "Without label" }}
               style={{ width: "100%", minWidth: "100%" }}
@@ -135,7 +85,7 @@ const ShippingScreen = ({ history }) => {
                 <em>None</em>
               </MenuItem>
               {addresses?.map((address) => (
-                <MenuItem key={address._id} value={address._id}>
+                <MenuItem key={address._id} value={address}>
                   {address.city}
                 </MenuItem>
               ))}

@@ -104,7 +104,7 @@ const SingleProduct = ({ history, match }) => {
                       width="520"
                       height="345"
                       className="videoP"
-                      src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                      src={`${productDetails?.product?.videourl}`}
                     ></iframe>
                   </div>
                 ) : null}

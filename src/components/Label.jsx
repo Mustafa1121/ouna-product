@@ -3,7 +3,7 @@ import React from "react";
 // CSS
 import "../style/Label.css";
 import Logo from "../images/images/image1.jpg";
-import image2 from "../images/images/image2.jpg";
+import image2 from "../images/images/images.jpg";
 import Label1 from "../assets/app2.png";
 
 function Label() {

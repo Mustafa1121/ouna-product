@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 //Images
 import image from "../images/images/images.jpg";
 import image1 from "../images/images/image1.jpg";
-import image2 from "../images/images/image2.jpg";
 // CSS
 import "../style/footer.css";
 
@@ -65,11 +64,11 @@ function Footer() {
                     <TwitterIcon />
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a href="#">
                     <PlayCircleOutlineIcon />
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <a href="#">
                     <InstagramIcon />
@@ -82,9 +81,6 @@ function Footer() {
                 </a>
                 <a href="">
                   <img src={image1} alt="App Store" width="70px" />
-                </a>
-                <a href="">
-                  <img src={image2} alt="App Store" width="70px" />
                 </a>
               </div>
             </div>
