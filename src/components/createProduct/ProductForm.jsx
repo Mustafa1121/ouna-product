@@ -103,6 +103,9 @@ function ProductForm() {
     if (formik.errors.rating) {
       toast.error(formik.errors.rating);
     }
+    if(!userInfo){
+      history.push('/login')
+    }
     formik.setErrors({});
     dispatch(getCategories());
   // eslint-disable-next-line react-hooks/exhaustive-deps
