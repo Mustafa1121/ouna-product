@@ -1,11 +1,11 @@
 import axios from "../axios/axios";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import {
   CATEGORIES_FAIL,
-  CATEGORIES_SUCCESS,
   PRODUCT_LIST_SUCCESS,
 } from "../Redux/Constants/ProductConstants";
+import { toast } from "react-toastify";
 
 function DropMenue(props) {
   const dispatch = useDispatch();
@@ -13,17 +13,16 @@ function DropMenue(props) {
   const getSpecificProduct = async (id) => {
     try {
       const specificProduct = await axios.get(`api/home/category/${id}`);
-      console.log(specificProduct.data.data);
       dispatch({
         type: PRODUCT_LIST_SUCCESS,
         payload: specificProduct.data.data,
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: CATEGORIES_FAIL,
         payload: error.response.data.message,
       });
+      toast.error( error.response.data.message)
     }
   };
 

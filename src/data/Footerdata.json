@@ -16,17 +16,10 @@
     },
     {
       "heading": "Get in touch",
-      "item1": { "text": "support@ouna.app", "href": "mailto:support@ouna.app" },
+      "item1": { "text": "ounateam23@gmail.com", "href": "mailto:ounateam23@gmail.com" },
       "item2": { "text": "70/528 539", "href": "/#" },
       "item3": { "text": "Help", "href": "/#" },
       "item4": { "text": "Contact Us", "href": "/#" }
-    },
-    {
-      "heading": "Stay updated",
-      "item1": { "text": "Help", "href": "/#" },
-      "item2": { "text": "Map", "href": "/#" },
-      "item3": { "text": "Terms of use", "href": "/#" },
-      "item4": { "text": "Privacy Policy", "href": "/#" }
     }
   ]
 }

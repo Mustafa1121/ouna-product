@@ -16,7 +16,6 @@ const Form = () => {
 
   useEffect(() => {
     // Add .right by default
-    console.log(location.pathname);
     if (location.pathname === "/login") {
       setIsLogginActive(true);
       rightSideRef.current.classList.remove("left");

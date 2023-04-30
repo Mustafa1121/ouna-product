@@ -8,7 +8,6 @@ const AddressForm = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  console.log(userInfo);
   const [formData, setFormData] = useState({
     fname: userInfo.data.user.fname,
     lname: userInfo.data.user.lname,
@@ -21,7 +20,6 @@ const AddressForm = () => {
 
   const addAddress = async (e) => {
     e.preventDefault();
-    console.log(formData);
     try {
       const config = {
         headers: {
@@ -33,7 +31,6 @@ const AddressForm = () => {
         formData,
         config
       );
-      console.log(response.data.data.address);
       dispatch({
         type: ADD_ADDRESS,
         payload: response.data.data.address,
@@ -51,7 +48,6 @@ const AddressForm = () => {
         additionalAddressInfo: "",
       });
     } catch (error) {
-      console.log(error.response.data.message);
       toast.error(error.response.data.message);
     }
   };

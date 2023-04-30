@@ -7,7 +7,7 @@ import { getCategories, listProduct } from "../../Redux/Actions/ProductActions";
 import Loading from "../LoadingError/Loading.jsx";
 import Message from "../LoadingError/Error.jsx";
 import wpIcon from "../../images/wpIcon.png";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import {
   Grid,
   Card,
@@ -15,9 +15,7 @@ import {
   CardMedia,
   Typography,
 } from "@material-ui/core";
-import {
-  getListCart,
-} from "../../Redux/Actions/cartActions.js";
+import { getListCart } from "../../Redux/Actions/cartActions.js";
 
 const filterProducts = (products, searchTerm) => {
   return products?.filter((product) => {
@@ -32,11 +30,11 @@ const filterProducts = (products, searchTerm) => {
 
 const ShopSection = (props) => {
   const { keyword, pagenumber } = props;
-  const location = useLocation();
+  // const location = useLocation();
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const [origin, setOrigin] = useState(location.pathname);
+  // const [origin, setOrigin] = useState(location.pathname);
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
@@ -50,7 +48,6 @@ const ShopSection = (props) => {
   //const totalPages = 4;
   const totalPages = Math.ceil(filteredProducts?.length / productPerPage);
   const pageNumbers = [];
-  console.log(pageNumbers);
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
@@ -63,6 +60,7 @@ const ShopSection = (props) => {
     dispatch(listProduct(keyword, pagenumber, origin));
     dispatch(getCategories());
     dispatch(getListCart(userInfo));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, keyword, pagenumber]);
   return (
     <>
@@ -169,9 +167,9 @@ const ShopSection = (props) => {
                         {filteredProducts?.length > 0 && (
                           <div className="pagination">
                             <div className="mt-3">
-                              <div className="customPagination">
-                                <a
-                                  href="#"
+                              <div className="customPagination" style={{display:'flex'}}>
+                                <Link
+                                  to=''
                                   className="prev"
                                   onClick={(e) => {
                                     e.preventDefault();
@@ -181,12 +179,13 @@ const ShopSection = (props) => {
                                   disabled={currentPage === 1}
                                 >
                                   Prev
-                                </a>
-                                <div className="d-inline-block mb-5">
+                                </Link>
+                                <div className="d-inline-block">
                                   {pageNumbers.map((pageNumber) => (
-                                    <a
+                                    <Link
+                                    to=''
                                       key={pageNumber}
-                                      href="#"
+                                      style={{display:"flex",justifyContent:"center",alignItems:"center"}}
                                       className={
                                         pageNumber === currentPage
                                           ? "active"
@@ -198,11 +197,11 @@ const ShopSection = (props) => {
                                       }}
                                     >
                                       {pageNumber}
-                                    </a>
+                                    </Link>
                                   ))}
                                 </div>
-                                <a
-                                  href="#"
+                                <Link
+                                to=''
                                   className="next"
                                   onClick={(e) => {
                                     e.preventDefault();
@@ -212,7 +211,7 @@ const ShopSection = (props) => {
                                   disabled={currentPage === totalPages}
                                 >
                                   Next
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           </div>

@@ -82,9 +82,8 @@ export const register = (user, history) => async (dispatch) => {
       return;
     }
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data.data });
-    history.push("/login");
+    // history.push("/login");
   } catch (error) {
-    console.log(error);
     dispatch({
       type: USER_REGISTER_FAIL,
       payload: error.message && error.message ? error.message : error.message,
@@ -103,7 +102,6 @@ export const getUserDetails = (id, userInfo) => async (dispatch, getState) => {
         token: `${userInfo.data.token}`,
       },
     };
-    console.log(config);
     const { data } = await axios.get(`/api/user/me`, config);
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (error) {

@@ -106,7 +106,7 @@ select {
 .imagesp {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   padding: 5px;
   gap: 5px;
   flex-direction: row;
@@ -144,16 +144,16 @@ select {
 }
 .brand-div {
   display: flex;
-  align-items: start;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
   /* border: 2px solid yellow; */
 }
 
 .title-div {
   display: flex;
-  align-items: start;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
   /* border: 2px solid green; */
 }
@@ -161,7 +161,7 @@ select {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: row;
   /* border: 2px solid red; */
   gap: 10px;
@@ -177,8 +177,8 @@ select {
 }
 .pricingp {
   display: flex;
-  align-items: start;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
   width: 49%;
   /* border: 2px solid red; */

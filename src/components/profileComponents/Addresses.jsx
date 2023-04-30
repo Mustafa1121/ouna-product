@@ -1,6 +1,5 @@
-import axios from "../../axios/axios";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { UPDATE_ADDRESSES_AFTER_DELETION } from "../../Redux/Constants/UserContants";
 import UpdatedForm from "./UpdateForm";
 

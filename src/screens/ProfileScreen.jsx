@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header";
 import ProfileTabs from "../components/profileComponents/ProfileTabs.jsx";
 import { getUserAddresses, getUserDetails } from "../Redux/Actions/userActions";
-import Orders from "../components/profileComponents/Orders.jsx";
 import moment from "moment";
 import { listMyOrders } from "../Redux/Actions/OrderActions";
 import Addresses from "../components/profileComponents/Addresses.jsx";
@@ -16,11 +15,8 @@ const ProfileScreen = () => {
 
   const dispatch = useDispatch();
   const { addresses } = useSelector((state) => state.listOfAddresses);
-  console.log(addresses);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const orderListMy = useSelector((state) => state.orderListMy);
-  const { loading, error, orders } = orderListMy;
 
   useEffect(() => {
     dispatch(listMyOrders());
@@ -101,7 +97,7 @@ const ProfileScreen = () => {
                   >
                     Create Address
                   </button>
-                  <button
+                  {/* <button
                     className="nav-link d-flex justify-content-between"
                     id="v-pills-profile-tab"
                     data-bs-toggle="pill"
@@ -113,7 +109,7 @@ const ProfileScreen = () => {
                   >
                     Orders List
                     <span className="badge2">{orders ? orders.length : 0}</span>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -148,14 +144,14 @@ const ProfileScreen = () => {
             >
               <AddressForm />
             </div>
-            <div
+            {/* <div
               className="tab-pane fade"
               id="v-pills-profile"
               role="tabpanel"
               aria-labelledby="v-pills-profile-tab"
             >
               <Orders orders={orders} loading={loading} error={error} />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { Link } from "react-router-dom";
 //Images
@@ -55,33 +54,29 @@ function Footer() {
               <h4>FOLLOW US</h4>
               <ul className="social__iconF">
                 <li>
-                  <a href="#">
+                  <Link to=''>
                     <FacebookIcon />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to=''>
                     <TwitterIcon />
-                  </a>
+                  </Link>
                 </li>
-                {/* <li>
-                  <a href="#">
-                    <PlayCircleOutlineIcon />
-                  </a>
-                </li> */}
+               
                 <li>
-                  <a href="#">
+                  <Link to=''>
                     <InstagramIcon />
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <div className="download_app_optionF">
-                <a href="">
+                <Link to=''>
                   <img src={image} alt="App Store" width="70px" />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="">
                   <img src={image1} alt="App Store" width="70px" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

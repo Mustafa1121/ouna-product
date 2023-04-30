@@ -63,6 +63,7 @@ export default function CheckboxLabels() {
   const onSubmit = (e) => {
     e.preventDefault();
     formik.handleSubmit();
+    sethideRegister(!hideRegister)
     setFlag(!flag);
   };
 
@@ -218,9 +219,9 @@ export default function CheckboxLabels() {
             />
           </div>
           <Link to="/login">
-            <a href="/login" className="noaccR">
+            <Link href="/login" className="noaccR">
               Already have an account? <span>Login here</span>
-            </a>
+            </Link>
           </Link>
         </div>
       </>

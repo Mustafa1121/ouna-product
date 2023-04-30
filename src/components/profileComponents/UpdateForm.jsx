@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../axios/axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const UpdatedForm = ({ address, index, deleteAddress }) => {
-  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -22,7 +21,7 @@ const UpdatedForm = ({ address, index, deleteAddress }) => {
           token: `${userInfo.data.token}`,
         },
       };
-      const response = await axios.delete(
+      await axios.delete(
         `/api/user/deleteAddress/${id}`,
         config
       );
@@ -38,7 +37,7 @@ const UpdatedForm = ({ address, index, deleteAddress }) => {
           token: `${userInfo.data.token}`,
         },
       };
-      const response = await axios.post(
+      await axios.post(
         `/api/user/updateAddress/${id}`,
         config
       );
@@ -48,6 +47,7 @@ const UpdatedForm = ({ address, index, deleteAddress }) => {
   };
   useEffect(() => {
     setFormData(address);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <form>

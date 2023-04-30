@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../LoadingError/Error.jsx";
 import Toast from "../LoadingError/Toast.jsx";
-import Loading from "../LoadingError/Loading.jsx";
-import { toast } from "react-toastify";
 import { updateUserProfile } from "../../Redux/Actions/userActions";
 
 const ProfileTabs = () => {
@@ -11,28 +8,22 @@ const ProfileTabs = () => {
   const [email, setEmail] = useState("");
   const [Oldpassword, setOldPassword] = useState("");
   const [NewPassword, setNewPassword] = useState("");
-  const toastId = React.useRef(null);
 
-  const Toastobjects = {
-    pauseOnFocusLoss: false,
-    draggable: false,
-    pauseOnHover: false,
-    autoClose: 2000,
-  };
 
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const { loading: updateLoading } = userUpdateProfile;
+  // const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  // const { loading: updateLoading } = userUpdateProfile;
 
   useEffect(() => {
     if (userLogin) {
       setName(userInfo.data.user.fname);
       setEmail(userInfo.data.user.email);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, userLogin]);
 
   const submitHandler = (e) => {

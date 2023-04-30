@@ -10,7 +10,6 @@ import {
   MenuItem,
   Select,
 } from "@material-ui/core";
-import axios from "../axios/axios";
 import { toast } from "react-toastify";
 
 const ShippingScreen = ({ history }) => {
@@ -18,13 +17,6 @@ const ShippingScreen = ({ history }) => {
   const [selectedAddress, setSelectedAddress] = useState("");
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  const cartItemIds = cartItems.map((item) => item._id);
-  // console.log(cartItemIds);
-  const total = cartItems
-    .reduce((a, i) => a + i.quantity * i.price, 0)
-    .toFixed(2);
-  // console.log(total);
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const { addresses } = useSelector((state) => state.listOfAddresses);
@@ -41,7 +33,6 @@ const ShippingScreen = ({ history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(selectedAddress);
     if (selectedAddress === "") {
       toast.error("Please select an address");
       return;

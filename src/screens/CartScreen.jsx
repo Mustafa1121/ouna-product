@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../axios/axios";
 import {
-  addToCart,
   getListCart,
   removefromcart,
   clearCart,
@@ -12,6 +11,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import ClearIcon from "@mui/icons-material/Clear";
 import { toast } from "react-toastify";
+import { CircularProgress } from "@material-ui/core";
 
 const CartScreen = ({ match, location, history }) => {
   window.scrollTo(0, 0);
@@ -21,7 +21,7 @@ const CartScreen = ({ match, location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
+  const [loading, setLoading] = useState(false);
   const { cartItems } = cart;
 
   const total = cartItems
@@ -31,22 +31,25 @@ const CartScreen = ({ match, location, history }) => {
   useEffect(() => {
     dispatch(getListCart(userInfo));
     // dispatch(addToCart(productId, qty,userInfo));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, productId, qty]);
 
   const checkOutHandler = async () => {
     try {
+      setLoading(true);
       const config = {
         headers: {
           token: `${userInfo.data.token}`,
         },
       };
-      const { data } = await axios.post(
+      await axios.post(
         "/api/home/reserveItems",
         {
           cartId: cart.cartId,
         },
         config
       );
+      setLoading(false);
       history.push("/shipping");
     } catch (error) {
       toast.error(error.response.data.message);
@@ -168,7 +171,13 @@ const CartScreen = ({ match, location, history }) => {
               </Link>
               {total > 0 && (
                 <div className="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
-                  <button onClick={checkOutHandler}>Purchase</button>
+                  <button onClick={checkOutHandler}>
+                  {loading ? (
+                  <CircularProgress size={20} style={{ color: "white" }} />
+                ) : (
+                  "Purchase"
+                )}
+                  </button>
                 </div>
               )}
             </div>

@@ -131,9 +131,9 @@ const Login = ({ containerRef }) => {
               />
               <Link to="/register">
                 {/*  eslint-disable-next-line */}
-                <a href="#" className="noacc">
+                <Link className="noacc">
                   Don't have an account? <span>Register here</span>
-                </a>
+                </Link>
               </Link>
               <div className="forget">
                 <p

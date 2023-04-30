@@ -12,9 +12,7 @@ const PlaceOrderScreen = ({ history }) => {
   window.scrollTo(0, 0);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
   const { cartItems } = cart;
-  console.log(cartItems);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const cartItemIds = cartItems.map((item) => item._id);
@@ -35,18 +33,18 @@ const PlaceOrderScreen = ({ history }) => {
     };
     try {
       setLoading(true);
-      const { data } = await axios.post("/api/home/checkout", formData, config);
-      console.log(data);
+      await axios.post("/api/home/checkout", formData, config);
       await axios.delete(`api/home/cart/clearCartItems`, config);
       dispatch({
         type: CART_CLEAR_ITEMS,
       });
       setLoading(false);
       toast.success("Order Placed !");
+      history.push("/");
     } catch (error) {
-      toast.error(error.response.data.message);
+      setLoading(false);
+      toast.error(error.response.data.data.message);
     }
-    history.push("/");
   };
 
   const total = cartItems
@@ -62,7 +60,7 @@ const PlaceOrderScreen = ({ history }) => {
             <div className="row ">
               <div className="col-md-4 center">
                 <div className="alert-success order-box">
-                  <i class="fas fa-user"></i>
+                  <i className="fas fa-user"></i>
                 </div>
               </div>
               <div className="col-md-8 center">

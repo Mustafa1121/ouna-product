@@ -23,14 +23,6 @@ export const getListCart = (userInfo) => async (dispatch) => {
       },
     };
     const { data } = await axios.get(`api/home/cart/getCartItems`, config);
-    // console.log(data)
-    // console.log(
-    //   data.data.cart.itemsArray.map((i) => ({
-    //     ...i.item,
-    //     _id: i._id,
-    //     cartId: data.data.cart._id, // Add the cartId property
-    //   }))
-    // );
     dispatch({
       type: GET_CART_LIST,
       payload: {
@@ -42,7 +34,8 @@ export const getListCart = (userInfo) => async (dispatch) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error)
+    // toast.error(error.response.data)
   }
 };
 
@@ -58,7 +51,7 @@ export const addToCart =
           token: `${userInfo.data.token}`,
         },
       };
-      const { data } = await axios.post(
+      await axios.post(
         `/api/home/cart/addItemToCart/${id}`,
         {
           quantity: 1,
@@ -70,7 +63,7 @@ export const addToCart =
         payload: product,
       });
     } catch (error) {
-      console.log(error);
+      toast.error(error.response.data.message)
     }
   };
 
@@ -89,7 +82,7 @@ export const removefromcart = (id, userInfo) => async (dispatch, getState) => {
     });
     toast.warning("Item removed");
   } catch (error) {
-    console.log(error.message);
+    toast.error(error.response.data.message)
   }
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };
@@ -111,7 +104,7 @@ export const clearCart = (userInfo) => async (dispatch, getState) => {
       position: "bottom-right",
     });
   } catch (error) {
-    console.log(error.message);
+    toast.error(error.response.data.message)
   }
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };

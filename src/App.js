@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./style/App.css";
 import "./style/responsive.css";
 import "react-toastify/dist/ReactToastify.css";

@@ -81,7 +81,7 @@ input {
 }
 .phone-container {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
   padding: 5px;
@@ -330,8 +330,8 @@ input :focus {
   .phone-container {
     /* border: 2px solid blue; */
     display: flex;
-    align-items: start;
-    justify-content: start;
+    align-items: flex-start;
+    justify-content: flex-start;
     position: relative;
     left:-16%;
     max-width: 100%;

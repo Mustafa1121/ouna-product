@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserAddresses, logout } from "../Redux/Actions/userActions";
+import {  logout } from "../Redux/Actions/userActions";
 import { useLocation } from "react-router-dom";
-import { CircleFlag } from "react-circle-flags";
 import SubNavbar from "./SubNav";
 import Flag from "./Flag";
 import logo from "../assets/ounaLogo.png";
@@ -11,11 +10,11 @@ import bigLogo from "../assets/ouna-01.png";
 
 const Header = () => {
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
+  // const handleToggle = () => {
+  //   setIsOpen(!isOpen);
+  // };
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
   let history = useHistory();
@@ -24,9 +23,9 @@ const Header = () => {
   const { cartItems } = cart;
   const userLogin = useSelector((state) => state.userLogin);
 
-  const [selectedFlag, setSelectedFlag] = useState(
-    localStorage.getItem("selectedFlag") || "Lebanon"
-  );
+  // const [selectedFlag, setSelectedFlag] = useState(
+  //   localStorage.getItem("selectedFlag") || "Lebanon"
+  // );
 
   const { userInfo } = userLogin;
 

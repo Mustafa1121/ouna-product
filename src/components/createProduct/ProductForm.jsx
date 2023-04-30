@@ -105,6 +105,7 @@ function ProductForm() {
     }
     formik.setErrors({});
     dispatch(getCategories());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formik.errors]);
 
   const removeImage = (indexToRemove) => {
@@ -240,7 +241,6 @@ function ProductForm() {
                   setSelectedCategoryId(categories.categories.find(
                     (category) => category.name === event.target.value
                   )._id)
-                  console.log(selectedCategoryId);
                   formik.handleChange(event);
                   if (event.target.value === "Phones") {
                     toast.warning(
@@ -340,7 +340,7 @@ function ProductForm() {
                   src={`data:image/png;base64,${image}`}
                   height="100px"
                   width="100px"
-                  alt={`Selected image ${index}`}
+                  alt={`Selected ${index}`}
                 />
                 <p className="removeImage" onClick={() => removeImage(index)}>
                   &times;

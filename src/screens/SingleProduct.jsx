@@ -22,7 +22,6 @@ const SingleProduct = ({ history, match }) => {
   const { loading, error, product } = productDetails;
   const userLogin = useSelector((state) => state.userLogin);
   const { loading: loading1 } = useSelector((state) => state.cart);
-  console.log(loading1);
   const { userInfo } = userLogin;
   // const productReviewCreate = useSelector((state) => state.productReviewCreate);
   // const {
@@ -40,12 +39,13 @@ const SingleProduct = ({ history, match }) => {
     // }
     dispatch(listProductDetails(productId));
     dispatch(getListCart(userInfo));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, productId]);
 
   const AddToCartHandle = (id) => {
     dispatch(addToCart(id, userInfo, productDetails.product));
     // history.push("/cart");
-    const span = document.querySelector(".badge").classList.add("shake"); // Add the "shake" class to the badge element
+    document.querySelector(".badge").classList.add("shake"); // Add the "shake" class to the badge element
     setTimeout(() => {
       document.querySelector(".badge").classList.remove("shake"); // Remove the "shake" class after 1 second
     }, 1000);
@@ -96,7 +96,7 @@ const SingleProduct = ({ history, match }) => {
                     />
                   ))}
                 </div>
-                {productDetails.product.recycling === "no" ? (
+                {productDetails.product.recycling === "false" ? (
                   <div className="recycle">
                     <h5>
                       <b>Proof of Work:</b>

@@ -47,9 +47,9 @@ const Orders = (props) => {
                       key={order._id}
                     >
                       <td>
-                        <a href={`/order/${order._id}`} className="link">
+                        <Link to={`/order/${order._id}`} className="link">
                           {order._id}
-                        </a>
+                        </Link>
                       </td>
                       <td>{order.isPaid ? <>Paid</> : <>Not Paid</>}</td>
                       <td>
