@@ -65,8 +65,7 @@ export const addProduct = (formData, userInfo, history) => async (dispatch) => {
       formData,
       config
     );
-    history.push("/");
-    toast.info("Your item is currently under testing and analysis.");
+
     const analysisData = await axios.post(
       "/api/user/analyze",
       {

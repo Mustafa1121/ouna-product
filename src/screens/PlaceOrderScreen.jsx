@@ -13,9 +13,11 @@ const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  console.log(cartItems)
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const cartItemIds = cartItems.map((item) => item._id);
+  const cartItemIds = cartItems.map((item) => item.id);
+  console.log(cartItemIds)
   const [loading, setLoading] = useState(false);
 
   const placeOrderHandler = async (e) => {
@@ -27,7 +29,7 @@ const PlaceOrderScreen = ({ history }) => {
     };
     const formData = {
       totalPrice: total,
-      itemsId: cartItemIds,
+      itemsId: ['63f7791f78225653db56dcf1'],
       addressId: cart.shippingAddress._id,
       cartId: cart.cartId,
     };

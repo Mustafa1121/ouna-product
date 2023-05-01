@@ -7,6 +7,7 @@ import {
   CART_SAVE_SHIPPING_ADDRESS,
   GET_CART_LIST,
   CART_ADD_LOADING,
+  UPDATE_CARTITEMS,
 } from "../Constants/CartConstants";
 
 export const cartReducer = (
@@ -62,7 +63,12 @@ export const cartReducer = (
         cartItems: action.payload.itemsArray,
         cartId: action.payload.cartId,
       };
-
+    case UPDATE_CARTITEMS:
+      console.log('pass')
+      return {
+        ...state,
+        cartItems: action.payload
+      }
     default:
       return state;
   }

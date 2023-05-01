@@ -58,12 +58,14 @@ function ProductForm() {
         base64Video: video,
         imagesbase: selectedImages,
       };
-      dispatch(addProduct(formData, userInfo,history));
+      dispatch(addProduct(formData, userInfo,history));     
       setSelectedImages([])
       setSelectedCategoryId(0)
       setVideo(null)
       resetForm()
       window.scroll(0,0)
+      history.push("/");
+      toast.info("Your item is currently under testing and analysis.");
     },
     validateOnChange: false, // disable validation on change
   });

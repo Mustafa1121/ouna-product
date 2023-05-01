@@ -180,7 +180,7 @@ const ShopSection = (props) => {
                                 >
                                   Prev
                                 </Link>
-                                <div className="d-inline-block">
+                                <div className="d-flex">
                                   {pageNumbers.map((pageNumber) => (
                                     <Link
                                     to=''

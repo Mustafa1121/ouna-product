@@ -12,6 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ClearIcon from "@mui/icons-material/Clear";
 import { toast } from "react-toastify";
 import { CircularProgress } from "@material-ui/core";
+import { UPDATE_CARTITEMS } from "../Redux/Constants/CartConstants";
 
 const CartScreen = ({ match, location, history }) => {
   window.scrollTo(0, 0);
@@ -21,8 +22,8 @@ const CartScreen = ({ match, location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const cart = useSelector((state) => state.cart);
-  const [loading, setLoading] = useState(false);
   const { cartItems } = cart;
+  const [loading, setLoading] = useState(false);
 
   const total = cartItems
     .reduce((a, i) => a + i.quantity * i.price, 0)
@@ -31,7 +32,7 @@ const CartScreen = ({ match, location, history }) => {
   useEffect(() => {
     dispatch(getListCart(userInfo));
     // dispatch(addToCart(productId, qty,userInfo));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, productId, qty]);
 
   const checkOutHandler = async () => {
@@ -42,15 +43,33 @@ const CartScreen = ({ match, location, history }) => {
           token: `${userInfo.data.token}`,
         },
       };
-      await axios.post(
+      const { data } = await axios.post(
         "/api/home/reserveItems",
         {
           cartId: cart.cartId,
         },
         config
       );
-      setLoading(false);
-      history.push("/shipping");
+      if (
+        data.data.itemsReservedByOthers.length === 0 &&
+        data.data.myReservedItems === 0
+      ) {
+        setLoading(false);
+        history.push("/shipping");
+        return;
+      }
+      if (data.data.itemsReservedByOthers.length > 0) {
+        toast.warning("Some Items are reserved by others");
+        setLoading(false);
+        return;
+      } else {
+        dispatch({
+          type: UPDATE_CARTITEMS,
+          payload: data.data.myReservedItems,
+        });
+        setLoading(false);
+        history.push("/shipping");
+      }
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -92,7 +111,7 @@ const CartScreen = ({ match, location, history }) => {
               </Link>
             </div>
             {/* cartiterm */}
-            {cartItems?.map((item,i) => (
+            {cartItems?.map((item, i) => (
               <div className="carttt" key={i}>
                 <div className="cart-iterm row">
                   <div
@@ -172,11 +191,11 @@ const CartScreen = ({ match, location, history }) => {
               {total > 0 && (
                 <div className="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
                   <button onClick={checkOutHandler}>
-                  {loading ? (
-                  <CircularProgress size={20} style={{ color: "white" }} />
-                ) : (
-                  "Purchase"
-                )}
+                    {loading ? (
+                      <CircularProgress size={20} style={{ color: "white" }} />
+                    ) : (
+                      "Purchase"
+                    )}
                   </button>
                 </div>
               )}
