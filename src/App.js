@@ -36,12 +36,34 @@ const App = () => {
           <Route exact path="/">
             {location === "Lebanon" ? (
               <Redirect to="/lb" />
-            ) : (
+            ) : location === "Egypt" ? (
               <Redirect to="/eg" />
+            ) : location === "Tunisia" ? (
+              <Redirect to="/tn" />
+            ) : location === "Morocco" ? (
+              <Redirect to="/ma" />
+            ) : location === "Algeria" ? (
+              <Redirect to="/dz" />
+            ) : location === "Senegal" ? (
+              <Redirect to="/sn" />
+            ) : location === "Côte d'Ivoire" ? (
+              <Redirect to="/ci" />
+            ) : location === "Benin" ? (
+              <Redirect to="/bj" />
+            ) : (
+              <Redirect to="/lb" />
             )}
           </Route>
+
           <Route exact path="/lb" component={HomeScreen} />
           <Route exact path="/eg" component={HomeScreen} />
+          <Route exact path="/tn" component={HomeScreen} />
+          <Route exact path="/ma" component={HomeScreen} />
+          <Route exact path="/dz" component={HomeScreen} />
+          <Route exact path="/sn" component={HomeScreen} />
+          <Route exact path="/ci" component={HomeScreen} />
+          <Route exact path="/bj" component={HomeScreen} />
+
           <Route path="/search/:keyword" component={HomeScreen} exact />
           <Route path="/page/:pagenumber" component={HomeScreen} exact />
           <Route

@@ -183,9 +183,14 @@ export default function CheckboxLabels() {
               </label>
               <MuiPhoneNumber
                 defaultCountry={
-                  localStorage.getItem("selectedFlag") === "Lebanon"
-                    ? "lb"
-                    : "eg"
+                  localStorage.getItem("selectedFlag") === "Lebanon" ? "lb" :
+                  localStorage.getItem("selectedFlag") === "Egypt" ? "eg" :
+                  localStorage.getItem("selectedFlag") === "Tunisia" ? "tn" :
+                  localStorage.getItem("selectedFlag") === "Morocco" ? "ma" :
+                  localStorage.getItem("selectedFlag") === "Algeria" ? "dz" :
+                  localStorage.getItem("selectedFlag") === "Senegal" ? "sn" :
+                  localStorage.getItem("selectedFlag") === "Côte d'Ivoire" ? "ci" :
+                  localStorage.getItem("selectedFlag") === "Benin" ? "bj" :   "lb"               
                 }
                 onChange={handleOnChange}
                 autoFormat={true}
