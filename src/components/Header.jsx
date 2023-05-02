@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {  logout } from "../Redux/Actions/userActions";
+import { logout } from "../Redux/Actions/userActions";
 import { useLocation } from "react-router-dom";
 import SubNavbar from "./SubNav";
 import Flag from "./Flag";
@@ -124,7 +124,7 @@ const Header = () => {
                         <Link className="dropdown-item" to="/profile">
                           Profile
                         </Link>
-
+                        <Link to="/createProduct">Sell</Link>
                         <Link
                           className="dropdown-item"
                           to="#"
@@ -213,7 +213,6 @@ const Header = () => {
                       <Link className="dropdown-item" to="/profile">
                         Profile
                       </Link>
-
                       <Link
                         className="dropdown-item"
                         to="#"

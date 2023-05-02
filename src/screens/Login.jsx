@@ -90,6 +90,7 @@ const Login = ({ containerRef }) => {
       toast.error(formik.errors.password);
     }
     formik.setErrors({});
+    window.scroll(0,0)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flag, formik.errors, userInfo, history]);
 
@@ -131,7 +132,7 @@ const Login = ({ containerRef }) => {
               />
               <Link to="/register">
                 {/*  eslint-disable-next-line */}
-                <Link className="noacc">
+                <Link to='/register' className="noacc">
                   Don't have an account? <span>Register here</span>
                 </Link>
               </Link>

@@ -13,11 +13,9 @@ const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  console.log(cartItems)
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const cartItemIds = cartItems.map((item) => item.id);
-  console.log(cartItemIds)
   const [loading, setLoading] = useState(false);
 
   const placeOrderHandler = async (e) => {
@@ -29,7 +27,7 @@ const PlaceOrderScreen = ({ history }) => {
     };
     const formData = {
       totalPrice: total,
-      itemsId: ['63f7791f78225653db56dcf1'],
+      itemsId: cartItemIds,
       addressId: cart.shippingAddress._id,
       cartId: cart.cartId,
     };
@@ -182,7 +180,7 @@ const PlaceOrderScreen = ({ history }) => {
                   <td>
                     <strong>Tax</strong>
                   </td>
-                  <td>${total * 0.1}</td>
+                  <td>${(total * 0.1).toFixed(2)}</td>
                 </tr>
                 {/* <tr>
                   <td>

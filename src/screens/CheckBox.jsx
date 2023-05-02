@@ -51,11 +51,7 @@ export default function CheckboxLabels() {
         password: values.password,
         countryCode: countryCode,
       };
-      dispatch(
-        register(
-         registerData,history
-        )
-      );
+      dispatch(register(registerData, history));
     },
     validateOnChange: false,
   });
@@ -63,7 +59,7 @@ export default function CheckboxLabels() {
   const onSubmit = (e) => {
     e.preventDefault();
     formik.handleSubmit();
-    sethideRegister(!hideRegister)
+    sethideRegister(!hideRegister);
     setFlag(!flag);
   };
 
@@ -84,7 +80,7 @@ export default function CheckboxLabels() {
       toast.error(formik.errors.lastName);
     }
     formik.setErrors({});
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flag, formik.errors, userInfo, history]);
 
   const useStyles = makeStyles({
@@ -110,7 +106,7 @@ export default function CheckboxLabels() {
 
   const handleOnChange = (value, country) => {
     const countryCode = `+${country.dialCode}`;
-    const phoneNumberWithoutCountryCode = value.replace(countryCode, '');
+    const phoneNumberWithoutCountryCode = value.replace(countryCode, "");
     setPhoneNumber(phoneNumberWithoutCountryCode);
     setCountryCode(country.dialCode);
   };
@@ -179,30 +175,34 @@ export default function CheckboxLabels() {
               value={formik.values.address}
             />
           </div> */}
-          {<div className="phone-container">
-            <label htmlFor="phone" style={{ fontSize: "15px" }}>
-              {" "}
-              Phone Number :{" "}
-            </label>
-            <MuiPhoneNumber
-              defaultCountry={
-                localStorage.getItem("selectedFlag") === "Lebanon" ? "lb" : "eg"
-              }
-              onChange={handleOnChange}
-              autoFormat={true}
-              className={classes.root}
-              sx={{
-                "& .css-v4u5dn-MuiInputBase-root-MuiInput-root:before": {
-                  content: "none",
-                },
-                ".css-v4u5dn-MuiInputBase-root-MuiInput-root ": {
-                  width: "27.4em",
-                },
-                ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {},
-              }}
-              required
-            />
-          </div>}
+          {
+            <div className="phone-container">
+              <label htmlFor="phone" style={{ fontSize: "15px" }}>
+                {" "}
+                Phone Number :{" "}
+              </label>
+              <MuiPhoneNumber
+                defaultCountry={
+                  localStorage.getItem("selectedFlag") === "Lebanon"
+                    ? "lb"
+                    : "eg"
+                }
+                onChange={handleOnChange}
+                autoFormat={true}
+                className={classes.root}
+                sx={{
+                  "& .css-v4u5dn-MuiInputBase-root-MuiInput-root:before": {
+                    content: "none",
+                  },
+                  ".css-v4u5dn-MuiInputBase-root-MuiInput-root ": {
+                    width: "27.4em",
+                  },
+                  ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {},
+                }}
+                required
+              />
+            </div>
+          }
           <br />
           <div className="form-groupF">
             <label htmlFor="password" style={{ fontSize: "15px" }}>
@@ -219,7 +219,8 @@ export default function CheckboxLabels() {
             />
           </div>
           <Link to="/login">
-            <Link href="/login" className="noaccR">
+            {/*  eslint-disable-next-line */}
+            <Link to="/login" className="noacc">
               Already have an account? <span>Login here</span>
             </Link>
           </Link>

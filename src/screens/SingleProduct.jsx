@@ -39,6 +39,7 @@ const SingleProduct = ({ history, match }) => {
     // }
     dispatch(listProductDetails(productId));
     dispatch(getListCart(userInfo));
+    window.scroll(0,0)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, productId]);
 

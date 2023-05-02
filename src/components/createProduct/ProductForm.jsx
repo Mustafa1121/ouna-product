@@ -107,6 +107,7 @@ function ProductForm() {
     }
     if(!userInfo){
       history.push('/login')
+      toast.warning('You should be logged in to sell a product')
     }
     formik.setErrors({});
     dispatch(getCategories());

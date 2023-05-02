@@ -64,7 +64,6 @@ export const cartReducer = (
         cartId: action.payload.cartId,
       };
     case UPDATE_CARTITEMS:
-      console.log('pass')
       return {
         ...state,
         cartItems: action.payload
