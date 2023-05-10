@@ -13,7 +13,6 @@ import Modal from "@mui/material/Modal";
 import { Link } from "react-router-dom";
 import axios from "../axios/axios";
 
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -69,14 +68,14 @@ const Login = ({ containerRef }) => {
 
   const sendEmail = () => {
     axios
-      .post("/api/user/forgot", { email })
+      .post("/api/user/auth/forgot-password", { email })
       .then(() => {
         toast.success("Email sent successfully!");
       })
       .catch((error) => {
         toast.error("Failed to send email.");
       });
-      setEmail('')
+    setEmail("");
   };
 
   useEffect(() => {
@@ -90,8 +89,8 @@ const Login = ({ containerRef }) => {
       toast.error(formik.errors.password);
     }
     formik.setErrors({});
-    window.scroll(0,0)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    window.scroll(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flag, formik.errors, userInfo, history]);
 
   return (
@@ -132,7 +131,7 @@ const Login = ({ containerRef }) => {
               />
               <Link to="/register">
                 {/*  eslint-disable-next-line */}
-                <Link to='/register' className="noacc">
+                <Link to="/register" className="noacc">
                   Don't have an account? <span>Register here</span>
                 </Link>
               </Link>

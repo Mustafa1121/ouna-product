@@ -74,7 +74,7 @@ const App = () => {
           <Route path="/products/:id" component={SingleProduct} />
           <Route path="/login" component={Form} />
           <Route path="/register" component={Form} />
-          <Route path="/resetPassword" component={ResetPassword} />
+          <Route path="/resetPassword/:token" component={ResetPassword} />
           <Route path="/createProduct" component={ProductForm} />
           <PrivateRouter path="/profile" component={ProfileScreen} />
           <Route path="/cart/:id?" component={CartScreen} />

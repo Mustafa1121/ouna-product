@@ -19,6 +19,22 @@ import { addProduct, getCategories } from "../../Redux/Actions/ProductActions";
 import { useHistory } from "react-router-dom";
 
 function ProductForm() {
+  const currencySymbol =
+    localStorage.getItem("selectedFlag") === "Lebanon"
+      ? "USD"
+      : localStorage.getItem("selectedFlag") === "Egypt"
+      ? "EGP"
+      : localStorage.getItem("selectedFlag") === "Tunisia"
+      ? "د.ت"
+      : localStorage.getItem("selectedFlag") === "Morocco"
+      ? "د.م."
+      : localStorage.getItem("selectedFlag") === "Algeria"
+      ? "د.ج"
+      : localStorage.getItem("selectedFlag") === "Senegal" ||
+        localStorage.getItem("selectedFlag") === "Côte d'Ivoire" ||
+        localStorage.getItem("selectedFlag") === "Benin"
+      ? "CFA"
+      : "$";
   const history = useHistory();
   const categories = useSelector((state) => state.productCategories);
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
@@ -58,7 +74,7 @@ function ProductForm() {
         description: values.description,
         recycling: values.recycling,
         base64Video: video,
-        imagesbase: selectedImages,
+        selectedImages: selectedImages,
         rating: values.rating,
         origin: selectedFlag,
       };
@@ -82,10 +98,10 @@ function ProductForm() {
       );
       return;
     }
-    if (numDownloaded < 5) {
-      toast.warning("Please download at least 5 images before submitting!");
-      return;
-    }
+    // if (numDownloaded < 1) {
+    //   toast.warning("Please download at least 5 images before submitting!");
+    //   return;
+    // }
   };
   useEffect(() => {
     if (formik.errors.brand) {
@@ -210,7 +226,9 @@ function ProductForm() {
             />
           </Box>
           <div className="pricingp">
-            <label htmlFor="price">Price(in USD):</label>
+            <label htmlFor="price">
+              <label htmlFor="price">Price ( in {currencySymbol}):</label>
+            </label>
             <input
               placeholder="Enter Price"
               type="text"
@@ -333,13 +351,14 @@ function ProductForm() {
             accept="image/*"
             onChange={(e) => {
               const files = Array.from(e.target.files);
+              const images = [];
               files.forEach((file) => {
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
                 reader.onload = function () {
-                  const base64Image = reader.result.split(",")[1];
-                  setSelectedImages([...selectedImages, base64Image]);
-                  setNumDownloaded(numDownloaded + 1);
+                  const base64Image = reader.result;
+                  images.push(base64Image);
+                  setSelectedImages(images.map((img) => img.split(",")[1]));
                 };
               });
             }}
