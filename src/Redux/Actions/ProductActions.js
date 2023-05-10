@@ -18,12 +18,15 @@ import { logout } from "./userActions";
 
 // PRODUCT LIST
 export const listProduct =
-  (keyword = " ", pageNumber = " ") =>
+  (keyword = " ", pageNumber = " ", selectedFlag) =>
   async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
-      const { data } = await axios.get(`/api/home/frontend`);
-      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data.data.featured });
+      const { data } = await axios.get(
+        `/api/products/all/${selectedFlag ? selectedFlag : ""}`
+      );
+      console.log(data);
+      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
         type: PRODUCT_LIST_FAIL,
@@ -39,8 +42,9 @@ export const listProduct =
 export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
-    const { data } = await axios.get(`/api/home/getProduct/${id}`);
-    dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.data });
+    const { data } = await axios.get(`/api/products/${id}`);
+    console.log(data);
+    dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
@@ -57,26 +61,25 @@ export const addProduct = (formData, userInfo, history) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        token: `${userInfo.data.token}`,
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
     const { data } = await axios.post(
-      "/api/home/item/addupdate",
+      "/api/products/addProduct",
       formData,
       config
     );
-
-    const analysisData = await axios.post(
-      "/api/user/analyze",
-      {
-        arrayImages: formData.imagesbase,
-        itemId: data.data.data._id
-      },
-      config
-    );
-    toast.error(analysisData.data.data.msg)
+    console.log(data);
+    // const analysisData = await axios.post(
+    //   "/api/user/analyze",
+    //   {
+    //     arrayImages: formData.imagesbase,
+    //     itemId: data.data.data._id,
+    //   },
+    //   config
+    // );
   } catch (error) {
-    toast.error(error.response.data.message)
+    toast.error(error.response.data.message);
   }
 };
 
@@ -119,12 +122,11 @@ export const getCategories = () => async (dispatch) => {
     dispatch({
       type: CATEGORIES_REQUEST,
     });
-    const { data } = await axios.get(
-      "http://ec2-54-204-116-184.compute-1.amazonaws.com:3096/api/home/category/list"
-    );
+    const { data } = await axios.get("/api/category");
+    console.log(data);
     dispatch({
       type: CATEGORIES_SUCCESS,
-      payload: data.data,
+      payload: data,
     });
   } catch (error) {
     dispatch({

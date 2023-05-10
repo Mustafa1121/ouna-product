@@ -20,7 +20,6 @@ import axios from "../../axios/axios";
 import { ORDER_LIST_MY_RESET } from "../Constants/OrderConstants";
 import { toast } from "react-toastify";
 
-
 toast.configure({
   position: "bottom-right",
   autoClose: 3000, // Close the toast after 3 seconds
@@ -38,10 +37,11 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `/api/user/login`,
+      `/api/user/auth/login`,
       { email, password },
       config
     );
+
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
     toast.info("Login successfully");
@@ -67,30 +67,34 @@ export const logout = () => (dispatch) => {
 };
 
 // REGISTER
-export const register = (user, history) => async (dispatch) => {
-  try {
-    dispatch({ type: USER_REGISTER_REQUEST });
+export const register =
+  (user, history, sethideRegister, hideRegister) => async (dispatch) => {
+    try {
+      dispatch({ type: USER_REGISTER_REQUEST });
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const data = await axios.post(`/api/user/save`, user, config);
-    if (data.data.message === "User already exists") {
-      toast.error("User already exists");
-      return;
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const data = await axios.post(`/api/user/auth/register`, user, config);
+      if (data.msg === "User already exists") {
+        toast.error("User already exists");
+        return;
+      }
+      console.log(data);
+      dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
+      sethideRegister(true);
+      // history.push("/login");
+    } catch (error) {
+      dispatch({
+        type: USER_REGISTER_FAIL,
+        payload: error.message && error.message ? error.message : error.message,
+      });
+      sethideRegister(false);
+      toast.error(error.response.data.message);
     }
-    dispatch({ type: USER_REGISTER_SUCCESS, payload: data.data });
-    // history.push("/login");
-  } catch (error) {
-    dispatch({
-      type: USER_REGISTER_FAIL,
-      payload: error.message && error.message ? error.message : error.message,
-    });
-    toast.error(error.response.data.message);
-  }
-};
+  };
 
 // USER DETAILS
 export const getUserDetails = (id, userInfo) => async (dispatch, getState) => {
@@ -154,13 +158,14 @@ export const getUserAddresses = (userInfo) => async (dispatch) => {
     dispatch({ type: GET_LIST_OF_ADDRESSES_REQUEST });
     const config = {
       headers: {
-        token: `${userInfo.data.token}`,
+        authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get("/api/user/listAddresses", config);
+    const { data } = await axios.get("/api/user/Address", config);
+    console.log(data);
     dispatch({
       type: GET_LIST_OF_ADDRESSES_SUCCESS,
-      payload: data.data.addresses,
+      payload: data,
     });
   } catch (error) {
     const message =

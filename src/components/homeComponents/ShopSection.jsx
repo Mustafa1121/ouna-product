@@ -38,6 +38,7 @@ const ShopSection = (props) => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
+  const selectedFlag = localStorage.getItem("selectedFlag");
   // Filter the products based on the keyword prop
   const filteredProducts = keyword
     ? filterProducts(products, keyword)
@@ -57,7 +58,7 @@ const ShopSection = (props) => {
   };
 
   useEffect(() => {
-    dispatch(listProduct(keyword, pagenumber, origin));
+    dispatch(listProduct(keyword, pagenumber, selectedFlag));
     dispatch(getCategories());
     dispatch(getListCart(userInfo));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -138,7 +139,7 @@ const ShopSection = (props) => {
                                         transition: "transform 0.2s",
                                       }}
                                       component="img"
-                                      image={product.main_picture}
+                                      image={product.images[0].url}
                                       alt={product.name}
                                       className="product-image"
                                     />{" "}
@@ -150,7 +151,7 @@ const ShopSection = (props) => {
                                       </Link>
                                     </Typography>
                                     <Typography variant="h6" component="h6">
-                                      {product.category.name}
+                                      {/* {product.category.name} */}
                                     </Typography>
                                     <Rating
                                       value={product.status}
@@ -167,9 +168,12 @@ const ShopSection = (props) => {
                         {filteredProducts?.length > 0 && (
                           <div className="pagination">
                             <div className="mt-3">
-                              <div className="customPagination" style={{display:'flex'}}>
+                              <div
+                                className="customPagination"
+                                style={{ display: "flex" }}
+                              >
                                 <Link
-                                  to=''
+                                  to=""
                                   className="prev"
                                   onClick={(e) => {
                                     e.preventDefault();
@@ -183,9 +187,13 @@ const ShopSection = (props) => {
                                 <div className="d-flex">
                                   {pageNumbers.map((pageNumber) => (
                                     <Link
-                                    to=''
+                                      to=""
                                       key={pageNumber}
-                                      style={{display:"flex",justifyContent:"center",alignItems:"center"}}
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                      }}
                                       className={
                                         pageNumber === currentPage
                                           ? "active"
@@ -201,7 +209,7 @@ const ShopSection = (props) => {
                                   ))}
                                 </div>
                                 <Link
-                                to=''
+                                  to=""
                                   className="next"
                                   onClick={(e) => {
                                     e.preventDefault();

@@ -16,7 +16,6 @@ const Addresses = ({ addresses }) => {
     });
   };
 
-
   return (
     <div className="row">
       <div className="col-md-4 col-xs-12 mt-3">

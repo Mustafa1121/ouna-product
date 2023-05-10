@@ -8,7 +8,7 @@ import { listMyOrders } from "../Redux/Actions/OrderActions";
 import Addresses from "../components/profileComponents/Addresses.jsx";
 import AddressForm from "../components/profileComponents/AddressForm.jsx";
 import Rating from "../components/homeComponents/Rating";
-import userPhoto from '../images/user.png'
+import userPhoto from "../images/user.png";
 
 const ProfileScreen = () => {
   window.scrollTo(0, 0);
@@ -17,12 +17,13 @@ const ProfileScreen = () => {
   const { addresses } = useSelector((state) => state.listOfAddresses);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  console.log(userInfo);
 
   useEffect(() => {
     dispatch(listMyOrders());
-    dispatch(getUserDetails("profile", userInfo));
+    // dispatch(getUserDetails("profile", userInfo));
     dispatch(getUserAddresses(userInfo));
-  }, [dispatch,userInfo]);
+  }, [dispatch, userInfo]);
 
   return (
     <>
@@ -39,17 +40,16 @@ const ProfileScreen = () => {
                 <div className="author-card-details col-md-7">
                   <h5 className="author-card-name mb-2">
                     <strong>
-                      {`${userInfo.data.user.fname} ${userInfo.data.user.lname}`}{" "}
+                      {`${userInfo.data.user.Fname} ${userInfo.data.user.Lname}`}{" "}
                     </strong>
                   </h5>
                   <span className="author-card-position">
-                    <>Joined {moment(userInfo.data.user.createdAt).format("LL")}</>
+                    <>
+                      Joined {moment(userInfo.data.user.createdAt).format("LL")}
+                    </>
                   </span>
                   <br />
-                  <Rating
-                    value={userInfo.data.user.rating}
-                    text={``}
-                  />
+                  <Rating value={userInfo.data.user.rating} text={``} />
                 </div>
               </div>
             </div>

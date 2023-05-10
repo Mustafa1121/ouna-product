@@ -39,8 +39,8 @@ const SingleProduct = ({ history, match }) => {
     // }
     dispatch(listProductDetails(productId));
     dispatch(getListCart(userInfo));
-    window.scroll(0,0)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    window.scroll(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, productId]);
 
   const AddToCartHandle = (id) => {
@@ -51,6 +51,8 @@ const SingleProduct = ({ history, match }) => {
       document.querySelector(".badge").classList.remove("shake"); // Remove the "shake" class after 1 second
     }, 1000);
   };
+
+  console.log(product);
 
   // const submitHandler = (e) => {
   //   e.preventDefault();
@@ -76,17 +78,20 @@ const SingleProduct = ({ history, match }) => {
                 <div className="single-image">
                   {productDetails?.product?.images && (
                     <img
-                      alt={productDetails?.product?.name}
-                      src={`http://ec2-54-204-116-184.compute-1.amazonaws.com:3096/upload/${productDetails?.product?.images[index]?.url}`}
+                      alt={product?.name}
+                      src={product?.images[0]?.url}
                       className=""
                     />
                   )}
                 </div>
+                <div className="recycle12">
+                  {product.recycling ? "recycle" : "sell"}
+                </div>
                 <div className="small-images-container">
-                  {productDetails?.product?.images?.map((item, i) => (
+                  {product?.images?.map((item, i) => (
                     <img
                       key={i}
-                      src={`http://ec2-54-204-116-184.compute-1.amazonaws.com:3096/upload/${item.url}`}
+                      src={item.url}
                       className={
                         i === index
                           ? "small-image selected-image"
@@ -107,7 +112,7 @@ const SingleProduct = ({ history, match }) => {
                       width="520"
                       height="345"
                       className="videoP"
-                      src={`${productDetails?.product?.videourl}`}
+                      src={`${product?.video.url}`}
                     ></iframe>
                   </div>
                 ) : null}
@@ -115,16 +120,14 @@ const SingleProduct = ({ history, match }) => {
               <div className="col-md-6">
                 <div className="product-dtl">
                   <div className="product-info">
-                    <div className="product-name">
-                      {productDetails.product.name}
-                    </div>
+                    <div className="product-name">{product.name}</div>
                   </div>
-                  <p>{productDetails.product.description}</p>
+                  <p>{product.description}</p>
 
                   <div className="product-count col-lg-7 ">
                     <div className="flex-box d-flex justify-content-between align-items-center">
                       <h6>Price</h6>
-                      <span>${productDetails.product.price}</span>
+                      <span>${product.price}</span>
                     </div>
                     {/* <div className="flex-box d-flex justify-content-between align-items-center">
                       <h6>Status</h6>
@@ -134,10 +137,10 @@ const SingleProduct = ({ history, match }) => {
                         <span>unavailable</span>
                       )}
                     </div> */}
-                    <div className="flex-box d-flex justify-content-between align-items-center">
+                    {/* <div className="flex-box d-flex justify-content-between align-items-center">
                       <h6>Need Recycling</h6>
                       <span>{productDetails.product.recycling}</span>
-                    </div>
+                    </div> */}
 
                     <div className="flex-box d-flex justify-content-between align-items-center">
                       <h6>Condition</h6>
@@ -149,9 +152,7 @@ const SingleProduct = ({ history, match }) => {
                     <>
                       {userInfo ? (
                         <button
-                          onClick={() =>
-                            AddToCartHandle(productDetails?.product._id)
-                          }
+                          onClick={() => AddToCartHandle(product._id)}
                           disabled={loading}
                           className="round-black-btn"
                         >

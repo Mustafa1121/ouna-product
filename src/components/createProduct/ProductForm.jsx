@@ -19,7 +19,7 @@ import { addProduct, getCategories } from "../../Redux/Actions/ProductActions";
 import { useHistory } from "react-router-dom";
 
 function ProductForm() {
-  const history = useHistory()
+  const history = useHistory();
   const categories = useSelector((state) => state.productCategories);
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const userLogin = useSelector((state) => state.userLogin);
@@ -28,6 +28,7 @@ function ProductForm() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [numDownloaded, setNumDownloaded] = useState(0);
   const [video, setVideo] = useState(null);
+  const selectedFlag = localStorage.getItem("selectedFlag");
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -38,6 +39,7 @@ function ProductForm() {
       category: "",
       rating: 0,
       recycling: false,
+      origin: "",
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -48,7 +50,7 @@ function ProductForm() {
       price: Yup.string().required("Price is required."),
       category: Yup.string().required("Select a category"),
     }),
-    onSubmit: (values,{resetForm}) => {
+    onSubmit: (values, { resetForm }) => {
       const formData = {
         name: values.name,
         category: selectedCategoryId,
@@ -57,13 +59,15 @@ function ProductForm() {
         recycling: values.recycling,
         base64Video: video,
         imagesbase: selectedImages,
+        rating: values.rating,
+        origin: selectedFlag,
       };
-      dispatch(addProduct(formData, userInfo,history));     
-      setSelectedImages([])
-      setSelectedCategoryId(0)
-      setVideo(null)
-      resetForm()
-      window.scroll(0,0)
+      dispatch(addProduct(formData, userInfo, history));
+      setSelectedImages([]);
+      setSelectedCategoryId(0);
+      setVideo(null);
+      resetForm();
+      window.scroll(0, 0);
       history.push("/");
       toast.info("Your item is currently under testing and analysis.");
     },
@@ -105,13 +109,13 @@ function ProductForm() {
     if (formik.errors.rating) {
       toast.error(formik.errors.rating);
     }
-    if(!userInfo){
-      history.push('/login')
-      toast.warning('You should be logged in to sell a product')
+    if (!userInfo) {
+      history.push("/login");
+      toast.warning("You should be logged in to sell a product");
     }
     formik.setErrors({});
     dispatch(getCategories());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formik.errors]);
 
   const removeImage = (indexToRemove) => {
@@ -244,9 +248,11 @@ function ProductForm() {
                 id="demo-simple-select-autowidth"
                 value={formik.values.category}
                 onChange={(event) => {
-                  setSelectedCategoryId(categories.categories.find(
-                    (category) => category.name === event.target.value
-                  )._id)
+                  setSelectedCategoryId(
+                    categories.categories.find(
+                      (category) => category.name === event.target.value
+                    )._id
+                  );
                   formik.handleChange(event);
                   if (event.target.value === "Phones") {
                     toast.warning(

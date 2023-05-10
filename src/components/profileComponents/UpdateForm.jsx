@@ -3,28 +3,27 @@ import axios from "../../axios/axios";
 import { useSelector } from "react-redux";
 
 const UpdatedForm = ({ address, index, deleteAddress }) => {
+  console.log(address);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const [formData, setFormData] = useState({
-    fname: "",
-    lname: "",
-    phone: "",
-    countryCode: "",
+    Fname: userInfo.data.user.Fname,
+    Lname: userInfo.data.user.Lname,
+    phone: userInfo.data.user.phone,
+    countryCode: userInfo.data.user.countryCode,
     city: "",
     fullAdress: "",
     additionalAddressInfo: "",
   });
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+
   const handleDeleteAddress = async (id, index) => {
     try {
       const config = {
         headers: {
-          token: `${userInfo.data.token}`,
+          authorization: `Bearer ${userInfo.token}`,
         },
       };
-      await axios.delete(
-        `/api/user/deleteAddress/${id}`,
-        config
-      );
+      await axios.delete(`/api/user/Address/${id}`, config);
       deleteAddress(index);
     } catch (error) {
       console.error("Failed to delete address", error);
@@ -34,20 +33,17 @@ const UpdatedForm = ({ address, index, deleteAddress }) => {
     try {
       const config = {
         headers: {
-          token: `${userInfo.data.token}`,
+          authorization: `Bearer ${userInfo.token}`,
         },
       };
-      await axios.post(
-        `/api/user/updateAddress/${id}`,
-        config
-      );
+      await axios.patch(`/api/user/Address/${id}`, formData, config);
     } catch (error) {
       console.error("Failed to delete address", error);
     }
   };
   useEffect(() => {
     setFormData(address);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <form>
@@ -62,7 +58,7 @@ const UpdatedForm = ({ address, index, deleteAddress }) => {
               className="form-control"
               id="fname"
               name="fname"
-              value={formData.fname}
+              value={formData.Fname}
               onChange={(e) =>
                 setFormData({ ...formData, fname: e.target.value })
               }
@@ -79,7 +75,7 @@ const UpdatedForm = ({ address, index, deleteAddress }) => {
               className="form-control"
               id="lname"
               name="lname"
-              value={formData.lname}
+              value={formData.Lname}
               onChange={(e) =>
                 setFormData({ ...formData, lname: e.target.value })
               }

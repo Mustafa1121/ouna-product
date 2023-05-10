@@ -12,17 +12,17 @@ function DropMenue(props) {
 
   const getSpecificProduct = async (id) => {
     try {
-      const specificProduct = await axios.get(`api/home/category/${id}`);
+      const specificProduct = await axios.get(`/api/products/category/${id}`);
       dispatch({
         type: PRODUCT_LIST_SUCCESS,
-        payload: specificProduct.data.data,
+        payload: specificProduct,
       });
     } catch (error) {
       dispatch({
         type: CATEGORIES_FAIL,
         payload: error.response.data.message,
       });
-      toast.error( error.response.data.message)
+      toast.error(error.response.data.message);
     }
   };
 
@@ -30,12 +30,9 @@ function DropMenue(props) {
     <div className="dropdown">
       <label className="dropbtn">{props.name}</label>
       <div className="dropdown-content">
-        {props.item?.map((item,i) => (
+        {props.item?.map((item, i) => (
           // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          <p
-            onClick={() => getSpecificProduct(item.id)}
-            key={i}
-          >
+          <p onClick={() => getSpecificProduct(item.id)} key={i}>
             {item.name}
           </p>
         ))}

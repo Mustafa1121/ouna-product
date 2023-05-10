@@ -20,7 +20,18 @@ body {
   box-sizing: border-box;
   animation: fadeIn 1s ease-in-out;
 }
-.dropdown-content-flag.show{
+.recycle12 {
+  width: 100%;
+  margin-top: 10px;
+  background-color: rgb(244, 34, 34);
+  color: white;
+  width: 70px;
+  border-radius: 12px;
+  padding: 3px;
+  text-align: center;
+}
+
+.dropdown-content-flag.show {
   z-index: 999;
 }
 @keyframes fadeIn {
@@ -814,7 +825,6 @@ textarea:focus {
   }
 }
 
-
 /* .remove-button:hover {
   background-color: black;
 }
@@ -1150,7 +1160,7 @@ textarea:focus {
 }
 .customPagination a.active,
 .customPagination a:hover {
-  background: #3471db ;
+  background: #3471db;
   color: #fff;
   transition: 0.4s;
 }

@@ -44,14 +44,14 @@ export default function CheckboxLabels() {
     }),
     onSubmit: (values) => {
       const registerData = {
-        fname: values.firstName,
-        lname: values.lastName,
-        phoneN: phoneNumber,
+        Fname: values.firstName,
+        Lname: values.lastName,
+        phone: phoneNumber,
         email: values.email,
         password: values.password,
         countryCode: countryCode,
       };
-      dispatch(register(registerData, history));
+      dispatch(register(registerData, history, sethideRegister));
     },
     validateOnChange: false,
   });
@@ -59,7 +59,6 @@ export default function CheckboxLabels() {
   const onSubmit = (e) => {
     e.preventDefault();
     formik.handleSubmit();
-    sethideRegister(!hideRegister);
     setFlag(!flag);
   };
 
@@ -183,14 +182,23 @@ export default function CheckboxLabels() {
               </label>
               <MuiPhoneNumber
                 defaultCountry={
-                  localStorage.getItem("selectedFlag") === "Lebanon" ? "lb" :
-                  localStorage.getItem("selectedFlag") === "Egypt" ? "eg" :
-                  localStorage.getItem("selectedFlag") === "Tunisia" ? "tn" :
-                  localStorage.getItem("selectedFlag") === "Morocco" ? "ma" :
-                  localStorage.getItem("selectedFlag") === "Algeria" ? "dz" :
-                  localStorage.getItem("selectedFlag") === "Senegal" ? "sn" :
-                  localStorage.getItem("selectedFlag") === "Côte d'Ivoire" ? "ci" :
-                  localStorage.getItem("selectedFlag") === "Benin" ? "bj" :   "lb"               
+                  localStorage.getItem("selectedFlag") === "Lebanon"
+                    ? "lb"
+                    : localStorage.getItem("selectedFlag") === "Egypt"
+                    ? "eg"
+                    : localStorage.getItem("selectedFlag") === "Tunisia"
+                    ? "tn"
+                    : localStorage.getItem("selectedFlag") === "Morocco"
+                    ? "ma"
+                    : localStorage.getItem("selectedFlag") === "Algeria"
+                    ? "dz"
+                    : localStorage.getItem("selectedFlag") === "Senegal"
+                    ? "sn"
+                    : localStorage.getItem("selectedFlag") === "Côte d'Ivoire"
+                    ? "ci"
+                    : localStorage.getItem("selectedFlag") === "Benin"
+                    ? "bj"
+                    : "lb"
                 }
                 onChange={handleOnChange}
                 autoFormat={true}

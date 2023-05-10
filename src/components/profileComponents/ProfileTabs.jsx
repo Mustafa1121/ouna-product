@@ -9,7 +9,6 @@ const ProfileTabs = () => {
   const [Oldpassword, setOldPassword] = useState("");
   const [NewPassword, setNewPassword] = useState("");
 
-
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -20,20 +19,23 @@ const ProfileTabs = () => {
 
   useEffect(() => {
     if (userLogin) {
-      setName(userInfo.data.user.fname);
+      setName(userInfo.data.user.Fname);
       setEmail(userInfo.data.user.email);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, userLogin]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     // Password match
     dispatch(
-      updateUserProfile({
-        oldpass: Oldpassword,
-        newpass: NewPassword,
-      },userInfo)
+      updateUserProfile(
+        {
+          oldpass: Oldpassword,
+          newpass: NewPassword,
+        },
+        userInfo
+      )
     );
   };
   return (
@@ -51,7 +53,6 @@ const ProfileTabs = () => {
             <input
               className="form-control"
               type="text"
-              
               value={name}
               disabled
               onChange={(e) => setName(e.target.value)}
@@ -68,7 +69,6 @@ const ProfileTabs = () => {
               className="form-control"
               type="email"
               value={email}
-              
               disabled
               onChange={(e) => setEmail(e.target.value)}
             />

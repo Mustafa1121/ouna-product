@@ -9,38 +9,36 @@ const AddressForm = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const [formData, setFormData] = useState({
-    fname: userInfo.data.user.fname,
-    lname: userInfo.data.user.lname,
+    fname: userInfo.data.user.Fname,
+    lname: userInfo.data.user.Lname,
     phoneN: userInfo.data.user.phone,
     countryCode: userInfo.data.user.countryCode,
     city: "",
     fullAddress: "",
     additionalAddressInfo: "",
   });
+  console.log(userInfo.token);
 
   const addAddress = async (e) => {
     e.preventDefault();
     try {
       const config = {
         headers: {
-          token: `${userInfo.data.token}`,
+          authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const response = await axios.post(
-        "/api/user/addAddress",
-        formData,
-        config
-      );
+      const response = await axios.post("/api/user/Address", formData, config);
+      console.log(response.data);
       dispatch({
         type: ADD_ADDRESS,
-        payload: response.data.data.address,
+        payload: response.data,
       });
       toast.info("New Address is created", {
         position: "bottom-right",
       });
       setFormData({
-        fname: userInfo.data.user.fname,
-        lname: userInfo.data.user.lname,
+        fname: userInfo.data.user.Fname,
+        lname: userInfo.data.user.Fname,
         phoneN: userInfo.data.user.phone,
         countryCode: userInfo.data.user.countryCode,
         city: "",

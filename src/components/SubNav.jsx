@@ -24,9 +24,14 @@ const categorizedCategories = [
 
 function SubNavbar() {
   const categories = useSelector((state) => state.productCategories);
-  const categoryIdsAndNames = useMemo(() => (
-    categories.categories?.map((category) => ({ id: category.id, name: category.name }))
-  ), [categories.categories]);
+  const categoryIdsAndNames = useMemo(
+    () =>
+      categories.categories?.map((category) => ({
+        id: category._id,
+        name: category.name,
+      })),
+    [categories.categories]
+  );
 
   useMemo(() => {
     categorizedCategories[0].items = [];
