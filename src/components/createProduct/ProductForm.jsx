@@ -75,7 +75,7 @@ function ProductForm() {
         recycling: values.recycling,
         base64Video: video,
         selectedImages: selectedImages,
-        rating: values.rating,
+        rating: Number(values.rating),
         origin: selectedFlag,
       };
       dispatch(addProduct(formData, userInfo, history));
@@ -358,6 +358,8 @@ function ProductForm() {
                 reader.onload = function () {
                   const base64Image = reader.result;
                   images.push(base64Image);
+                  console.log(images)
+                  console.log(base64Image)
                   setSelectedImages(images.map((img) => img.split(",")[1]));
                 };
               });

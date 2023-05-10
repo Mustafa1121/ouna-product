@@ -207,7 +207,7 @@ const Header = () => {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      Hi, {userInfo?.data.user.fname}
+                      Hi, {userInfo?.data.user.Fname}
                     </button>
                     <div className="dropdown-menu">
                       <Link className="dropdown-item" to="/profile">
