@@ -23,7 +23,7 @@ export const getListCart = (userInfo) => async (dispatch) => {
       },
     };
     const { data } = await axios.get(`api/cart/items`, config);
-    console.log(data.items);
+    console.log(data);
     dispatch({
       type: GET_CART_LIST,
       payload: {

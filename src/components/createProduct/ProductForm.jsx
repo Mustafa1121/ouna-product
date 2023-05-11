@@ -98,10 +98,10 @@ function ProductForm() {
       );
       return;
     }
-    // if (numDownloaded < 1) {
-    //   toast.warning("Please download at least 5 images before submitting!");
-    //   return;
-    // }
+    if (numDownloaded < 5) {
+      toast.warning("Please download at least 5 images before submitting!");
+      return;
+    }
   };
   useEffect(() => {
     if (formik.errors.brand) {
@@ -351,16 +351,13 @@ function ProductForm() {
             accept="image/*"
             onChange={(e) => {
               const files = Array.from(e.target.files);
-              const images = [];
               files.forEach((file) => {
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
                 reader.onload = function () {
                   const base64Image = reader.result;
-                  const base64ImageWithoutPrefix = base64Image.split(",")[1];
-                  const prefixedBase64Image = `data:image/png;base64,${base64ImageWithoutPrefix}`;
-                  images.push(prefixedBase64Image);
-                  setSelectedImages(images);
+                  setSelectedImages([...selectedImages, base64Image]);
+                  setNumDownloaded(numDownloaded + 1);
                 };
               });
             }}
