@@ -19,18 +19,19 @@ export const getListCart = (userInfo) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        token: `${userInfo.data.token}`,
+        authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`api/home/cart/getCartItems`, config);
+    const { data } = await axios.get(`api/cart/items`, config);
+    console.log(data.items);
     dispatch({
       type: GET_CART_LIST,
       payload: {
-        itemsArray: data.data.cart.itemsArray.map((i) => ({
+        itemsArray: data.items.map((i) => ({
           ...i.item,
           _id: i._id,
         })),
-        cartId: data.data.cart._id,
+        cartId: data.id,
       },
     });
   } catch (error) {
@@ -48,22 +49,23 @@ export const addToCart =
       });
       const config = {
         headers: {
-          token: `${userInfo.data.token}`,
+          authorization: `Bearer ${userInfo.token}`,
         },
       };
-      await axios.post(
-        `/api/home/cart/addItemToCart/${id}`,
+      const { data } = await axios.post(
+        `/api/cart/${id}`,
         {
           quantity: 1,
         },
         config
       );
+      console.log(data);
       dispatch({
         type: CART_ADD_ITEM,
         payload: product,
       });
     } catch (error) {
-      toast.error(error.response.data.message)
+      toast.error(error.response.data.message);
     }
   };
 
@@ -82,7 +84,7 @@ export const removefromcart = (id, userInfo) => async (dispatch, getState) => {
     });
     toast.warning("Item removed");
   } catch (error) {
-    toast.error(error.response.data.message)
+    toast.error(error.response.data.message);
   }
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };
@@ -104,7 +106,7 @@ export const clearCart = (userInfo) => async (dispatch, getState) => {
       position: "bottom-right",
     });
   } catch (error) {
-    toast.error(error.response.data.message)
+    toast.error(error.response.data.message);
   }
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };

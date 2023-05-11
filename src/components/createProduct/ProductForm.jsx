@@ -74,7 +74,7 @@ function ProductForm() {
         description: values.description,
         recycling: values.recycling,
         base64Video: video,
-        selectedImages: selectedImages,
+        imagesbase: selectedImages,
         rating: Number(values.rating),
         origin: selectedFlag,
       };
@@ -357,10 +357,10 @@ function ProductForm() {
                 reader.readAsDataURL(file);
                 reader.onload = function () {
                   const base64Image = reader.result;
-                  images.push(base64Image);
-                  console.log(images)
-                  console.log(base64Image)
-                  setSelectedImages(images.map((img) => img.split(",")[1]));
+                  const base64ImageWithoutPrefix = base64Image.split(",")[1];
+                  const prefixedBase64Image = `data:image/png;base64,${base64ImageWithoutPrefix}`;
+                  images.push(prefixedBase64Image);
+                  setSelectedImages(images);
                 };
               });
             }}
@@ -370,7 +370,7 @@ function ProductForm() {
             {selectedImages.map((image, index) => (
               <div key={index} className="imm">
                 <img
-                  src={`data:image/png;base64,${image}`}
+                  src={`${image}`}
                   height="100px"
                   width="100px"
                   alt={`Selected ${index}`}

@@ -44,7 +44,7 @@ const SingleProduct = ({ history, match }) => {
   }, [dispatch, productId]);
 
   const AddToCartHandle = (id) => {
-    dispatch(addToCart(id, userInfo, productDetails.product));
+    dispatch(addToCart(id, userInfo, product));
     // history.push("/cart");
     document.querySelector(".badge").classList.add("shake"); // Add the "shake" class to the badge element
     setTimeout(() => {
