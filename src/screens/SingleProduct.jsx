@@ -23,6 +23,7 @@ const SingleProduct = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading: loading1 } = useSelector((state) => state.cart);
   const { userInfo } = userLogin;
+
   // const productReviewCreate = useSelector((state) => state.productReviewCreate);
   // const {
   //   loading: loadingCreateReview,

@@ -23,12 +23,11 @@ export const getListCart = (userInfo) => async (dispatch) => {
       },
     };
     const { data } = await axios.get(`api/cart/items`, config);
-    console.log(data);
     dispatch({
       type: GET_CART_LIST,
       payload: {
         itemsArray: data.items.map((i) => ({
-          ...i.item,
+          ...i,
           _id: i._id,
         })),
         cartId: data.id,
@@ -59,7 +58,6 @@ export const addToCart =
         },
         config
       );
-      console.log(data);
       dispatch({
         type: CART_ADD_ITEM,
         payload: product,
@@ -74,10 +72,10 @@ export const removefromcart = (id, userInfo) => async (dispatch, getState) => {
   try {
     const config = {
       headers: {
-        token: `${userInfo.data.token}`,
+        authorization: `Bearer ${userInfo.token}`,
       },
     };
-    await axios.delete(`api/home/cart/deleteItemFromCart/${id}`, config);
+    await axios.delete(`api/cart/${id}`, config);
     dispatch({
       type: CART_REMOVE_ITEM,
       payload: id,
@@ -95,10 +93,10 @@ export const clearCart = (userInfo) => async (dispatch, getState) => {
   try {
     const config = {
       headers: {
-        token: `${userInfo.data.token}`,
+        authorization: `Bearer ${userInfo.token}`,
       },
     };
-    await axios.delete(`api/home/cart/clearCartItems`, config);
+    await axios.delete(`api/cart`, config);
     dispatch({
       type: CART_CLEAR_ITEMS,
     });

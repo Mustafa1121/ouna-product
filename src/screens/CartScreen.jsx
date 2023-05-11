@@ -25,10 +25,9 @@ const CartScreen = ({ match, location, history }) => {
   const { cartItems } = cart;
   const [loading, setLoading] = useState(false);
 
-  const total = cartItems
-    .reduce((a, i) => a + i.quantity * i.price, 0)
-    .toFixed(2);
+  const total = cartItems.reduce((a, i) => a + i.price, 0).toFixed(2);
 
+  console.log(cartItems);
   useEffect(() => {
     dispatch(getListCart(userInfo));
     // dispatch(addToCart(productId, qty,userInfo));
@@ -127,7 +126,7 @@ const CartScreen = ({ match, location, history }) => {
                     />
                   </div>
                   <div className="cart-image  col-md-4">
-                    <img src={item?.main_picture} alt={item?.name} />
+                    <img src={item?.images[0].url} alt={item?.name} />
                   </div>
                   <div className="cart-text col-md-8 d-flex">
                     <Link to={`/products/${item._id}`}>

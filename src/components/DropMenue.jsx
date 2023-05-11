@@ -10,12 +10,17 @@ import { toast } from "react-toastify";
 function DropMenue(props) {
   const dispatch = useDispatch();
 
+  const origin = localStorage.getItem("selectedFlag");
+
   const getSpecificProduct = async (id) => {
     try {
-      const specificProduct = await axios.get(`/api/products/category/${id}`);
+      const specificProduct = await axios.get(
+        `/api/products/category/${id}/${origin}`
+      );
+
       dispatch({
         type: PRODUCT_LIST_SUCCESS,
-        payload: specificProduct,
+        payload: specificProduct.data.products,
       });
     } catch (error) {
       dispatch({

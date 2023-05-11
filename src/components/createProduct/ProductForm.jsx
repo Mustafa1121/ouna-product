@@ -91,17 +91,17 @@ function ProductForm() {
   });
   const onSubmit = (e) => {
     e.preventDefault();
-    formik.handleSubmit();
+    if (numDownloaded < 5) {
+      toast.warning("Please download at least 5 images before submitting!");
+      return;
+    }
     if (formik.values.category === "Phones") {
       toast.warning(
         "For testing purposes, please note that the 'Phones' category is currently only available on our mobile app. Please use the app to test this category"
       );
       return;
     }
-    if (numDownloaded < 5) {
-      toast.warning("Please download at least 5 images before submitting!");
-      return;
-    }
+    formik.handleSubmit();
   };
   useEffect(() => {
     if (formik.errors.brand) {

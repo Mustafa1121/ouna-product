@@ -31,6 +31,7 @@ export const cartReducer = (
         };
       } else {
         toast.info("Item added!");
+        console.log(state.cartItems);
         return {
           ...state,
           cartItems: [...state.cartItems, item],
@@ -66,8 +67,8 @@ export const cartReducer = (
     case UPDATE_CARTITEMS:
       return {
         ...state,
-        cartItems: action.payload
-      }
+        cartItems: action.payload,
+      };
     default:
       return state;
   }
