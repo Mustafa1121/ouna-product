@@ -18,6 +18,7 @@ const PlaceOrderScreen = ({ history }) => {
   const cartItemIds = cartItems.map((item) => item.id);
   const [loading, setLoading] = useState(false);
 
+  console.log(cart.shippingAddress);
   const placeOrderHandler = async (e) => {
     e.preventDefault();
     const config = {
@@ -26,10 +27,11 @@ const PlaceOrderScreen = ({ history }) => {
       },
     };
     const formData = {
-      totalPrice: total,
+      country: localStorage.getItem("selectedFlag"),
       itemsId: cartItemIds,
-      addressId: cart.shippingAddress._id,
+      addressId: cart.shippingAddress.selectedAddress._id,
       cartId: cart.cartId,
+      preferredTime: cart.shippingAddress.date,
     };
     try {
       setLoading(true);

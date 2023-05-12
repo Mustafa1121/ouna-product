@@ -39,7 +39,8 @@ const ShippingScreen = ({ history }) => {
       toast.error("Please select an address");
       return;
     }
-    dispatch(saveShippingAddress(selectedAddress));
+    const data = { selectedAddress, date };
+    dispatch(saveShippingAddress(data));
     history.push("/placeorder");
   };
   return (
