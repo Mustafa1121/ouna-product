@@ -35,43 +35,7 @@ const CartScreen = ({ match, location, history }) => {
   }, [dispatch, productId, qty]);
 
   const checkOutHandler = async () => {
-    try {
-      setLoading(true);
-      const config = {
-        headers: {
-          token: `${userInfo.data.token}`,
-        },
-      };
-      const { data } = await axios.post(
-        "/api/home/reserveItems",
-        {
-          cartId: cart.cartId,
-        },
-        config
-      );
-      if (
-        data.data.itemsReservedByOthers.length === 0 &&
-        data.data.myReservedItems === 0
-      ) {
-        setLoading(false);
-        history.push("/shipping");
-        return;
-      }
-      if (data.data.itemsReservedByOthers.length > 0) {
-        toast.warning("Some Items are reserved by others");
-        setLoading(false);
-        return;
-      } else {
-        dispatch({
-          type: UPDATE_CARTITEMS,
-          payload: data.data.myReservedItems,
-        });
-        setLoading(false);
-        history.push("/shipping");
-      }
-    } catch (error) {
-      toast.error(error.response.data.message);
-    }
+    history.push("/shipping");
   };
 
   const clearCartHandler = () => {

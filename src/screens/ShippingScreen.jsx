@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 const ShippingScreen = ({ history }) => {
   window.scrollTo(0, 0);
   const [selectedAddress, setSelectedAddress] = useState("");
+  const [date, selectDate] = useState("");
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const userLogin = useSelector((state) => state.userLogin);
@@ -33,7 +34,8 @@ const ShippingScreen = ({ history }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (selectedAddress === "") {
+    console.log(date);
+    if (selectedAddress === "" || date === "") {
       toast.error("Please select an address");
       return;
     }
@@ -50,24 +52,16 @@ const ShippingScreen = ({ history }) => {
         >
           <h6 className="mb-5">DELIVERY ADDRESS</h6>
           <FormControl style={{ minWidth: "100%", marginBottom: "50px" }}>
-            <InputLabel shrink htmlFor="select-multiple-native">
-              Purchased Items
+            <InputLabel shrink htmlFor="preferred-date">
+              Preferred Date
             </InputLabel>
-            <Select
-              multiple
-              native
-              label="Native"
-              inputProps={{
-                id: "select-multiple-native",
-              }}
+            <input
+              type="date"
+              id="preferred-date"
+              name="preferred-date"
+              onChange={(e) => selectDate(e.target.value)}
               style={{ width: "100%", minWidth: "100%" }}
-            >
-              {cartItems.map((item) => (
-                <option key={item.id} value={item.name}>
-                  {item.name}
-                </option>
-              ))}
-            </Select>
+            />
           </FormControl>
 
           <FormControl style={{ minWidth: "100%" }}>

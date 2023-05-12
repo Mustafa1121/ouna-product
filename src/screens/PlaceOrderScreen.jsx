@@ -22,7 +22,7 @@ const PlaceOrderScreen = ({ history }) => {
     e.preventDefault();
     const config = {
       headers: {
-        token: `${userInfo.data.token}`,
+        authorization: `Bearer ${userInfo.token}`,
       },
     };
     const formData = {
@@ -33,8 +33,8 @@ const PlaceOrderScreen = ({ history }) => {
     };
     try {
       setLoading(true);
-      await axios.post("/api/home/checkout", formData, config);
-      await axios.delete(`api/home/cart/clearCartItems`, config);
+      await axios.post("/api/order", formData, config);
+      await axios.delete(`/api/cart`, config);
       dispatch({
         type: CART_CLEAR_ITEMS,
       });
@@ -43,13 +43,13 @@ const PlaceOrderScreen = ({ history }) => {
       history.push("/");
     } catch (error) {
       setLoading(false);
-      toast.error(error.response.data.data.message);
+      toast.error(error.response.data.message);
     }
   };
 
-  const total = cartItems
-    .reduce((a, i) => a + i.quantity * i.price, 0)
-    .toFixed(2);
+  const total = cartItems.reduce((a, i) => a + i.price, 0).toFixed(2);
+
+  console.log(cart);
 
   return (
     <>
@@ -69,7 +69,7 @@ const PlaceOrderScreen = ({ history }) => {
                 </h5>
                 <p>
                   <span style={{ fontWeight: "600" }}>Name:</span>{" "}
-                  {userInfo?.data?.user?.fname}
+                  {userInfo?.data?.user?.Fname}
                 </p>
                 <p>
                   <span style={{ fontWeight: "600" }}>Email:</span>{" "}
@@ -142,7 +142,7 @@ const PlaceOrderScreen = ({ history }) => {
                   <div className="order-product row" key={index}>
                     <div className="col-sm-3 d-sm-block col-12 d-flex justify-content-center">
                       <img
-                        src={item.main_picture}
+                        src={item.images[0].url}
                         alt={item.name}
                         style={{ width: "150px", height: "110px" }}
                       />
