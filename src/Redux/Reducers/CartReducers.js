@@ -8,6 +8,7 @@ import {
   GET_CART_LIST,
   CART_ADD_LOADING,
   UPDATE_CARTITEMS,
+  CART_ADD_FAIL,
 } from "../Constants/CartConstants";
 
 export const cartReducer = (
@@ -52,6 +53,11 @@ export const cartReducer = (
       return {
         ...state,
         paymentMethod: action.payload,
+      };
+    case CART_ADD_FAIL:
+      return {
+        ...state,
+        loading: false,
       };
     case CART_CLEAR_ITEMS:
       return {

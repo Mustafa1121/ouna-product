@@ -44,6 +44,9 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
+    const expiration = new Date();
+    expiration.setHours(expiration.getHours() + 1);
+    localStorage.setItem("expiration", expiration.toISOString());
     toast.info("Login successfully");
   } catch (error) {
     dispatch({

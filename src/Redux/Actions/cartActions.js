@@ -7,6 +7,7 @@ import {
   CART_SAVE_SHIPPING_ADDRESS,
   GET_CART_LIST,
   CART_CLEAR_ITEMS,
+  CART_ADD_FAIL,
 } from "../Constants/CartConstants";
 import { toast } from "react-toastify";
 
@@ -64,6 +65,9 @@ export const addToCart =
       });
     } catch (error) {
       toast.error(error.response.data.message);
+      dispatch({
+        type: CART_ADD_FAIL,
+      });
     }
   };
 
