@@ -16,6 +16,9 @@ import {
   Typography,
 } from "@material-ui/core";
 import { getListCart } from "../../Redux/Actions/cartActions.js";
+import Slider from "../newComponents/Slider.jsx";
+import FilterSection from "../newComponents/FilterSection.jsx";
+import NewSearchSection from "../newComponents/NewSearchSection.jsx";
 
 const filterProducts = (products, searchTerm) => {
   return products?.filter((product) => {
@@ -65,6 +68,14 @@ const ShopSection = (props) => {
   }, [dispatch, keyword, pagenumber]);
   return (
     <>
+      <div className="sliderContainer">
+        <Slider />
+      </div>
+      <br />
+      <div className="FilterSection">
+        <FilterSection />
+      </div>
+
       <div className="container">
         <div className="section">
           <div className="row">
@@ -78,7 +89,11 @@ const ShopSection = (props) => {
                   <Message variant="alert-danger">{error}</Message>
                 ) : (
                   <>
+
                     <label className="fresh-recom">Fresh Recommendations</label>
+                    <div className="searchSection">
+                      <NewSearchSection />
+                    </div>
                     {filteredProducts?.length ? (
                       <>
                         <Grid container spacing={5}>
@@ -155,7 +170,7 @@ const ShopSection = (props) => {
                                     </Typography>
                                     <Rating
                                       value={product.status}
-                                      // text={`${product.numReviews}`}
+                                    // text={`${product.numReviews}`}
                                     />
                                     <Typography variant="h6" component="p">
                                       ${product.price}

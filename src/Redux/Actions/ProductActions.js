@@ -130,7 +130,7 @@ export const getCategories = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: CATEGORIES_FAIL,
-      payload: error.response.data.message,
+      // payload: error.response.data.message,
     });
   }
 };
