@@ -23,18 +23,18 @@ function ProductForm() {
     localStorage.getItem("selectedFlag") === "Lebanon"
       ? "USD"
       : localStorage.getItem("selectedFlag") === "Egypt"
-      ? "EGP"
-      : localStorage.getItem("selectedFlag") === "Tunisia"
-      ? "د.ت"
-      : localStorage.getItem("selectedFlag") === "Morocco"
-      ? "د.م."
-      : localStorage.getItem("selectedFlag") === "Algeria"
-      ? "د.ج"
-      : localStorage.getItem("selectedFlag") === "Senegal" ||
-        localStorage.getItem("selectedFlag") === "Côte d'Ivoire" ||
-        localStorage.getItem("selectedFlag") === "Benin"
-      ? "CFA"
-      : "$";
+        ? "EGP"
+        : localStorage.getItem("selectedFlag") === "Tunisia"
+          ? "د.ت"
+          : localStorage.getItem("selectedFlag") === "Morocco"
+            ? "د.م."
+            : localStorage.getItem("selectedFlag") === "Algeria"
+              ? "د.ج"
+              : localStorage.getItem("selectedFlag") === "Senegal" ||
+                localStorage.getItem("selectedFlag") === "Côte d'Ivoire" ||
+                localStorage.getItem("selectedFlag") === "Benin"
+                ? "CFA"
+                : "$";
   const history = useHistory();
   const categories = useSelector((state) => state.productCategories);
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
@@ -185,24 +185,13 @@ function ProductForm() {
                 onChange={formik.handleChange}
               />
             </div>
-            <div className="title-div">
-              <label htmlFor="title">Title:</label>
-              <input
-                placeholder="Enter Title"
-                type="text"
-                id="title"
-                name="title"
-                value={formik.values.title}
-                onChange={formik.handleChange}
-              />
-            </div>
           </div>
         </div>
         <div className="Rating">
           <Box
             sx={{
               "& > legend": {
-                mt: 2,
+                mt: 4,
                 fontWeight: "bold",
                 marginBottom: "10px",
                 fontSize: ".95rem",
@@ -212,12 +201,16 @@ function ProductForm() {
             <Typography
               component="legend"
               sx={{
-                fontSize: "1rem",
+                fontSize: "1.25rem",
+
               }}
             >
               {" "}
               Condition:
+
             </Typography>
+            <br />
+            <br />
             <Rating
               size="large"
               name="rating"
