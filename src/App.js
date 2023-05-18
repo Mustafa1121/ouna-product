@@ -25,6 +25,7 @@ import About from "./components/AboutUs.jsx";
 import PrivacyPolicy from "./components/PrivacyPolicy.jsx";
 import Payment from "./components/Payment.jsx";
 import ResetPassword from "./screens/ResetPassword.jsx";
+import Slider from './components/newComponents/Slider.jsx'
 
 const App = () => {
   const location = localStorage.getItem("selectedFlag") || "Lebanon";
@@ -82,6 +83,7 @@ const App = () => {
           <Route path="/aboutUs" component={About} />
           <Route path="/privacyPolicy" component={PrivacyPolicy} />
           <Route path="/paymentPolicy" component={Payment} />
+          <Route path='/slider' component={Slider} />
           <PrivateRouter path="/shipping" component={ShippingScreen} />
           <PrivateRouter path="/payment" component={PaymentScreen} />
           <PrivateRouter path="/placeorder" component={PlaceOrderScreen} />

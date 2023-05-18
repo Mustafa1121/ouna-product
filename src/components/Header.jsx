@@ -177,7 +177,7 @@ const Header = () => {
               </div>
               <div className="col-md-6 col-8 d-flex align-items-center">
                 <form onSubmit={submitHandler}>
-                  <div className="searchBox">
+                  {/* <div className="searchBox">
                     <input
                       className="searchInput"
                       type="text"
@@ -189,7 +189,7 @@ const Header = () => {
                     <button className="searchButton" href="#">
                       <i className="fas fa-search"></i>
                     </button>
-                  </div>
+                  </div> */}
                 </form>
               </div>
               <div className="col-md-3 d-flex align-items-center justify-content-end Login-Register">
@@ -262,13 +262,14 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <br />
+  
       {location.pathname === "/" ||
       location.pathname.startsWith("/page") ||
       location.pathname === "/lb" ||
       location.pathname === "/eg" ||
       location.pathname.startsWith("/search") ? (
-        <SubNavbar />
+        // <SubNavbar />
+        <></>
       ) : null}
     </div>
   );

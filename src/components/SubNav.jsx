@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import DropMenue from "./DropMenue";
 import "../style/SubNavbar.css";
 import { useSelector } from "react-redux";
+import FilterSection from "./newComponents/FilterSection";
 
 const categorizedCategories = [
   {
@@ -101,8 +102,8 @@ function SubNavbar() {
 
   return (
     <div className="containerSubNavbar">
-      {categorizedCategories?.map((category, index) => (
-        <DropMenue key={index} name={category.name} item={category.items} />
+      {categories.categories?.map((category, index) => (
+      <></>
       ))}
     </div>
   );
