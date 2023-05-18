@@ -17,26 +17,29 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct, getCategories } from "../../Redux/Actions/ProductActions";
 import { useHistory } from "react-router-dom";
+import Loading from "../LoadingError/Loading";
 
 function ProductForm() {
   const currencySymbol =
     localStorage.getItem("selectedFlag") === "Lebanon"
       ? "USD"
       : localStorage.getItem("selectedFlag") === "Egypt"
-        ? "EGP"
-        : localStorage.getItem("selectedFlag") === "Tunisia"
-          ? "د.ت"
-          : localStorage.getItem("selectedFlag") === "Morocco"
-            ? "د.م."
-            : localStorage.getItem("selectedFlag") === "Algeria"
-              ? "د.ج"
-              : localStorage.getItem("selectedFlag") === "Senegal" ||
-                localStorage.getItem("selectedFlag") === "Côte d'Ivoire" ||
-                localStorage.getItem("selectedFlag") === "Benin"
-                ? "CFA"
-                : "$";
+      ? "EGP"
+      : localStorage.getItem("selectedFlag") === "Tunisia"
+      ? "د.ت"
+      : localStorage.getItem("selectedFlag") === "Morocco"
+      ? "د.م."
+      : localStorage.getItem("selectedFlag") === "Algeria"
+      ? "د.ج"
+      : localStorage.getItem("selectedFlag") === "Senegal" ||
+        localStorage.getItem("selectedFlag") === "Côte d'Ivoire" ||
+        localStorage.getItem("selectedFlag") === "Benin"
+      ? "CFA"
+      : "$";
   const history = useHistory();
   const categories = useSelector((state) => state.productCategories);
+  const { loading } = useSelector((state) => state.productList);
+  console.log(loading);
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -61,7 +64,6 @@ function ProductForm() {
       name: Yup.string()
         .max(18, "At most 18 characters!")
         .required("Name is required!"),
-      title: Yup.string().required("Title is required."),
       description: Yup.string().required("Description is required!"),
       price: Yup.string().required("Price is required."),
       category: Yup.string().required("Select a category"),
@@ -79,19 +81,12 @@ function ProductForm() {
         origin: selectedFlag,
       };
       dispatch(addProduct(formData, userInfo, history));
-      setSelectedImages([]);
-      setSelectedCategoryId(0);
-      setVideo(null);
-      resetForm();
-      window.scroll(0, 0);
-      history.push("/");
-      toast.info("Your item is currently under testing and analysis.");
     },
     validateOnChange: false, // disable validation on change
   });
   const onSubmit = (e) => {
     e.preventDefault();
-    if (numDownloaded < 5) {
+    if (numDownloaded < 2) {
       toast.warning("Please download at least 5 images before submitting!");
       return;
     }
@@ -170,7 +165,7 @@ function ProductForm() {
   return (
     <>
       <Header />
-      <form className="product-formp" onSubmit={onSubmit}>
+      <form className="product-formp mt-4" onSubmit={onSubmit}>
         <div className="form-fieldp">
           <div className="inputsp">
             <div className="brand-div">
@@ -202,12 +197,10 @@ function ProductForm() {
               component="legend"
               sx={{
                 fontSize: "1.25rem",
-
               }}
             >
               {" "}
               Condition:
-
             </Typography>
             <br />
             <br />
@@ -383,7 +376,7 @@ function ProductForm() {
           </div>
         )}
         <div className="btn-submit-product">
-          <button type="submit">Add Product</button>
+          <button type="submit">{loading ? <Loading /> : "Add Product"}</button>
         </div>
       </form>
       <Footer />
