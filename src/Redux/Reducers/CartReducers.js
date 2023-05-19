@@ -19,26 +19,11 @@ export const cartReducer = (
     case CART_ADD_LOADING:
       return { ...state, loading: true };
     case CART_ADD_ITEM:
-      const item = action.payload;
-      const existItem = state.cartItems.find((x) => x._id === item._id);
-      if (existItem) {
-        toast.warning("Already added !");
-        return {
-          ...state,
-          cartItems: state.cartItems.map((x) =>
-            x._id === existItem ? item : x
-          ),
-          loading: false,
-        };
-      } else {
-        toast.info("Item added!");
-        console.log(state.cartItems);
-        return {
-          ...state,
-          cartItems: [...state.cartItems, item],
-          loading: false,
-        };
-      }
+      return {
+        ...state,
+        cartItems: action.payload,
+        loading: false,
+      };
     case CART_REMOVE_ITEM:
       return {
         ...state,

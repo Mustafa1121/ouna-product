@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
@@ -7,6 +7,8 @@ import axios from "../axios/axios";
 import { toast } from "react-toastify";
 import { CART_CLEAR_ITEMS } from "../Redux/Constants/CartConstants";
 import { CircularProgress } from "@material-ui/core";
+import { getListCart } from "../Redux/Actions/cartActions";
+import { saveShippingAddress } from "../Redux/Actions/cartActions";
 
 const PlaceOrderScreen = ({ history }) => {
   window.scrollTo(0, 0);
@@ -18,7 +20,7 @@ const PlaceOrderScreen = ({ history }) => {
   const cartItemIds = cartItems.map((item) => item.id);
   const [loading, setLoading] = useState(false);
 
-  console.log(cart.shippingAddress);
+  console.log(cartItems);
   const placeOrderHandler = async (e) => {
     e.preventDefault();
     const config = {
@@ -42,12 +44,19 @@ const PlaceOrderScreen = ({ history }) => {
       });
       setLoading(false);
       toast.success("Order Placed !");
+      localStorage.removeItem("shippingAddress");
       history.push("/");
     } catch (error) {
       setLoading(false);
       toast.error(error.response.data.message);
     }
   };
+  useEffect(() => {
+    dispatch(getListCart(userInfo));
+    dispatch(
+      saveShippingAddress(JSON.parse(localStorage.getItem("shippingAddress")))
+    );
+  }, [dispatch, userInfo]);
 
   const total = cartItems.reduce((a, i) => a + i.price, 0).toFixed(2);
 

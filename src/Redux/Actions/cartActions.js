@@ -59,10 +59,12 @@ export const addToCart =
         },
         config
       );
+      console.log(data.itemsArray);
       dispatch({
         type: CART_ADD_ITEM,
-        payload: product,
+        payload: data.itemsArray,
       });
+      toast.info("Item added to cart");
     } catch (error) {
       toast.error(error.response.data.message);
       dispatch({
