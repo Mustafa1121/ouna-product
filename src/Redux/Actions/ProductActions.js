@@ -83,6 +83,7 @@ export const addProduct = (formData, userInfo, history) => async (dispatch) => {
     // );
   } catch (error) {
     toast.error(error.response.data.message);
+    dispatch({ type: PRODUCT_CREATE_FAIL });
   }
 };
 

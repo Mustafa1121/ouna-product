@@ -157,7 +157,7 @@ const AddressForm = () => {
                 />
               </div>
             </div>
-            <div className="form-group col-md-12 col-12 mt-3">
+            <div className="form-group col-md-12 col-12 mt-3 ">
               <label
                 style={{ fontSize: "16px" }}
                 htmlFor="additionalAddressInfo"

@@ -151,7 +151,7 @@ function ProductForm() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-          const base64Video = reader.result.split(",")[1];
+          const base64Video = reader.result;
           setVideo(base64Video);
         };
       }

@@ -129,12 +129,12 @@ const ShopSection = (props) => {
                   <Message variant="alert-danger">{error}</Message>
                 ) : (
                   <>
-                    <label className="fresh-recom">Fresh Recommendations</label>
                     <div className="searchSection">
                       <NewSearchSection
                         handleFilterProducts={handleFilterProducts}
                       />
                     </div>
+                    <label className="fresh-recom">Fresh Recommendations</label>
                     {filteredProducts?.length ? (
                       <>
                         <Grid container spacing={5}>

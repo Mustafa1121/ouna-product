@@ -52,7 +52,7 @@ const Header = () => {
     setKeyword("");
   };
   return (
-    <div>
+    <div style={{ marginBottom: "100px" }}>
       {/* Top Header */}
       {/* <div className="Announcement ">
         <div className="container">
@@ -262,7 +262,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-  
+
       {location.pathname === "/" ||
       location.pathname.startsWith("/page") ||
       location.pathname === "/lb" ||

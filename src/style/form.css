@@ -77,7 +77,7 @@ input {
   width: 27.5em !important;
 }
 .css-395f2x {
-  width:27.4rem;
+  width: 27.4rem;
 }
 .phone-container {
   display: flex;
@@ -333,7 +333,7 @@ input :focus {
     align-items: flex-start;
     justify-content: flex-start;
     position: relative;
-    left:-16%;
+    left: -16%;
     max-width: 100%;
   }
   .phone-container input {
@@ -348,7 +348,6 @@ input :focus {
   }
 }
 
-
 .css-zrqpq1::before {
-display:none !important;
+  display: none !important;
 }

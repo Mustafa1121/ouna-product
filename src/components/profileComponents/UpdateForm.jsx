@@ -150,13 +150,16 @@ const UpdatedForm = ({ address, index, deleteAddress }) => {
             />
           </div>
         </div>
-        <div className="form-group col-md-12 col-12 mt-3">
+        <div
+          className="form-group col-md-12 col-12 mt-3 "
+          style={{ width: "95%" }}
+        >
           <label style={{ fontSize: "16px" }} htmlFor="additionalAddressInfo">
             <b>Additional Address Info</b>
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control "
             id="additionalAddressInfo"
             name="additionalAddressInfo"
             value={formData.additionalAddressInfo}
