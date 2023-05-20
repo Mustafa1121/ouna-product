@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/Actions/userActions";
 import { useLocation } from "react-router-dom";
-import SubNavbar from "./SubNav";
 import Flag from "./Flag";
 import logo from "../assets/ounaLogo.png";
 import bigLogo from "../assets/ouna-01.png";

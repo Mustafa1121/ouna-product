@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "../axios/axios";
 import {
   getListCart,
   removefromcart,
@@ -10,9 +9,7 @@ import {
 } from "../Redux/Actions/cartActions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ClearIcon from "@mui/icons-material/Clear";
-import { toast } from "react-toastify";
 import { CircularProgress } from "@material-ui/core";
-import { UPDATE_CARTITEMS } from "../Redux/Constants/CartConstants";
 
 const CartScreen = ({ match, location, history }) => {
   window.scrollTo(0, 0);
@@ -23,7 +20,7 @@ const CartScreen = ({ match, location, history }) => {
   const { userInfo } = userLogin;
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
 
   console.log(cartItems);
 

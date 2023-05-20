@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Rating from "./Rating.jsx";
-import Pagination from "./pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, listProduct } from "../../Redux/Actions/ProductActions";
 import Loading from "../LoadingError/Loading.jsx";
@@ -62,7 +61,6 @@ const filterProducts = (products, searchTerm, isRecycle, isNotRecycle) => {
 };
 
 const ShopSection = (props) => {
-  const { keyword, pagenumber } = props;
   const [filteredProducts, setFilterProducts] = useState([]);
   // const location = useLocation();
   const dispatch = useDispatch();
@@ -70,7 +68,7 @@ const ShopSection = (props) => {
   const { userInfo } = userLogin;
   // const [origin, setOrigin] = useState(location.pathname);
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
+  const { loading, error, products, pages } = productList;
 
   const selectedFlag = localStorage.getItem("selectedFlag");
 
@@ -105,6 +103,7 @@ const ShopSection = (props) => {
   };
   useEffect(() => {
     handleFilterProducts("", false, false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
   return (
     <>
@@ -293,10 +292,15 @@ const ShopSection = (props) => {
           </div>
         </div>
       </div>
-      <div className="contain-wp">
-        <div className="wp">
-          <img alt={""} src={wpIcon} />
-        </div>
+      <div class="contain-wp">
+        <a
+          href="https://web.whatsapp.com/send?phone=+70528539&text=Hello,%20I%20want%20to%20chat"
+          target="_blank"
+        >
+          <div class="wp">
+            <img alt="" src={wpIcon} />
+          </div>
+        </a>
       </div>
     </>
   );

@@ -16,8 +16,6 @@ const ShippingScreen = ({ history }) => {
   window.scrollTo(0, 0);
   const [selectedAddress, setSelectedAddress] = useState("");
   const [date, selectDate] = useState("");
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const { addresses } = useSelector((state) => state.listOfAddresses);

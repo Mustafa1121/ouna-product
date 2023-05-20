@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header";
 import ProfileTabs from "../components/profileComponents/ProfileTabs.jsx";
-import { getUserAddresses, getUserDetails } from "../Redux/Actions/userActions";
+import { getUserAddresses } from "../Redux/Actions/userActions";
 import moment from "moment";
 import { listMyOrders } from "../Redux/Actions/OrderActions";
 import Addresses from "../components/profileComponents/Addresses.jsx";

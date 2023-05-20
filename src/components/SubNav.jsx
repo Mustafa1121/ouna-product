@@ -1,8 +1,6 @@
 import React, { useMemo } from "react";
-import DropMenue from "./DropMenue";
 import "../style/SubNavbar.css";
 import { useSelector } from "react-redux";
-import FilterSection from "./newComponents/FilterSection";
 
 const categorizedCategories = [
   {

@@ -3,7 +3,6 @@ import "../style/form.css";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useParams } from "react-router";
 import axios from "../axios/axios";
 import { toast } from "react-toastify";
 

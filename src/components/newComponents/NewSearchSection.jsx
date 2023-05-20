@@ -5,10 +5,10 @@ const NewSearchSection = ({ handleFilterProducts }) => {
   const [search, setSearch] = useState("");
   const [isRecycle, setIsRecycle] = useState(false);
   const [isNotRecycle, setIsNotRecycle] = useState(false);
-  const [getAll, setGetAll] = useState(true);
 
   useEffect(() => {
     handleFilterProducts(search, isRecycle, isNotRecycle);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, isRecycle, isNotRecycle]);
 
   return (

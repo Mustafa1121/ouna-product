@@ -80,7 +80,7 @@ const FilterSection = () => {
               className="dummy"
               key={index}
             >
-              <img src={category.imageUrl} />
+              <img src={category.imageUrl} alt={category.name} />
               <p>{category.name}</p>
             </div>
           </>

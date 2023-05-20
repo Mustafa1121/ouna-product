@@ -6,7 +6,6 @@ import Header from "../components/Header.jsx";
 import ShopSection from "../components/homeComponents/ShopSection.jsx";
 import Footer from "../components/Footer.jsx";
 import Label from "../components/Label.jsx";
-import Slider from "../components/newComponents/Slider.jsx";
 import { USER_LOGOUT } from "../Redux/Constants/UserContants";
 
 const HomeScreen = ({ match }) => {
@@ -23,6 +22,7 @@ const HomeScreen = ({ match }) => {
       dispatch({ type: USER_LOGOUT });
       history.push("/login");
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   return (
