@@ -1,31 +1,62 @@
-import React, { useState } from 'react'
-import './NewSearchSection.css';
+import React, { useState, useEffect } from "react";
+import "./NewSearchSection.css";
 
-const NewSearchSection = () => {
-    return (
-        <>
+const NewSearchSection = ({ handleFilterProducts }) => {
+  const [search, setSearch] = useState("");
+  const [isRecycle, setIsRecycle] = useState(false);
+  const [isNotRecycle, setIsNotRecycle] = useState(false);
+  const [getAll, setGetAll] = useState(true);
 
-            <div id="search-container">
-                <input
-                    type="search"
-                    id="search-input"
-                    placeholder="Search product name here.."
-                />
-                <button id="search">Search</button>
-            </div>
-            <div className='containRdio'>
-                <input type="radio" id="radioButtonAll" name="radioGroup" />
-                <label for="radioButtonAll">All</label>
-                <input type="radio" id="radioButtonRecycled" name="radioGroup" />
-                <label for="radioButtonRecycled">Recycled</label>
-                <input type="radio" id="radioButtonNotRecycled" name="radioGroup" />
-                <label for="radioButtonNotRecycled">Not Recycled</label>
+  useEffect(() => {
+    handleFilterProducts(search, isRecycle, isNotRecycle);
+  }, [search, isRecycle, isNotRecycle]);
 
-            </div>
-            <div id="products"></div>
+  return (
+    <>
+      <div id="search-container">
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Search product name here.."
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button id="search">Search</button>
+      </div>
+      <div className="containRdio">
+        <input
+          onChange={() => {
+            setIsRecycle(false);
+            setIsNotRecycle(false);
+          }}
+          type="radio"
+          id="radioButtonAll"
+          name="radioGroup"
+        />
+        <label for="radioButtonAll">All</label>
+        <input
+          onChange={() => {
+            setIsRecycle(true);
+            setIsNotRecycle(false);
+          }}
+          type="radio"
+          id="radioButtonRecycled"
+          name="radioGroup"
+        />
+        <label for="radioButtonRecycled">Recycled</label>
+        <input
+          onChange={() => {
+            setIsNotRecycle(true);
+            setIsRecycle(false);
+          }}
+          type="radio"
+          id="radioButtonNotRecycled"
+          name="radioGroup"
+        />
+        <label for="radioButtonNotRecycled">Not Recycled</label>
+      </div>
+      <div id="products"></div>
+    </>
+  );
+};
 
-        </>
-    )
-}
-
-export default NewSearchSection
+export default NewSearchSection;

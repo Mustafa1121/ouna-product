@@ -25,6 +25,8 @@ const CartScreen = ({ match, location, history }) => {
   const { cartItems } = cart;
   const [loading, setLoading] = useState(false);
 
+  console.log(cartItems);
+
   const total = cartItems.reduce((a, i) => a + i.price, 0).toFixed(2);
 
   console.log(cartItems);

@@ -80,7 +80,7 @@ const SingleProduct = ({ history, match }) => {
                   {productDetails?.product?.images && (
                     <img
                       alt={product?.name}
-                      src={product?.images[0]?.url}
+                      src={product?.images[index]?.url}
                       className=""
                     />
                   )}
@@ -103,7 +103,7 @@ const SingleProduct = ({ history, match }) => {
                     />
                   ))}
                 </div>
-                {productDetails.product.recycling === "false" ? (
+                {product.recycling === false ? (
                   <div className="recycle">
                     <h5>
                       <b>Proof of Work:</b>

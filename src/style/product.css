@@ -148,6 +148,10 @@ select {
   justify-content: flex-start;
   flex-direction: column;
   /* border: 2px solid yellow; */
+  width: 100%;
+}
+.brand-div input{
+  width: 100% !important;
 }
 
 .title-div {

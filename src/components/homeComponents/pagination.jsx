@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 
 const Pagination = (props) => {
   const { page, pages, keyword = "" } = props;
+  console.log(pages);
   return (
     pages > 1 && (
-      <nav style={{'margin-top':'3%'}}>
+      <nav style={{ "margin-top": "3%" }}>
         <ul className="pagination justify-content-center">
           {[...Array(pages).keys()].map((x) => (
             <li

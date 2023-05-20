@@ -95,7 +95,7 @@ const Login = ({ containerRef }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="base-containerF" ref={containerRef}>
+      <div className="base-containerF " ref={containerRef}>
         <div className="headerF">Login</div>
         <div className="contentF">
           <div className="imageF">
@@ -135,11 +135,11 @@ const Login = ({ containerRef }) => {
                   Don't have an account? <span>Register here</span>
                 </Link>
               </Link>
-              <div className="forget">
+              <div className="forget mt-2">
                 <p
                   style={{
                     fontSize: "14px",
-                    marginTop: "-2.5px",
+                    marginTop: "-10px",
                   }}
                   onClick={handleOpen}
                 >

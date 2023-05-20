@@ -7,27 +7,29 @@ import ShopSection from "../components/homeComponents/ShopSection.jsx";
 import Footer from "../components/Footer.jsx";
 import Label from "../components/Label.jsx";
 import Slider from "../components/newComponents/Slider.jsx";
+import { USER_LOGOUT } from "../Redux/Constants/UserContants";
 
 const HomeScreen = ({ match }) => {
   window.scrollTo(0, 0);
   const keyword = match.params.keyword;
   const pagenumber = match.params.pagenumber;
+  const dispatch = useDispatch();
+  const location = useLocation();
   const history = useHistory();
   useEffect(() => {
     const authResult = checkAuth();
-    console.log(authResult);
     if (authResult === "EXPIRED") {
       alert("your session has expired, please login again");
-      localStorage.removeItem("userInfo");
+      dispatch({ type: USER_LOGOUT });
       history.push("/login");
     }
-  }, []);
+  }, [location.pathname]);
 
   return (
     <div>
       <Header />
       <ShopSection keyword={keyword} pagenumber={pagenumber} />
-     
+
       <Label />
       <Footer />
     </div>

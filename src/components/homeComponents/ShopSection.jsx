@@ -20,10 +20,40 @@ import Slider from "../newComponents/Slider.jsx";
 import FilterSection from "../newComponents/FilterSection.jsx";
 import NewSearchSection from "../newComponents/NewSearchSection.jsx";
 
-const filterProducts = (products, searchTerm) => {
+const filterProducts = (products, searchTerm, isRecycle, isNotRecycle) => {
+  if (searchTerm === "" && (isRecycle || isNotRecycle)) {
+    return products?.filter((product) => {
+      const recycle = product.recycling;
+
+      if (isRecycle) {
+        return recycle === true;
+      }
+      if (isNotRecycle) {
+        return recycle === false;
+      }
+
+      return true;
+    });
+  }
   return products?.filter((product) => {
+    if (searchTerm === "") return products;
     const productName = product.name.toLowerCase();
     const categoryName = product.category.name.toLowerCase();
+    const recycle = product.recycling;
+
+    if (isRecycle) {
+      return (
+        (productName.includes(searchTerm.toLowerCase()) && recycle === true) ||
+        (categoryName.includes(searchTerm.toLowerCase()) && recycle === true)
+      );
+    }
+    if (isNotRecycle) {
+      return (
+        (productName.includes(searchTerm.toLowerCase()) && recycle === false) ||
+        (categoryName.includes(searchTerm.toLowerCase()) && recycle === false)
+      );
+    }
+
     return (
       productName.includes(searchTerm.toLowerCase()) ||
       categoryName.includes(searchTerm.toLowerCase())
@@ -33,6 +63,7 @@ const filterProducts = (products, searchTerm) => {
 
 const ShopSection = (props) => {
   const { keyword, pagenumber } = props;
+  const [filteredProducts, setFilterProducts] = useState([]);
   // const location = useLocation();
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
@@ -42,10 +73,6 @@ const ShopSection = (props) => {
   const { loading, error, products, page, pages } = productList;
 
   const selectedFlag = localStorage.getItem("selectedFlag");
-  // Filter the products based on the keyword prop
-  const filteredProducts = keyword
-    ? filterProducts(products, keyword)
-    : products;
 
   const [currentPage, setCurrentPage] = useState(1);
   const productPerPage = 8;
@@ -61,11 +88,24 @@ const ShopSection = (props) => {
   };
 
   useEffect(() => {
-    dispatch(listProduct(keyword, pagenumber, selectedFlag));
+    dispatch(listProduct(selectedFlag));
     dispatch(getCategories());
     dispatch(getListCart(userInfo));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, keyword, pagenumber]);
+  }, [dispatch]);
+
+  const handleFilterProducts = (search, isRecycle, isNotRecycle) => {
+    const filteredProducts = filterProducts(
+      products,
+      search,
+      isRecycle,
+      isNotRecycle
+    );
+    setFilterProducts(filteredProducts);
+  };
+  useEffect(() => {
+    handleFilterProducts("", false, false);
+  }, [products]);
   return (
     <>
       <div className="sliderContainer">
@@ -89,11 +129,12 @@ const ShopSection = (props) => {
                   <Message variant="alert-danger">{error}</Message>
                 ) : (
                   <>
-
-                    <label className="fresh-recom">Fresh Recommendations</label>
                     <div className="searchSection">
-                      <NewSearchSection />
+                      <NewSearchSection
+                        handleFilterProducts={handleFilterProducts}
+                      />
                     </div>
+                    <label className="fresh-recom">Fresh Recommendations</label>
                     {filteredProducts?.length ? (
                       <>
                         <Grid container spacing={5}>
@@ -170,7 +211,7 @@ const ShopSection = (props) => {
                                     </Typography>
                                     <Rating
                                       value={product.status}
-                                    // text={`${product.numReviews}`}
+                                      // text={`${product.numReviews}`}
                                     />
                                     <Typography variant="h6" component="p">
                                       ${product.price}
@@ -180,7 +221,7 @@ const ShopSection = (props) => {
                               </Grid>
                             ))}
                         </Grid>
-                        {filteredProducts?.length > 0 && (
+                        {pages?.length > 1 && (
                           <div className="pagination">
                             <div className="mt-3">
                               <div
@@ -247,13 +288,6 @@ const ShopSection = (props) => {
                     )}
                   </>
                 )}
-
-                {/* Pagination */}
-                <Pagination
-                  pages={pages}
-                  page={page}
-                  keyword={keyword ? keyword : ""}
-                />
               </div>
             </div>
           </div>
