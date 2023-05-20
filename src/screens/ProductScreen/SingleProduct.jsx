@@ -67,7 +67,7 @@ const SingleProduct = ({ history, match }) => {
   return (
     <>
       <Header />
-      <div className="container single-product">
+      <div className="container single-product" style={{marginTop:'180px'}}>
         {loading ? (
           <Loading />
         ) : error ? (
