@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { checkAuth } from "../utils/auth";
-import Header from "../components/Header.jsx";
-import ShopSection from "../components/homeComponents/ShopSection.jsx";
-import Footer from "../components/Footer.jsx";
-import Label from "../components/Label.jsx";
+import Header from "../components/HomeComponent/Header/Header.jsx";
+import ShopSection from "../components/HomeComponent/ShopSection.jsx";
+import Footer from "../components/HomeComponent/Footer/Footer.jsx";
+import Label from "../components/HomeComponent/Label/Label";
 import { USER_LOGOUT } from "../Redux/Constants/UserContants";
 
 const HomeScreen = ({ match }) => {
@@ -29,7 +29,6 @@ const HomeScreen = ({ match }) => {
     <div>
       <Header />
       <ShopSection keyword={keyword} pagenumber={pagenumber} />
-
       <Label />
       <Footer />
     </div>

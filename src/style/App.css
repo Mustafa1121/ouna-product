@@ -80,16 +80,19 @@ textarea:focus {
   background-color: #3471db;
   padding: 10px 0px 6px 0px;
 }
+
 .Announcement .col-md-6 p {
   color: white;
   margin-right: 6rem;
   font-size: 15px;
 }
+
 .Announcement .col-12 a {
   color: white;
   margin-right: 2rem;
   font-size: 15px;
 }
+
 /* Header */
 .header {
   padding: 10px 0px 10px 0px;
@@ -99,11 +102,11 @@ textarea:focus {
   width: 100%;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  top: 0;
-  z-index: 999;
+  position: relative;
   background-color: white;
+  margin-bottom: 100px;
 }
+
 .fresh-recom {
   margin-top: 50px;
   margin-bottom: 50px;

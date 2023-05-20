@@ -9,23 +9,21 @@ import {
   Redirect,
 } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen.jsx";
-import SingleProduct from "./screens/SingleProduct.jsx";
-import Form from "./screens/Form.jsx";
-import CartScreen from "./screens/CartScreen.jsx";
-import ShippingScreen from "./screens/ShippingScreen.jsx";
-import ProfileScreen from "./screens/ProfileScreen.jsx";
-import PaymentScreen from "./screens/PaymentScreen.jsx";
-import PlaceOrderScreen from "./screens/PlaceOrderScreen.jsx";
-import OrderScreen from "./screens/OrderScreen.jsx";
+import SingleProduct from "./screens/ProductScreen/SingleProduct.jsx";
+import Form from "./screens/AuthScreen/Form.jsx";
+import CartScreen from "./screens/CartScreen/CartScreen.jsx";
+import ShippingScreen from "./screens/ShippingScreen/ShippingScreen.jsx";
+import ProfileScreen from "./screens/ProfileScreen/ProfileScreen.jsx";
+import PaymentScreen from "./screens/PaymentScreen/PaymentScreen.jsx";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen.jsx";
 import NotFound from "./screens/NotFound.jsx";
 import PrivateRouter from "./PrivateRouter.jsx";
-import ProductForm from "./components/createProduct/ProductForm.jsx";
-import Terms from "./components/Terms.jsx";
-import About from "./components/AboutUs.jsx";
-import PrivacyPolicy from "./components/PrivacyPolicy.jsx";
-import Payment from "./components/Payment.jsx";
-import ResetPassword from "./screens/ResetPassword.jsx";
-import Slider from "./components/newComponents/Slider.jsx";
+import ProductForm from "./components/CreateProduct/ProductForm.jsx";
+import Terms from "./components/Utils/Terms.jsx";
+import About from "./components/Utils/AboutUs.jsx";
+import PrivacyPolicy from "./components/Utils/PrivacyPolicy.jsx";
+import Payment from "./components/Utils/Payment.jsx";
+import ResetPassword from "./screens/AuthScreen/ResetPasswordScreen/ResetPassword.jsx";
 
 const App = () => {
   const location = localStorage.getItem("selectedFlag") || "Lebanon";
@@ -83,11 +81,9 @@ const App = () => {
           <Route path="/aboutUs" component={About} />
           <Route path="/privacyPolicy" component={PrivacyPolicy} />
           <Route path="/paymentPolicy" component={Payment} />
-          <Route path="/slider" component={Slider} />
           <PrivateRouter path="/shipping" component={ShippingScreen} />
           <PrivateRouter path="/payment" component={PaymentScreen} />
           <PrivateRouter path="/placeorder" component={PlaceOrderScreen} />
-          <PrivateRouter path="/order/:id" component={OrderScreen} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

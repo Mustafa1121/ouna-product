@@ -26,8 +26,6 @@ export function getAuthToken() {
 
 export function checkAuth() {
   const token = getAuthToken();
-  console.log(token);
-
   if (token === "EXPIRED") {
     return "EXPIRED";
   }

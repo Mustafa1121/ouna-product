@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../style/product.css";
-import Header from "../Header";
-import Footer from "../Footer";
+import Header from "../HomeComponent/Header/Header.jsx";
+import Footer from "../HomeComponent/Footer/Footer.jsx";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "../LoadingError/Toast.jsx";
-import { updateUserProfile } from "../../Redux/Actions/userActions";
+import { updateUserProfile } from "../../Redux/Actions/userActions.js";
 
 const ProfileTabs = () => {
   const [name, setName] = useState("");

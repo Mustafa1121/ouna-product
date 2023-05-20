@@ -1,0 +1,74 @@
+#search-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid red; */
+}
+#search-container input {
+  background-color: transparent;
+  width: 40%;
+  border-bottom: 3px solid rgb(66, 65, 65);
+  padding: 1em 0.3em;
+}
+#search-container input:focus {
+  border-bottom-color: #3471db;
+}
+
+#search-container button {
+  display: flex;
+  justify-content: center;
+  padding: 12px 50px;
+  width: 150px;
+  border: none;
+  margin-left: 1em;
+  background-color: #3471db;
+  color: #ffffff;
+  border-radius: 50px;
+  /* margin-top: 0.5em; */
+  margin-bottom: 1.5em;
+  font-size: 18px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + label {
+  background-color: #3471db;
+  border-color: #3471db;
+  color: white;
+}
+
+.containRdio {
+  /* border: 2px solid yellow; */
+  width: 80%;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.containRdio label {
+  display: inline-block;
+  padding: 12px;
+  border-radius: 50px;
+  text-align: center;
+  color: #3498db;
+  width: 100px;
+  cursor: pointer;
+  font-size: 16px;
+  border: 1px solid #3471db;
+  transition: all 0.5s ease-in-out;
+}
+
+.containRdio label:last-child {
+  width: fit-content;
+}
+
+.containRdio label:hover {
+  background-color: #3471db;
+  border-color: #3471db;
+  color: white;
+}
