@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/HomeComponent/Header/Header";
-import ProfileTabs from "../../components/ProfileComponents/ProfileTabs.jsx";
+import ProfileTabs from "../../components/profileComponents/ProfileTabs.jsx";
 import { getUserAddresses } from "../../Redux/Actions/userActions";
 import moment from "moment";
 import { listMyOrders } from "../../Redux/Actions/OrderActions";
-import Addresses from "../../components/ProfileComponents/Addresses.jsx";
-import AddressForm from "../../components/ProfileComponents/AddressForm.jsx";
+import Addresses from "../../components/profileComponents/Addresses.jsx";
+import AddressForm from "../../components/profileComponents/AddressForm.jsx";
 import Rating from "../../components/Utils/Rating";
 import userPhoto from "../../images/user.png";
 

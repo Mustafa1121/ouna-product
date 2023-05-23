@@ -18,7 +18,7 @@ import PaymentScreen from "./screens/PaymentScreen/PaymentScreen.jsx";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen.jsx";
 import NotFound from "./screens/NotFound.jsx";
 import PrivateRouter from "./PrivateRouter.jsx";
-import ProductForm from "./components/CreateProduct/ProductForm.jsx";
+import ProductForm from "./components/createProduct/ProductForm.jsx";
 import Terms from "./components/Utils/Terms.jsx";
 import About from "./components/Utils/AboutUs.jsx";
 import PrivacyPolicy from "./components/Utils/PrivacyPolicy.jsx";
