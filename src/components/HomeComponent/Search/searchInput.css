@@ -44,8 +44,8 @@ input[type="radio"]:checked + label {
   /* border: 2px solid yellow; */
   width: 80%;
   display: flex;
-  align-items: start;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 10px;
   padding-top: 10px;
 }
@@ -56,19 +56,27 @@ input[type="radio"]:checked + label {
   border-radius: 50px;
   text-align: center;
   color: #3498db;
-  width: 100px;
+  width: 130px;
   cursor: pointer;
   font-size: 16px;
   border: 1px solid #3471db;
   transition: all 0.5s ease-in-out;
 }
 
-.containRdio label:last-child {
-  width: fit-content;
-}
-
 .containRdio label:hover {
   background-color: #3471db;
   border-color: #3471db;
   color: white;
+}
+
+@media screen and (max-width: 768px) {
+  #search-container button {
+    display: none;
+  }
+  .contanRdio {
+    width: 100%;
+  }
+  .containRdio label {
+    width: 200px;
+  }
 }

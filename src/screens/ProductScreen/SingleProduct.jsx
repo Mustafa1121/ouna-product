@@ -67,7 +67,7 @@ const SingleProduct = ({ history, match }) => {
   return (
     <>
       <Header />
-      <div className="container single-product" style={{marginTop:'180px'}}>
+      <div className="container single-product" style={{ marginTop: "180px" }}>
         {loading ? (
           <Loading />
         ) : error ? (
@@ -81,13 +81,19 @@ const SingleProduct = ({ history, match }) => {
                     <img
                       alt={product?.name}
                       src={product?.images[index]?.url}
-                      className=""
+                      style={{ objectFit: "cover" }}
                     />
                   )}
+                  <span
+                    className={`ProductTag ${
+                      product.recycling ? "" : "sellProd"
+                    }`}
+                  >
+                    {" "}
+                    {product.recycling ? "Recycle" : "Sell"}
+                  </span>
                 </div>
-                <div className="recycle12">
-                  {product.recycling ? "recycle" : "sell"}
-                </div>
+
                 <div className="small-images-container">
                   {product?.images?.map((item, i) => (
                     <img
@@ -121,27 +127,22 @@ const SingleProduct = ({ history, match }) => {
               <div className="col-md-6">
                 <div className="product-dtl">
                   <div className="product-info">
-                    <div className="product-name">{product.name}</div>
+                    <div className="product-name"></div>
                   </div>
-                  <p>{product.description}</p>
 
                   <div className="product-count col-lg-7 ">
+                    <div className="flex-box d-flex justify-content-between align-items-center">
+                      <h6>Product Name</h6>
+                      <span>{product.name}</span>
+                    </div>
+                    <div className="flex-box d-flex justify-content-between align-items-center">
+                      <h6>Description</h6>
+                      <span>{product.description}</span>
+                    </div>
                     <div className="flex-box d-flex justify-content-between align-items-center">
                       <h6>Price</h6>
                       <span>${product.price}</span>
                     </div>
-                    {/* <div className="flex-box d-flex justify-content-between align-items-center">
-                      <h6>Status</h6>
-                      {product.countInStock > 0 ? (
-                        <span>In Stock</span>
-                      ) : (
-                        <span>unavailable</span>
-                      )}
-                    </div> */}
-                    {/* <div className="flex-box d-flex justify-content-between align-items-center">
-                      <h6>Need Recycling</h6>
-                      <span>{productDetails.product.recycling}</span>
-                    </div> */}
 
                     <div className="flex-box d-flex justify-content-between align-items-center">
                       <h6>Condition</h6>

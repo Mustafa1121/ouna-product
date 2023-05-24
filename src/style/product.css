@@ -7,6 +7,9 @@
   max-width: 650px;
   margin: 0 auto;
 }
+.productFormContainer {
+  padding-top: 160px;
+}
 @media all and (max-width: 447px) {
   .product-formp {
     max-width: 400px;
@@ -150,7 +153,7 @@ select {
   /* border: 2px solid yellow; */
   width: 100%;
 }
-.brand-div input{
+.brand-div input {
   width: 100% !important;
 }
 

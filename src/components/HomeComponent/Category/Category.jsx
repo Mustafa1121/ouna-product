@@ -5,6 +5,7 @@ import "./category.css";
 import { useSelector } from "react-redux";
 import { PRODUCT_LIST_SUCCESS } from "../../../Redux/Constants/ProductConstants";
 import { CATEGORIES_FAIL } from "../../../Redux/Constants/ProductConstants";
+import { listProduct } from "../../../Redux/Actions/ProductActions";
 import axios from "../../../axios/axios";
 import { toast } from "react-toastify";
 const FilterSection = () => {
@@ -14,6 +15,10 @@ const FilterSection = () => {
   const origin = localStorage.getItem("selectedFlag");
 
   const getSpecificProduct = async (id) => {
+    if (id === 12) {
+      dispatch(listProduct(localStorage.getItem("selectedFlag")));
+      return;
+    }
     try {
       const specificProduct = await axios.get(
         `/api/products/category/${id}/${origin}`
@@ -74,16 +79,14 @@ const FilterSection = () => {
     <div className="dummyContainer">
       <Slider {...settings}>
         {categories?.categories?.map((category, index) => (
-          <>
-            <div
-              onClick={() => getSpecificProduct(category._id)}
-              className="dummy"
-              key={index}
-            >
-              <img src={category.imageUrl} alt={category.name} />
-              <p>{category.name}</p>
-            </div>
-          </>
+          <div
+            key={index}
+            onClick={() => getSpecificProduct(category._id)}
+            className="dummy"
+          >
+            <img src={category.imageUrl} alt={category.name} />
+            <p>{category.name}</p>
+          </div>
         ))}
       </Slider>
     </div>

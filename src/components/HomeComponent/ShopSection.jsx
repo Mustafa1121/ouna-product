@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Rating from "../Utils/Rating.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories, listProduct } from "../../Redux/Actions/ProductActions.js";
+import {
+  getCategories,
+  listProduct,
+} from "../../Redux/Actions/ProductActions.js";
 import Loading from "../LoadingError/Loading.jsx";
 import Message from "../LoadingError/Error.jsx";
 import wpIcon from "../../images/wpIcon.png";
@@ -95,10 +98,10 @@ const ShopSection = (props) => {
     );
     setFilterProducts(filteredProducts);
   };
-  
+
   useEffect(() => {
     handleFilterProducts("", false, false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
   return (
     <>
@@ -208,7 +211,8 @@ const ShopSection = (props) => {
                                       // text={`${product.numReviews}`}
                                     />
                                     <Typography variant="h6" component="p">
-                                      ${product.price}
+                                      {product.unitPrice}
+                                      {product.price}
                                     </Typography>
                                   </CardContent>
                                 </Card>
@@ -287,12 +291,13 @@ const ShopSection = (props) => {
           </div>
         </div>
       </div>
-      <div class="contain-wp">
+      <div className="contain-wp">
         <a
           href="https://web.whatsapp.com/send?phone=+70528539&text=Hello,%20I%20want%20to%20chat"
           target="_blank"
+          rel="noopener noreferrer"
         >
-          <div class="wp">
+          <div className="wp">
             <img alt="" src={wpIcon} />
           </div>
         </a>

@@ -8,8 +8,8 @@ import {
   clearCart,
 } from "../../Redux/Actions/cartActions";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ClearIcon from "@mui/icons-material/Clear";
 import { CircularProgress } from "@material-ui/core";
+import CartCard from "./CartCard";
 
 const CartScreen = ({ match, location, history }) => {
   window.scrollTo(0, 0);
@@ -22,11 +22,9 @@ const CartScreen = ({ match, location, history }) => {
   const { cartItems } = cart;
   const [loading] = useState(false);
 
-  console.log(cartItems);
-
   const total = cartItems.reduce((a, i) => a + i.price, 0).toFixed(2);
 
-  console.log(cartItems);
+  console.log(cartItems.length);
   useEffect(() => {
     dispatch(getListCart(userInfo));
     // dispatch(addToCart(productId, qty,userInfo));
@@ -44,13 +42,15 @@ const CartScreen = ({ match, location, history }) => {
   const removeFromCartHandle = (id) => {
     dispatch(removefromcart(id, userInfo));
   };
+
   return (
     <>
       <Header />
       {/* Cart */}
-      <div className="container">
+
+      <div className="container ">
         {cartItems.length === 0 ? (
-          <div className=" alert alert-info text-center mt-3">
+          <div className="emptyCart  alert alert-info text-center ">
             Your cart is empty
             <Link
               className="btn btn-success mx-5 px-5 py-3"
@@ -73,63 +73,23 @@ const CartScreen = ({ match, location, history }) => {
               </Link>
             </div>
             {/* cartiterm */}
-            {cartItems?.map((item, i) => (
-              <div className="carttt" key={i}>
-                <div className="cart-iterm row">
-                  <div
-                    onClick={() => removeFromCartHandle(item._id)}
-                    className="remove-button"
-                  >
-                    <ClearIcon
-                      sx={{
-                        transition: ".1.5s ease-in-out",
-                        fontSize: 35,
-                        "&:hover": { color: "red" },
-                      }}
-                    />
-                  </div>
-                  <div className="cart-image  col-md-4">
-                    <img src={item?.images[0].url} alt={item?.name} />
-                  </div>
-                  <div className="cart-text col-md-8 d-flex">
-                    <Link to={`/products/${item._id}`}>
-                      <h6 className="mb-3">
-                        <strong>Name:</strong> {item?.name}
-                      </h6>
-                      <h6 className="mb-3">
-                        <strong>Classification:</strong> Pepper Produce
-                      </h6>
-                      <h6 className="mb-3">
-                        <strong>Price:</strong> ${item.price}
-                      </h6>
-                      <h6 className="mb-3">
-                        <strong>Description:</strong> {item.description}
-                      </h6>
-                    </Link>
-                  </div>
-
-                  {/* <div className="cart-qty col-md-2 col-sm-5 mt-md-5 mt-3 mt-md-0 d-flex flex-column justify-content-center">
-                  <h6>QUANTITY</h6>
-                  <select
-                    value={item.qty}
-                    onChange={(e) =>
-                      dispatch(addToCart(item.product, Number(e.target.value)))
-                    }
-                  >
-                    {[...Array(item.countInStock).keys()].map((x) => (
-                      <option key={x + 1} value={x + 1}>
-                        {x + 1}
-                      </option>
-                    ))}
-                  </select>
-                </div> */}
-                  {/* <div className="cart-price mt-3 mt-md-0 col-md-2 align-items-sm-end align-items-start  d-flex flex-column justify-content-center col-sm-7">
-                  <h6>PRICE</h6>
-                  <h4>${item.price}</h4>
-                </div> */}
-                </div>
-              </div>
-            ))}
+            <div className="cart-container">
+              {cartItems
+                ?.slice()
+                .reverse()
+                .map((item, i) => (
+                  <CartCard
+                    key={i}
+                    image={item?.images[0].url}
+                    name={item?.name}
+                    price={item.price}
+                    description={item.description}
+                    id={item._id}
+                    classification={"Pepper Produce"}
+                    removeProduct={removeFromCartHandle}
+                  />
+                ))}
+            </div>
 
             {/* End of cart iterms */}
             <div className="total">

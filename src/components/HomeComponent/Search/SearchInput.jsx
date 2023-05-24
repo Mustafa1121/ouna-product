@@ -8,7 +8,7 @@ const NewSearchSection = ({ handleFilterProducts }) => {
 
   useEffect(() => {
     handleFilterProducts(search, isRecycle, isNotRecycle);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, isRecycle, isNotRecycle]);
 
   return (
@@ -32,7 +32,7 @@ const NewSearchSection = ({ handleFilterProducts }) => {
           id="radioButtonAll"
           name="radioGroup"
         />
-        <label for="radioButtonAll">All</label>
+        <label htmlFor="radioButtonAll">All</label>
         <input
           onChange={() => {
             setIsRecycle(true);
@@ -42,7 +42,7 @@ const NewSearchSection = ({ handleFilterProducts }) => {
           id="radioButtonRecycled"
           name="radioGroup"
         />
-        <label for="radioButtonRecycled">Recycled</label>
+        <label htmlFor="radioButtonRecycled">Recycled</label>
         <input
           onChange={() => {
             setIsNotRecycle(true);
@@ -52,7 +52,7 @@ const NewSearchSection = ({ handleFilterProducts }) => {
           id="radioButtonNotRecycled"
           name="radioGroup"
         />
-        <label for="radioButtonNotRecycled">Not Recycled</label>
+        <label htmlFor="radioButtonNotRecycled">Non Recycled</label>
       </div>
       <div id="products"></div>
     </>

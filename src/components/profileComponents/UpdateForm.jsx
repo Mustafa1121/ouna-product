@@ -11,9 +11,9 @@ const UpdatedForm = ({ address, index, deleteAddress }) => {
     Lname: userInfo.data.user.Lname,
     phone: userInfo.data.user.phone,
     countryCode: userInfo.data.user.countryCode,
-    city: "",
-    fullAdress: "",
-    additionalAddressInfo: "",
+    city: address.city || "",
+    fullAdress: address.fullAddress || "",
+    additionalAddressInfo: address.additionalAddress || "",
   });
 
   const handleDeleteAddress = async (id, index) => {

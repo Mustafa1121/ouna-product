@@ -39,7 +39,6 @@ function ProductForm() {
   const history = useHistory();
   const categories = useSelector((state) => state.productCategories);
   const { loading } = useSelector((state) => state.productList);
-  console.log(loading);
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -69,6 +68,7 @@ function ProductForm() {
       category: Yup.string().required("Select a category"),
     }),
     onSubmit: (values, { resetForm }) => {
+      console.log(values);
       const formData = {
         name: values.name,
         category: selectedCategoryId,
@@ -84,7 +84,9 @@ function ProductForm() {
     },
     validateOnChange: false, // disable validation on change
   });
+  console.log(categories);
   const onSubmit = (e) => {
+    console.log(formik.values);
     e.preventDefault();
     if (numDownloaded < 2) {
       toast.warning("Please download at least 5 images before submitting!");
@@ -165,220 +167,224 @@ function ProductForm() {
   return (
     <>
       <Header />
-      <form className="product-formp mt-4" onSubmit={onSubmit}>
-        <div className="form-fieldp">
-          <div className="inputsp">
-            <div className="brand-div">
-              <label htmlFor="brand">Brand Name:</label>
+      <div className="productFormContainer">
+        <form className="product-formp mt-4" onSubmit={onSubmit}>
+          <div className="form-fieldp">
+            <div className="inputsp">
+              <div className="brand-div">
+                <label htmlFor="brand">Brand Name:</label>
+                <input
+                  placeholder="Enter Brand Name"
+                  maxLength="17"
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="Rating">
+            <Box
+              sx={{
+                "& > legend": {
+                  mt: 4,
+                  fontWeight: "bold",
+                  marginBottom: "10px",
+                  fontSize: ".95rem",
+                },
+              }}
+            >
+              <Typography
+                component="legend"
+                sx={{
+                  fontSize: "1.25rem",
+                }}
+              >
+                {" "}
+                Condition:
+              </Typography>
+              <br />
+              <br />
+              <Rating
+                size="large"
+                name="rating"
+                value={Number(formik.values.rating)}
+                onChange={formik.handleChange}
+              />
+            </Box>
+            <div className="pricingp">
+              <label htmlFor="price">
+                <label htmlFor="price">Price ( in {currencySymbol}):</label>
+              </label>
               <input
-                placeholder="Enter Brand Name"
-                maxLength="17"
+                placeholder="Enter Price"
                 type="text"
-                id="name"
-                name="name"
-                value={formik.values.name}
+                id="price"
+                min="0"
+                name="price"
+                value={formik.values.price}
                 onChange={formik.handleChange}
               />
             </div>
           </div>
-        </div>
-        <div className="Rating">
-          <Box
-            sx={{
-              "& > legend": {
-                mt: 4,
-                fontWeight: "bold",
-                marginBottom: "10px",
-                fontSize: ".95rem",
-              },
-            }}
-          >
-            <Typography
-              component="legend"
-              sx={{
-                fontSize: "1.25rem",
-              }}
-            >
-              {" "}
-              Condition:
-            </Typography>
-            <br />
-            <br />
-            <Rating
-              size="large"
-              name="rating"
-              value={Number(formik.values.rating)}
+          <div className="form-fieldp">
+            <div className="selectp">
+              <FormControl sx={{ m: 1, minWidth: 250 }}>
+                <InputLabel
+                  id="demo-multiple-checkbox-label"
+                  sx={{
+                    color: "text.secondary",
+                    position: "absolute",
+                    top: "-3px",
+                    left: "16px",
+                    backgroundColor: "white",
+                    padding: "0 4px",
+                    "&.Mui-focused": {
+                      transform: "translate(0, -3px) scale(0.75)",
+                      backgroundColor: "white",
+                      padding: "0 4px",
+                    },
+                  }}
+                >
+                  Category
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-autowidth-label"
+                  id="demo-simple-select-autowidth"
+                  value={formik.values.category}
+                  onChange={(event) => {
+                    setSelectedCategoryId(
+                      categories.categories.find(
+                        (category) => category.name === event.target.value
+                      )._id
+                    );
+                    formik.handleChange(event);
+                    if (event.target.value === "Phones") {
+                      toast.warning(
+                        "For testing purposes, please note that the 'Phones' category is currently only available on our mobile app. Please use the app to test this category"
+                      );
+                      return;
+                    }
+                  }}
+                  name="category"
+                  autoWidth
+                  label="Category"
+                >
+                  {categories?.categories?.map((category) => (
+                    <MenuItem key={category._id} value={category.name}>
+                      {category.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <FormControl sx={{ m: 1, minWidth: 250 }}>
+                <InputLabel
+                  id="demo-simple-select-autowidth-label"
+                  sx={{
+                    color: "text.secondary",
+                    position: "absolute",
+                    top: "-4px",
+                    left: "16px",
+                    backgroundColor: "white",
+                    padding: "0 4px",
+                    "&.Mui-focused": {
+                      transform: "translate(0, -4px) scale(0.75)",
+                      backgroundColor: "white",
+                      padding: "0 4px",
+                    },
+                  }}
+                >
+                  Need Recycling ?
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-autowidth-label"
+                  id="demo-simple-select-autowidth"
+                  name="recycling"
+                  value={formik.values.recycling}
+                  onChange={formik.handleChange}
+                  autoWidth
+                  label="Recycling"
+                >
+                  <MenuItem value={true}>Yes</MenuItem>
+                  <MenuItem value={false}>No</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+          </div>
+          <div className="form-fieldp">
+            <label htmlFor="description">Description:</label>
+            <textarea
+              className="descriptionp"
+              rows={5}
+              cols={50}
+              type="text"
+              id="description"
+              name="description"
+              value={formik.values.description}
               onChange={formik.handleChange}
             />
-          </Box>
-          <div className="pricingp">
-            <label htmlFor="price">
-              <label htmlFor="price">Price ( in {currencySymbol}):</label>
+          </div>
+          <div className="form-fieldp">
+            <label htmlFor="image">Choose Image:</label>
+            <label className="file-input-labelp" htmlFor="image">
+              Select Image
             </label>
             <input
-              placeholder="Enter Price"
-              type="text"
-              id="price"
-              min="0"
-              name="price"
-              value={formik.values.price}
-              onChange={formik.handleChange}
+              type="file"
+              id="image"
+              name="image"
+              multiple
+              accept="image/*"
+              onChange={(e) => {
+                const files = Array.from(e.target.files);
+                files.forEach((file) => {
+                  const reader = new FileReader();
+                  reader.readAsDataURL(file);
+                  reader.onload = function () {
+                    const base64Image = reader.result;
+                    setSelectedImages([...selectedImages, base64Image]);
+                    setNumDownloaded(numDownloaded + 1);
+                  };
+                });
+              }}
             />
-          </div>
-        </div>
-        <div className="form-fieldp">
-          <div className="selectp">
-            <FormControl sx={{ m: 1, minWidth: 250 }}>
-              <InputLabel
-                id="demo-multiple-checkbox-label"
-                sx={{
-                  color: "text.secondary",
-                  position: "absolute",
-                  top: "-3px",
-                  left: "16px",
-                  backgroundColor: "white",
-                  padding: "0 4px",
-                  "&.Mui-focused": {
-                    transform: "translate(0, -3px) scale(0.75)",
-                    backgroundColor: "white",
-                    padding: "0 4px",
-                  },
-                }}
-              >
-                Category
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-autowidth-label"
-                id="demo-simple-select-autowidth"
-                value={formik.values.category}
-                onChange={(event) => {
-                  setSelectedCategoryId(
-                    categories.categories.find(
-                      (category) => category.name === event.target.value
-                    )._id
-                  );
-                  formik.handleChange(event);
-                  if (event.target.value === "Phones") {
-                    toast.warning(
-                      "For testing purposes, please note that the 'Phones' category is currently only available on our mobile app. Please use the app to test this category"
-                    );
-                    return;
-                  }
-                }}
-                name="category"
-                autoWidth
-                label="Category"
-              >
-                {categories?.categories?.map((category) => (
-                  <MenuItem key={category._id} value={category.name}>
-                    {category.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
 
-            <FormControl sx={{ m: 1, minWidth: 250 }}>
-              <InputLabel
-                id="demo-simple-select-autowidth-label"
-                sx={{
-                  color: "text.secondary",
-                  position: "absolute",
-                  top: "-4px",
-                  left: "16px",
-                  backgroundColor: "white",
-                  padding: "0 4px",
-                  "&.Mui-focused": {
-                    transform: "translate(0, -4px) scale(0.75)",
-                    backgroundColor: "white",
-                    padding: "0 4px",
-                  },
-                }}
-              >
-                Need Recycling ?
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-autowidth-label"
-                id="demo-simple-select-autowidth"
-                name="recycling"
-                value={formik.values.recycling}
-                onChange={formik.handleChange}
-                autoWidth
-                label="Recycling"
-              >
-                <MenuItem value={true}>Yes</MenuItem>
-                <MenuItem value={false}>No</MenuItem>
-              </Select>
-            </FormControl>
+            <div className="imagesp">
+              {selectedImages.map((image, index) => (
+                <div key={index} className="imm">
+                  <img
+                    src={`${image}`}
+                    height="100px"
+                    width="100px"
+                    alt={`Selected ${index}`}
+                  />
+                  <p className="removeImage" onClick={() => removeImage(index)}>
+                    &times;
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="form-fieldp">
-          <label htmlFor="description">Description:</label>
-          <textarea
-            className="descriptionp"
-            rows={5}
-            cols={50}
-            type="text"
-            id="description"
-            name="description"
-            value={formik.values.description}
-            onChange={formik.handleChange}
-          />
-        </div>
-        <div className="form-fieldp">
-          <label htmlFor="image">Choose Image:</label>
-          <label className="file-input-labelp" htmlFor="image">
-            Select Image
-          </label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            multiple
-            accept="image/*"
-            onChange={(e) => {
-              const files = Array.from(e.target.files);
-              files.forEach((file) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = function () {
-                  const base64Image = reader.result;
-                  setSelectedImages([...selectedImages, base64Image]);
-                  setNumDownloaded(numDownloaded + 1);
-                };
-              });
-            }}
-          />
-
-          <div className="imagesp">
-            {selectedImages.map((image, index) => (
-              <div key={index} className="imm">
-                <img
-                  src={`${image}`}
-                  height="100px"
-                  width="100px"
-                  alt={`Selected ${index}`}
-                />
-                <p className="removeImage" onClick={() => removeImage(index)}>
-                  &times;
-                </p>
-              </div>
-            ))}
+          {!formik.values.recycling && (
+            <div className="form-fieldp">
+              <label htmlFor="video">Choose Video:</label>
+              <label className="file-input-labelp" htmlFor="video">
+                Select Video
+              </label>
+              <input id="video" type="file" onChange={handleVideoChange} />
+              {video && <video src={video} controls />}
+            </div>
+          )}
+          <div className="btn-submit-product">
+            <button type="submit">
+              {loading ? <Loading /> : "Add Product"}
+            </button>
           </div>
-        </div>
-        {!formik.values.recycling && (
-          <div className="form-fieldp">
-            <label htmlFor="video">Choose Video:</label>
-            <label className="file-input-labelp" htmlFor="video">
-              Select Video
-            </label>
-            <input id="video" type="file" onChange={handleVideoChange} />
-            {video && <video src={video} controls />}
-          </div>
-        )}
-        <div className="btn-submit-product">
-          <button type="submit">{loading ? <Loading /> : "Add Product"}</button>
-        </div>
-      </form>
+        </form>
+      </div>
       <Footer />
     </>
   );

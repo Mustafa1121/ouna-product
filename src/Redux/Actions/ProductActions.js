@@ -127,7 +127,12 @@ export const getCategories = () => async (dispatch) => {
       type: CATEGORIES_REQUEST,
     });
     const { data } = await axios.get("/api/category");
-    console.log(data);
+    data.unshift({
+      name: "All",
+      imageUrl:
+        "https://res.cloudinary.com/dxcqzmkxg/image/upload/v1684871203/All_kljrny.jpg",
+      _id: 12,
+    });
     dispatch({
       type: CATEGORIES_SUCCESS,
       payload: data,

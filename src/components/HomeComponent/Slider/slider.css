@@ -112,3 +112,14 @@
   background: #3498db;
 }
 
+@media screen and (max-width: 768px) {
+  .slider {
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 12px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+  }
+}

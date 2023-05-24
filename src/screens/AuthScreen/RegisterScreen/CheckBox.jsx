@@ -9,6 +9,7 @@ import email from "../../../images/images/email.gif";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../../Redux/Actions/userActions";
+import Loading from "../../../components/LoadingError/Loading";
 
 toast.configure({
   position: "bottom-right",
@@ -22,7 +23,7 @@ export default function CheckboxLabels() {
   const [countryCode, setCountryCode] = React.useState("");
   const [flag, setFlag] = React.useState(false);
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const { userInfo, loading } = userLogin;
   const [hideRegister, sethideRegister] = React.useState(false);
   const formik = useFormik({
     initialValues: {
@@ -250,7 +251,7 @@ export default function CheckboxLabels() {
           {renderInputFields()}
           <div className="footerF">
             <button type="submit" className="btnF">
-              Register
+              {loading ? <Loading /> : "Register"}
             </button>
           </div>
         </form>

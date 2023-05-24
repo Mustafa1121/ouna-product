@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Link } from "react-router-dom";
 import axios from "../../../axios/axios";
+import Loading from "../../../components/LoadingError/Loading";
 
 const style = {
   position: "absolute",
@@ -39,7 +40,7 @@ const Login = ({ containerRef }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const { userInfo, loading } = userLogin;
   const [flag, setFlag] = React.useState(false);
   const formik = useFormik({
     initialValues: {
@@ -215,8 +216,8 @@ const Login = ({ containerRef }) => {
           </div>
         </div>
         <div className="footerF">
-          <button type="submit" className="btnF">
-            Login
+          <button type="submit" className="btnF w-100 ">
+            {loading ? <Loading /> : "Login"}
           </button>
         </div>
       </div>

@@ -70,7 +70,7 @@ function ResetPassword({ match }) {
               </div>
             </div>
           </div>
-          <button type="submit" className="btnF">
+          <button type="submit" className="btnF ">
             Confirm Password
           </button>
         </div>

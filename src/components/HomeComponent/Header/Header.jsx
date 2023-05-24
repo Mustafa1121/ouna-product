@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../Redux/Actions/userActions";
@@ -14,46 +14,64 @@ const Header = () => {
   const { cartItems } = cart;
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const [annoucement, setAnnoucement] = React.useState(
+    localStorage.getItem("announcement")
+  );
 
   const logoutHandler = () => {
     dispatch(logout());
   };
+  const removeAnnouncement = () => {
+    localStorage.setItem("announcement", JSON.stringify(false));
+    setAnnoucement(localStorage.getItem("announcement"));
+  };
+
+  console.log(annoucement);
 
   return (
     <div
       style={{
-        marginBottom: "150px",
         position: "fixed",
         width: "100%",
         zIndex: "999",
         top: 0,
+        maxHeight: "100px",
       }}
     >
       {/* Top Header */}
-      <div className="Announcement ">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6 d-flex align-items-center display-none">
-              <p>+255 768 356 890</p>
-              <p>ounateam23@gmail.com</p>
-            </div>
-            <div className=" col-12 col-lg-6 justify-content-center justify-content-lg-end d-flex align-items-center">
-              <Link to="">
-                <i className="fab fa-facebook-f"></i>
-              </Link>
-              <Link to="">
-                <i className="fab fa-instagram"></i>
-              </Link>
-              <Link to="">
-                <i className="fab fa-linkedin-in"></i>
-              </Link>
-              <Link to="">
-                <i className="fab fa-twitter"></i>
-              </Link>
+      {!annoucement && (
+        <div className="Announcement">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6 d-flex align-items-center display-none">
+                <p>+255 768 356 890</p>
+                <p>ounateam23@gmail.com</p>
+              </div>
+              <div className="col-12 col-lg-6 d-flex align-items-center justify-content-end hello">
+                <Link to="">
+                  <i className="fab fa-facebook-f"></i>
+                </Link>
+                <Link to="">
+                  <i className="fab fa-instagram"></i>
+                </Link>
+                <Link to="">
+                  <i className="fab fa-linkedin-in"></i>
+                </Link>
+                <Link to="">
+                  <i className="fab fa-twitter"></i>
+                </Link>
+              </div>
+              <div className="Xsign">
+                <i
+                  className="fa fa-times"
+                  onClick={() => removeAnnouncement()}
+                  style={{ color: "white", float: "right" }}
+                ></i>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
       {/* Header */}
       <div className="header">
         <div className="">

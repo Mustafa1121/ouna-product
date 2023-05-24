@@ -17,6 +17,7 @@
   padding: 20px;
   border-radius: 13px;
   margin: auto;
+  margin-top: 150px;
   min-height: 450px;
 }
 
@@ -144,7 +145,7 @@ input :focus {
   justify-content: center;
   align-items: center;
   font-family: "Open Sans", sans-serif;
-  margin-top: -1%;
+  padding-top: 100px;
 }
 
 @keyframes App-logo-spin {
@@ -238,13 +239,14 @@ input :focus {
 
 .btnF {
   font-size: 21px;
-  padding: 5px 20px;
+  padding: 8px 20px;
   border: 0;
   background-color: #3498db;
   color: #fff;
   border-radius: 3px;
   transition: all 250ms ease-in-out;
   cursor: pointer;
+  width: 75%;
 }
 .btnF :hover {
   background-color: #2386c8;
