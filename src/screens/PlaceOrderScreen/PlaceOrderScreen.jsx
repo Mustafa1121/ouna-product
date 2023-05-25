@@ -129,15 +129,15 @@ const PlaceOrderScreen = ({ history }) => {
                   </h5>
                   <p>
                     <span style={{ fontWeight: "600" }}>Address:</span>{" "}
-                    {cart.shippingAddress.fullAddress}
+                    {cart.shippingAddress.selectedAddress.fullAddress}
                   </p>
                   <p>
                     <span style={{ fontWeight: "600" }}>City:</span>{" "}
-                    {cart.shippingAddress.city},{" "}
+                    {cart.shippingAddress.selectedAddress.city},{" "}
                   </p>
                   <p>
                     <span style={{ fontWeight: "600" }}>Additional-Info:</span>{" "}
-                    {cart.shippingAddress.additionalAddressInfo}
+                    {cart.shippingAddress.selectedAddress.additionalAddressInfo}
                   </p>
                 </div>
               </div>

@@ -193,7 +193,7 @@ input :focus {
   z-index: 99;
   height: 100%;
   z-index: 99;
-  padding: 20px 30px;
+  padding: 40px 30px;
   width: fit-content;
   transition: transform 200ms ease-in-out;
   /* border: 2px solid red; */
@@ -347,6 +347,9 @@ input :focus {
   }
   .mustafamo5 input {
     width: 18em !important;
+  }
+  .containerF {
+    margin-top: 40px;
   }
 }
 

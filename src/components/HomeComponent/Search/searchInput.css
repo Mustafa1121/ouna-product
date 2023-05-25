@@ -77,6 +77,6 @@ input[type="radio"]:checked + label {
     width: 100%;
   }
   .containRdio label {
-    width: 200px;
+    width: 300px;
   }
 }

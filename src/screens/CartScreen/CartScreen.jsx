@@ -80,7 +80,11 @@ const CartScreen = ({ match, location, history }) => {
                 .map((item, i) => (
                   <CartCard
                     key={i}
-                    image={item?.images[0].url}
+                    image={
+                      item && item.images && item.images.length > 0
+                        ? item.images[0].url
+                        : ""
+                    }
                     name={item?.name}
                     price={item.price}
                     description={item.description}
