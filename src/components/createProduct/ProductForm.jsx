@@ -63,6 +63,7 @@ function ProductForm() {
       name: Yup.string()
         .max(18, "At most 18 characters!")
         .required("Name is required!"),
+      location: Yup.string().required("Location is required!"),
       description: Yup.string().required("Description is required!"),
       price: Yup.string().required("Price is required."),
       category: Yup.string().required("Select a category"),
@@ -78,6 +79,7 @@ function ProductForm() {
         base64Video: video,
         imagesbase: selectedImages,
         rating: Number(values.rating),
+        location: values.location,
         origin: selectedFlag,
       };
       dispatch(addProduct(formData, userInfo, history));
@@ -180,6 +182,20 @@ function ProductForm() {
                   id="name"
                   name="name"
                   value={formik.values.name}
+                  onChange={formik.handleChange}
+                />
+              </div>
+            </div>
+            <div className="inputsp">
+              <div className="brand-div">
+                <label htmlFor="brand">Location:</label>
+                <input
+                  placeholder="Enter Product Location"
+                  maxLength="17"
+                  type="text"
+                  id="location"
+                  name="location"
+                  value={formik.values.location}
                   onChange={formik.handleChange}
                 />
               </div>
