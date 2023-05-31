@@ -762,7 +762,7 @@ textarea:focus {
   color: #ffffff;
 }
 .form {
-  padding: 20px 0;
+  padding: 5px 0;
 }
 .form label {
   padding: 10px 0;
@@ -1328,4 +1328,10 @@ textarea:focus {
 .form_input:focus + .form_bar::before,
 .form_input:valid + .form_bar::before {
   transform: scaleX(1);
+}
+
+@media screen and (max-width: 768px) {
+  .emptyCart {
+    margin-top: 10rem;
+  }
 }
