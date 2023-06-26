@@ -9,7 +9,7 @@ import email from "../../../images/images/email.gif";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../../Redux/Actions/userActions";
-import Loading from "../../../components/LoadingError/Loading";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 toast.configure({
   position: "bottom-right",
@@ -22,7 +22,7 @@ export default function CheckboxLabels() {
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [countryCode, setCountryCode] = React.useState("");
   const [flag, setFlag] = React.useState(false);
-  const userLogin = useSelector((state) => state.userLogin);
+  const userLogin = useSelector((state) => state.userRegister);
   const { userInfo, loading } = userLogin;
   const [hideRegister, sethideRegister] = React.useState(false);
   const formik = useFormik({
@@ -251,7 +251,7 @@ export default function CheckboxLabels() {
           {renderInputFields()}
           <div className="footerF">
             <button type="submit" className="btnF">
-              {loading ? <Loading /> : "Register"}
+              {loading ? <CircularProgress /> : "Register"}
             </button>
           </div>
         </form>

@@ -90,7 +90,7 @@ function ProductForm() {
   const onSubmit = (e) => {
     console.log(formik.values);
     e.preventDefault();
-    if (numDownloaded < 2) {
+    if (numDownloaded < 5) {
       toast.warning("Please download at least 5 images before submitting!");
       return;
     }
