@@ -10,10 +10,12 @@ import Loading from "../../components/LoadingError/Loading.jsx";
 import { addToCart, getListCart } from "../../Redux/Actions/cartActions";
 import { Link } from "react-router-dom";
 import { CircularProgress } from "@material-ui/core";
+import Modal from "../../components/modal/Modal";
 
 const SingleProduct = ({ history, match }) => {
   // const [rating, setRating] = useState(0);
   // const [comment, setComment] = useState("");
+  const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const productId = match.params.id;
   const dispatch = useDispatch();
@@ -66,6 +68,12 @@ const SingleProduct = ({ history, match }) => {
   // };
   return (
     <>
+      <Modal
+        open={open}
+        setOpen={setOpen}
+        addtoCartHandler={AddToCartHandle}
+        id={productId}
+      />
       <Header />
       <div className="container single-product" style={{ marginTop: "180px" }}>
         {loading ? (
@@ -154,7 +162,8 @@ const SingleProduct = ({ history, match }) => {
                     <>
                       {userInfo ? (
                         <button
-                          onClick={() => AddToCartHandle(product._id)}
+                          // onClick={() => AddToCartHandle(product._id)}
+                          onClick={() => setOpen(true)}
                           disabled={loading}
                           className="round-black-btn"
                         >
