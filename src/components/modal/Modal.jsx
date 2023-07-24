@@ -12,11 +12,11 @@ export default function BasicModal({ open, setOpen, addtoCartHandler, id }) {
     setOpen(false);
   };
 
-  const handleVerified = (id) => {
-    //implement logic to add the additional price in the backend
-    //call add to cart handler
-    //close Modal
-  };
+  // const handleVerified = (id) => {
+  //   //implement logic to add the additional price in the backend
+  //   //call add to cart handler
+  //   //close Modal
+  // };
   return (
     <React.Fragment>
       <Modal
