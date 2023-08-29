@@ -3,8 +3,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { ADD_ADDRESS } from "../../Redux/Constants/UserContants";
+import cities from "../../utils/cities";
+import Select from "react-select";
 
 const AddressForm = () => {
+  console.log(cities);
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -17,7 +20,7 @@ const AddressForm = () => {
     fullAddress: "",
     additionalAddressInfo: "",
   });
-  console.log(userInfo.token);
+  console.log(formData.city);
 
   const addAddress = async (e) => {
     e.preventDefault();
@@ -128,16 +131,16 @@ const AddressForm = () => {
                 <b>City</b>
               </label>
               <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="city"
-                  name="city"
-                  value={formData.city}
+                <select
+                  className="SelectedCountries form-select"
                   onChange={(e) =>
                     setFormData({ ...formData, city: e.target.value })
                   }
-                />
+                >
+                  {cities.map((city) => {
+                    return <option value={city.Lebanon}>{city.Lebanon}</option>;
+                  })}
+                </select>
               </div>
             </div>
             <div className="form-group col-md-6 col-sm-12 col-12 mt-3">

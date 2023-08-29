@@ -5,8 +5,14 @@ import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import { Box } from "@mui/joy";
 import Sheet from "@mui/joy/Sheet";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "../../axios/axios";
 
 export default function BasicModal({ open, setOpen, addtoCartHandler, id }) {
+  const productDetails = useSelector((state) => state.productDetails);
+  const { product } = productDetails;
+  product.isSmall = true;
+
   const handleNotVerified = (id) => {
     addtoCartHandler(id);
     setOpen(false);
@@ -16,7 +22,10 @@ export default function BasicModal({ open, setOpen, addtoCartHandler, id }) {
     //implement logic to add the additional price in the backend
     //call add to cart handler
     //close Modal
+    setOpen(false);
   };
+  console.log(productDetails);
+
   return (
     <React.Fragment>
       <Modal
@@ -80,7 +89,10 @@ export default function BasicModal({ open, setOpen, addtoCartHandler, id }) {
               </Button>
             </Box>
             <Typography fontSize={20}>
-              Added Price: <span style={{ color: "green" }}>70$</span>
+              Added Price:{" "}
+              <span style={{ color: "green" }}>
+                {product.isSmall ? "3$" : "7$"}
+              </span>
             </Typography>
           </Box>
         </Sheet>

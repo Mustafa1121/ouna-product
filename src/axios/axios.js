@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://ouna-backend.vercel.app",
+  baseURL: "http://localhost:3306",
 });
 
 export default api;

@@ -20,7 +20,7 @@ const PlaceOrderScreen = ({ history }) => {
   const cartItemIds = cartItems.map((item) => item.id);
   const [loading, setLoading] = useState(false);
 
-  console.log(cartItems);
+
   const placeOrderHandler = async (e) => {
     e.preventDefault();
     const config = {
