@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../axios/axios";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const UpdatedForm = ({ address, index, deleteAddress }) => {
   console.log(address);
@@ -25,6 +26,9 @@ const UpdatedForm = ({ address, index, deleteAddress }) => {
       };
       await axios.delete(`/api/user/Address/${id}`, config);
       deleteAddress(index);
+      toast.info("Address deleted successfully", {
+        position: "bottom-right",
+      });
     } catch (error) {
       console.error("Failed to delete address", error);
     }
@@ -37,6 +41,9 @@ const UpdatedForm = ({ address, index, deleteAddress }) => {
         },
       };
       await axios.patch(`/api/user/Address/${id}`, formData, config);
+      toast.info("Address updated successfully", {
+        position: "bottom-right",
+      });
     } catch (error) {
       console.error("Failed to delete address", error);
     }

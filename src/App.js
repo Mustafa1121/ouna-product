@@ -18,7 +18,7 @@ import PaymentScreen from "./screens/PaymentScreen/PaymentScreen.jsx";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen/PlaceOrderScreen.jsx";
 import NotFound from "./screens/NotFound.jsx";
 import PrivateRouter from "./PrivateRouter.jsx";
-import ProductForm from "./components/createProduct/ProductForm.jsx";
+import ProductForm from "./components/CreateProduct/ProductForm.jsx";
 import Terms from "./components/Utils/Terms.jsx";
 import About from "./components/Utils/AboutUs.jsx";
 import PrivacyPolicy from "./components/Utils/PrivacyPolicy.jsx";
@@ -37,18 +37,18 @@ const App = () => {
               <Redirect to="/lb" />
             ) : location === "Egypt" ? (
               <Redirect to="/eg" />
-            ) : location === "Tunisia" ? (
-              <Redirect to="/tn" />
-            ) : location === "Morocco" ? (
-              <Redirect to="/ma" />
-            ) : location === "Algeria" ? (
-              <Redirect to="/dz" />
-            ) : location === "Senegal" ? (
-              <Redirect to="/sn" />
-            ) : location === "Côte d'Ivoire" ? (
-              <Redirect to="/ci" />
-            ) : location === "Benin" ? (
-              <Redirect to="/bj" />
+            // ) : location === "Tunisia" ? (
+            //   <Redirect to="/tn" />
+            // ) : location === "Morocco" ? (
+            //   <Redirect to="/ma" />
+            // ) : location === "Algeria" ? (
+            //   <Redirect to="/dz" />
+            // ) : location === "Senegal" ? (
+            //   <Redirect to="/sn" />
+            // ) : location === "Côte d'Ivoire" ? (
+            //   <Redirect to="/ci" />
+            // ) : location === "Benin" ? (
+            //   <Redirect to="/bj" />
             ) : (
               <Redirect to="/lb" />
             )}
@@ -56,12 +56,12 @@ const App = () => {
 
           <Route exact path="/lb" component={HomeScreen} />
           <Route exact path="/eg" component={HomeScreen} />
-          <Route exact path="/tn" component={HomeScreen} />
+          {/* <Route exact path="/tn" component={HomeScreen} />
           <Route exact path="/ma" component={HomeScreen} />
           <Route exact path="/dz" component={HomeScreen} />
           <Route exact path="/sn" component={HomeScreen} />
           <Route exact path="/ci" component={HomeScreen} />
-          <Route exact path="/bj" component={HomeScreen} />
+          <Route exact path="/bj" component={HomeScreen} /> */}
 
           <Route path="/search/:keyword" component={HomeScreen} exact />
           <Route path="/page/:pagenumber" component={HomeScreen} exact />

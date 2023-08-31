@@ -15,12 +15,12 @@ function Flag() {
   const LebaneseFlag = () => (
     <CircleFlag countryCode="lb" height="35" onClick={handleToggle} />
   );
-  const TunisianFlag = () => <CircleFlag countryCode="tn" height="35" />;
-  const MoroccanFlag = () => <CircleFlag countryCode="ma" height="35" />;
-  const AlgerianFlag = () => <CircleFlag countryCode="dz" height="35" />;
-  const SenegaleseFlag = () => <CircleFlag countryCode="sn" height="35" />;
-  const IvorianFlag = () => <CircleFlag countryCode="ci" height="35" />;
-  const BenineseFlag = () => <CircleFlag countryCode="bj" height="35" />;
+  // const TunisianFlag = () => <CircleFlag countryCode="tn" height="35" />;
+  // const MoroccanFlag = () => <CircleFlag countryCode="ma" height="35" />;
+  // const AlgerianFlag = () => <CircleFlag countryCode="dz" height="35" />;
+  // const SenegaleseFlag = () => <CircleFlag countryCode="sn" height="35" />;
+  // const IvorianFlag = () => <CircleFlag countryCode="ci" height="35" />;
+  // const BenineseFlag = () => <CircleFlag countryCode="bj" height="35" />;
 
   const dropdownRef = useRef(null);
 
@@ -48,18 +48,18 @@ function Flag() {
         <LebaneseFlag />
       ) : selectedFlag === "Egypt" ? (
         <EgyptianFlag />
-      ) : selectedFlag === "Tunisia" ? (
-        <TunisianFlag />
-      ) : selectedFlag === "Morocco" ? (
-        <MoroccanFlag />
-      ) : selectedFlag === "Algeria" ? (
-        <AlgerianFlag />
-      ) : selectedFlag === "Senegal" ? (
-        <SenegaleseFlag />
-      ) : selectedFlag === "Côte d'Ivoire" ? (
-        <IvorianFlag />
-      ) : selectedFlag === "Benin" ? (
-        <BenineseFlag />
+      // ) : selectedFlag === "Tunisia" ? (
+      //   <TunisianFlag />
+      // ) : selectedFlag === "Morocco" ? (
+      //   <MoroccanFlag />
+      // ) : selectedFlag === "Algeria" ? (
+      //   <AlgerianFlag />
+      // ) : selectedFlag === "Senegal" ? (
+      //   <SenegaleseFlag />
+      // ) : selectedFlag === "Côte d'Ivoire" ? (
+      //   <IvorianFlag />
+      // ) : selectedFlag === "Benin" ? (
+      //   <BenineseFlag />
       ) : (
         <LebaneseFlag />
       )}
@@ -88,7 +88,7 @@ function Flag() {
             <EgyptianFlag />
             Egypt
           </a>
-          <a
+          {/* <a
             href="/tn"
             onClick={() => {
               setSelectedFlag("Tunisia");
@@ -153,7 +153,7 @@ function Flag() {
           >
             <BenineseFlag />
             Benin
-          </a>
+          </a> */}
         </div>
       )}
     </div>

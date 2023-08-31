@@ -18,44 +18,60 @@ const Addresses = ({ addresses }) => {
 
   return (
     <div className="row">
-      <div className="col-md-4 col-xs-12 mt-3">
-        <div className="list-group" id="list-tab" role="tablist">
-          {addresses?.map((address, index) => (
-            <a
-              key={index}
-              className={`list-group-item list-group-item-action ${
-                index === 0 ? "active" : ""
-              }`}
-              id={`list-${address.fullAddress}-list`}
-              data-toggle="list"
-              href={`#list-${address.fullAddress}`}
-              role="tab"
-              aria-controls={address.label}
-            >
-              {address.fullAddress}
-            </a>
-          ))}
+      {addresses?.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          No Addresses Found, Please create one to start your shopping
         </div>
-      </div>
-      <div className="col-md-8 col-12">
-        <div className="tab-content" id="nav-tabContent">
-          {addresses?.map((address, index) => (
-            <div
-              key={index}
-              className={`tab-pane fade ${index === 0 ? "show active" : ""}`}
-              id={`list-${address.fullAddress}`}
-              role="tabpanel"
-              aria-labelledby={`list-${address.label}-list`}
-            >
-              <UpdatedForm
-                deleteAddress={deleteAddress}
-                address={address}
-                index={index}
-              />
+      ) : (
+        <>
+          <div className="col-md-4 col-xs-12 mt-3">
+            <div className="list-group" id="list-tab" role="tablist">
+              {addresses?.map((address, index) => (
+                <a
+                  key={index}
+                  className={`list-group-item list-group-item-action ${
+                    index === 0 ? "active" : ""
+                  }`}
+                  id={`list-${address.fullAddress}-list`}
+                  data-toggle="list"
+                  href={`#list-${address.fullAddress}`}
+                  role="tab"
+                  aria-controls={address.label}
+                >
+                  {address.fullAddress}
+                </a>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+          <div className="col-md-8 col-12">
+            <div className="tab-content" id="nav-tabContent">
+              {addresses?.map((address, index) => (
+                <div
+                  key={index}
+                  className={`tab-pane fade ${
+                    index === 0 ? "show active" : ""
+                  }`}
+                  id={`list-${address.fullAddress}`}
+                  role="tabpanel"
+                  aria-labelledby={`list-${address.label}-list`}
+                >
+                  <UpdatedForm
+                    deleteAddress={deleteAddress}
+                    address={address}
+                    index={index}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { ADD_ADDRESS } from "../../Redux/Constants/UserContants";
 import cities from "../../utils/cities";
-import Select from "react-select";
+// import Select from "react-select";
 
 const AddressForm = () => {
-  console.log(cities);
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -16,11 +15,10 @@ const AddressForm = () => {
     lname: userInfo.data.user.Lname,
     phoneN: userInfo.data.user.phone,
     countryCode: userInfo.data.user.countryCode,
-    city: "",
+    city: cities[0].Lebanon,
     fullAddress: "",
     additionalAddressInfo: "",
   });
-  console.log(formData.city);
 
   const addAddress = async (e) => {
     e.preventDefault();
@@ -44,7 +42,7 @@ const AddressForm = () => {
         lname: userInfo.data.user.Fname,
         phoneN: userInfo.data.user.phone,
         countryCode: userInfo.data.user.countryCode,
-        city: "",
+        city: cities[0].Lebanon,
         fullAddress: "",
         additionalAddressInfo: "",
       });
@@ -133,6 +131,7 @@ const AddressForm = () => {
               <div className="input-group">
                 <select
                   className="SelectedCountries form-select"
+                  value={cities[0].Lebanon}
                   onChange={(e) =>
                     setFormData({ ...formData, city: e.target.value })
                   }
@@ -198,7 +197,7 @@ const AddressForm = () => {
                 fontSize: "16px",
               }}
             >
-              create Address
+              Create Address
             </button>
           </div>
         </form>
