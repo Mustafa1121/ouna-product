@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct, getCategories } from "../../Redux/Actions/ProductActions";
 import { useHistory } from "react-router-dom";
 import Loading from "../LoadingError/Loading";
+import cities from "../../utils/cities.json";
 
 function ProductForm() {
   const currencySymbol =
@@ -51,6 +52,7 @@ function ProductForm() {
     initialValues: {
       name: "",
       title: "",
+      location: "",
       description: "",
       imageClass: "",
       price: "",
@@ -74,6 +76,7 @@ function ProductForm() {
         name: values.name,
         category: selectedCategoryId,
         price: values.price,
+        location: values.location,
         description: values.description,
         recycling: values.recycling,
         base64Video: video,
@@ -166,6 +169,8 @@ function ProductForm() {
   //   history.push("/login?redirect=/");
   // };
 
+  const selectedCountry = localStorage.getItem("selectedFlag");
+
   return (
     <>
       <Header />
@@ -176,7 +181,7 @@ function ProductForm() {
               <div className="brand-div">
                 <label htmlFor="brand">Brand Name:</label>
                 <input
-                  placeholder="Enter Brand Name"
+                  placeholder="Enter Brand/Product Name"
                   maxLength="17"
                   type="text"
                   id="name"
@@ -186,18 +191,35 @@ function ProductForm() {
                 />
               </div>
             </div>
-            <div className="inputsp">
-              <div className="brand-div">
-                <label htmlFor="brand">Location:</label>
-                <input
-                  placeholder="Enter Product Location"
-                  maxLength="17"
-                  type="text"
-                  id="location"
-                  name="location"
-                  value={formik.values.location}
-                  onChange={formik.handleChange}
-                />
+            <div className="form-group col-12 mt-3">
+              <label style={{ fontSize: "16px" }} htmlFor="city">
+                <b>Location</b>
+              </label>
+              <div className="input-group w-100">
+                {selectedCountry === "Egypt" && (
+                  <input
+                    placeholder="Enter product location"
+                    type="text"
+                    id="lcoation"
+                    name="location"
+                    className="w-100"
+                    value={formik.values.location}
+                    onChange={formik.handleChange}
+                  />
+                )}{" "}
+                {selectedCountry === "Lebanon" && (
+                  <select
+                    name="location"
+                    className="SelectedCountries"
+                    onChange={formik.handleChange}
+                  >
+                    {cities.map((city) => {
+                      return (
+                        <option value={city.Lebanon}>{city.Lebanon}</option>
+                      );
+                    })}
+                  </select>
+                )}
               </div>
             </div>
           </div>

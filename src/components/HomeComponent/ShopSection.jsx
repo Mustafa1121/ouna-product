@@ -103,6 +103,7 @@ const ShopSection = (props) => {
     handleFilterProducts("", false, false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
+
   return (
     <>
       <div className="sliderContainer">
@@ -219,7 +220,7 @@ const ShopSection = (props) => {
                               </Grid>
                             ))}
                         </Grid>
-                        {pages?.length > 1 && (
+                        {totalPages > 1 && (
                           <div className="pagination">
                             <div className="mt-3">
                               <div
