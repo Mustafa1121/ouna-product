@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { ADD_ADDRESS } from "../../Redux/Constants/UserContants";
 import cities from "../../utils/cities";
+import Loading from "../LoadingError/Loading";
 // import Select from "react-select";
 
 const AddressForm = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const [isLoading,setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     fname: userInfo.data.user.Fname,
     lname: userInfo.data.user.Lname,
@@ -22,6 +24,7 @@ const AddressForm = () => {
 
   const addAddress = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const config = {
         headers: {
@@ -46,6 +49,7 @@ const AddressForm = () => {
         fullAddress: "",
         additionalAddressInfo: "",
       });
+      setIsLoading(false);
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -197,7 +201,7 @@ const AddressForm = () => {
                 fontSize: "16px",
               }}
             >
-              Create Address
+               {isLoading ? <Loading /> : "Create Address"}
             </button>
           </div>
         </form>

@@ -17,7 +17,6 @@ const ProfileScreen = () => {
   const { addresses } = useSelector((state) => state.listOfAddresses);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  console.log(userInfo);
 
   useEffect(() => {
     dispatch(listMyOrders());
