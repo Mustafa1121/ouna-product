@@ -18,13 +18,13 @@ export default function BasicModal({ open, setOpen, addtoCartHandler, id }) {
     setOpen(false);
   };
 
-  const handleVerified = (id) => {
+  const handleVerified = (id, isVerified) => {
     //implement logic to add the additional price in the backend
     //call add to cart handler
+    addtoCartHandler(id, isVerified);
     //close Modal
     setOpen(false);
   };
-  console.log(productDetails);
 
   return (
     <React.Fragment>
@@ -83,7 +83,9 @@ export default function BasicModal({ open, setOpen, addtoCartHandler, id }) {
                 gap: "10px",
               }}
             >
-              <Button>Verified Item</Button>
+              <Button onClick={() => handleVerified(id, true)}>
+                Verified Item
+              </Button>
               <Button onClick={() => handleNotVerified(id)}>
                 not Verified
               </Button>

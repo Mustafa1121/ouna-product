@@ -42,11 +42,12 @@ export const getListCart = (userInfo) => async (dispatch) => {
 
 // // ADD TO CART
 export const addToCart =
-  (id, userInfo, product) => async (dispatch, getState) => {
+  (id, userInfo, product, isVerified) => async (dispatch, getState) => {
     try {
       dispatch({
         type: CART_ADD_LOADING,
       });
+      const verified = isVerified ? isVerified : false;
       const config = {
         headers: {
           authorization: `Bearer ${userInfo.token}`,
@@ -56,10 +57,10 @@ export const addToCart =
         `/api/cart/${id}`,
         {
           quantity: 1,
+          isVerified: verified,
         },
         config
       );
-      console.log(data.itemsArray);
       dispatch({
         type: CART_ADD_ITEM,
         payload: data.itemsArray,

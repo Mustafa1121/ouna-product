@@ -46,16 +46,14 @@ const SingleProduct = ({ history, match }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, productId]);
 
-  const AddToCartHandle = (id) => {
-    dispatch(addToCart(id, userInfo, product));
+  const AddToCartHandle = (id, isVerified) => {
+    dispatch(addToCart(id, userInfo, product, isVerified));
     // history.push("/cart");
     document.querySelector(".badge").classList.add("shake"); // Add the "shake" class to the badge element
     setTimeout(() => {
       document.querySelector(".badge").classList.remove("shake"); // Remove the "shake" class after 1 second
     }, 1000);
   };
-
-  console.log(product);
 
   // const submitHandler = (e) => {
   //   e.preventDefault();
