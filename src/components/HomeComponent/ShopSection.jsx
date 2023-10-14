@@ -294,7 +294,7 @@ const ShopSection = (props) => {
       </div>
       <div className="contain-wp">
         <a
-          href="https://web.whatsapp.com/send?phone=+70528539&text=Hello,%20I%20want%20to%20chat"
+          href="https://web.whatsapp.com/send?phone=+96170528539&text=Hello,%20I%20want%20to%20chat"
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -30,11 +30,11 @@ function Footer() {
                         <p>{item1.text}</p>
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link to={item2.href}>
                         <p>{item2.text}</p>
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link to={item3.href}>
                         <p>{item3.text}</p>
