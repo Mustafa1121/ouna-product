@@ -44,8 +44,8 @@ const Header = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-6 d-flex align-items-center display-none">
-                <p>+255 768 356 890</p>
-                <p>ounateam23@gmail.com</p>
+                {/* <p>+255 768 356 890</p> */}
+                <p>support@ouna.app</p>
               </div>
               <div className="col-12 col-lg-6 d-flex align-items-center justify-content-end hello">
                 <Link to="">
