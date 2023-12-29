@@ -35,7 +35,7 @@
 .contentS {
   display: flex;
   flex-direction: column;
-  /* border: 2px solid red; */
+  border: 2px solid red;
   min-height: 300px;
 }
 .contentS,
@@ -47,6 +47,7 @@ input {
 .fnameLname {
   position: relative;
   display: flex;
+
   /* border: 2px solid red; */
 }
 .fnameLname input {
@@ -87,7 +88,6 @@ input {
   flex-direction: column;
   padding: 5px;
   width: fit-content;
-  border: 2px solid red;
 }
 /* .phone-container input {
   width: 27em;
@@ -321,10 +321,11 @@ input :focus {
     justify-content: center;
     width: fit-content;
     margin: auto;
+    gap: 10px;
+    margin-bottom: 0;
   }
   .fnameLname input {
-    margin-bottom: 10px;
-    width: 18em;
+    width: 19em;
   }
   .css-395f2x {
     width: 18em !important;
@@ -335,18 +336,23 @@ input :focus {
     align-items: flex-start;
     justify-content: flex-start;
     position: relative;
-    left: -16%;
     max-width: 100%;
-  }
-  .phone-container input {
-    margin: 0;
   }
 
   .formM {
-    width: auto;
+    width: 70%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0px;
+    margin-top: -10px;
   }
   .formM input {
-    width: 18em !important;
+    width: 19em !important;
+  }
+  .phone-container input {
+    margin: 0;
+    width: 15em !important;
   }
   .containerF {
     margin-top: 40px;
