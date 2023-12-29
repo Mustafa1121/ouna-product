@@ -5,8 +5,7 @@ import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import { Box } from "@mui/joy";
 import Sheet from "@mui/joy/Sheet";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "../../axios/axios";
+import { useSelector } from "react-redux";
 
 export default function BasicModal({ open, setOpen, addtoCartHandler, id }) {
   const productDetails = useSelector((state) => state.productDetails);

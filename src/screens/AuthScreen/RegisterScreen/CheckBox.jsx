@@ -145,7 +145,7 @@ export default function CheckboxLabels() {
           </div>
         </div>
         <br />
-        <div className="mustafamo5">
+        <div className="formM">
           <div className="form-groupF">
             <label htmlFor="email" style={{ fontSize: "15px" }}>
               {" "}

@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct, getCategories } from "../../Redux/Actions/ProductActions";
 import { useHistory } from "react-router-dom";
 import Loading from "../LoadingError/Loading";
-import cities from "../../utils/cities.json";
+import cities from "../../data/cities.json"
 
 function ProductForm() {
   const currencySymbol =
@@ -82,7 +82,6 @@ function ProductForm() {
         base64Video: video,
         imagesbase: selectedImages,
         rating: Number(values.rating),
-        location: values.location,
         origin: selectedFlag,
       };
       dispatch(addProduct(formData, userInfo, history));

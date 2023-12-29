@@ -20,7 +20,7 @@ function Footer() {
         <div className="footer__topF">
           <div className="centerF">
             {footerItem.map((value, index) => {
-              let { heading, item1, item2, item3, item4 } = value;
+              let { heading, item1, item3, item4 } = value;
               return (
                 <div className="categoriesF" key={index}>
                   <h4>{heading}</h4>
@@ -30,11 +30,6 @@ function Footer() {
                         <p>{item1.text}</p>
                       </Link>
                     </li>
-                    {/* <li>
-                      <Link to={item2.href}>
-                        <p>{item2.text}</p>
-                      </Link>
-                    </li> */}
                     <li>
                       <Link to={item3.href}>
                         <p>{item3.text}</p>
@@ -82,7 +77,7 @@ function Footer() {
           </div>
         </div>
         <div className="footer__bottomF">
-          <p>Mustafa Khodor</p>
+          <p>Ouna Team</p>
           <p className="copyrightF">. © 2023 Ouna</p>
         </div>
       </section>

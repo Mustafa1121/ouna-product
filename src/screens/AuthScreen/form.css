@@ -65,7 +65,7 @@ input {
   transition: initial;
 }
 
-.mustafamo5 {
+.formM {
   /* border: 2px solid yellow; */
   display: flex;
   align-items: center;
@@ -74,7 +74,7 @@ input {
   max-width: 80%;
   margin: auto;
 }
-.mustafamo5 input {
+.formM input {
   width: 27.5em !important;
 }
 .css-395f2x {
@@ -342,10 +342,10 @@ input :focus {
     margin: 0;
   }
 
-  .mustafamo5 {
+  .formM {
     width: auto;
   }
-  .mustafamo5 input {
+  .formM input {
     width: 18em !important;
   }
   .containerF {

@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { ADD_ADDRESS } from "../../Redux/Constants/UserContants";
-import cities from "../../utils/cities";
 import Loading from "../LoadingError/Loading";
-// import Select from "react-select";
+import cities from "../../data/cities.json"
 
 const AddressForm = () => {
   const dispatch = useDispatch();

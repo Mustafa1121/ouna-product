@@ -68,7 +68,7 @@ const ShopSection = (props) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, pages } = productList;
+  const { loading, error, products } = productList;
   const selectedFlag = localStorage.getItem("selectedFlag");
   const [currentPage, setCurrentPage] = useState(1);
   const productPerPage = 8;
