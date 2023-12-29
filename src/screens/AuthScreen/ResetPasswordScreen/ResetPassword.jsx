@@ -5,15 +5,17 @@ import Header from "../../../components/HomeComponent/Header/Header";
 import Footer from "../../../components/HomeComponent/Footer/Footer";
 import axios from "../../../axios/axios";
 import { toast } from "react-toastify";
+import { CircularProgress } from "@material-ui/core";
 
 function ResetPassword({ match }) {
   const [password, setPassword] = useState();
+  const [loading, setLoading] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState();
 
   const token = match.params.token;
-  console.log(token);
   const resetPassword = async (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
       .post(`/api/user/auth/reset-password/${token}`, {
         password,
@@ -25,6 +27,7 @@ function ResetPassword({ match }) {
       .catch((error) => {
         toast.error("Failed to change password.");
       });
+    setLoading(false);
   };
 
   return (
@@ -70,8 +73,8 @@ function ResetPassword({ match }) {
               </div>
             </div>
           </div>
-          <button type="submit" className="btnF ">
-            Confirm Password
+          <button type="submit" className="btnF " disabled={loading}>
+            {loading ? <CircularProgress /> : "Confirm Password"}
           </button>
         </div>
       </form>

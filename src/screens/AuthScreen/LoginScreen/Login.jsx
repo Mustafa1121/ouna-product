@@ -13,6 +13,8 @@ import Modal from "@mui/material/Modal";
 import { Link } from "react-router-dom";
 import axios from "../../../axios/axios";
 import Loading from "../../../components/LoadingError/Loading";
+import { set } from "mongoose";
+import { CircularProgress } from "@material-ui/core";
 
 const style = {
   position: "absolute",
@@ -35,6 +37,7 @@ toast.configure({
 const Login = ({ containerRef }) => {
   const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState("");
+  const [loading1, setLoading] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const history = useHistory();
@@ -67,8 +70,9 @@ const Login = ({ containerRef }) => {
     setFlag(!flag);
   };
 
-  const sendEmail = () => {
-    axios
+  const sendEmail = async () => {
+    setLoading(true);
+    await axios
       .post("/api/user/auth/forgot-password", { email })
       .then(() => {
         toast.success("Email sent successfully!");
@@ -77,6 +81,8 @@ const Login = ({ containerRef }) => {
         toast.error("Failed to send email.");
       });
     setEmail("");
+    setLoading(false);
+    setOpen(!open);
   };
 
   useEffect(() => {
@@ -200,13 +206,25 @@ const Login = ({ containerRef }) => {
                       <button
                         type="submit"
                         className="btnF"
+                        disabled={loading1}
                         onClick={() => {
                           sendEmail();
-                          setOpen(!open);
                         }}
-                        style={{ height: "40px", borderRadius: "12px" }}
+                        style={{
+                          height: "40px",
+                          fontSize: "18px",
+                          borderRadius: "10px",
+                          width: "100%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
                       >
-                        send link
+                        {loading1 ? (
+                          <CircularProgress size={15} />
+                        ) : (
+                          "send link"
+                        )}
                       </button>
                     </div>
                   </Typography>

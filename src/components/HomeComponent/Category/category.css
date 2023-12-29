@@ -59,3 +59,20 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media (max-width: 700px) {
+  .dummyContainer {
+    height: 180px;
+  }
+  .dummy {
+    height: 150px;
+    width: 210px !important;
+  }
+  .dummy img {
+    width: 90px;
+    height: 90px;
+  }
+  .dummy p {
+    font-size: 0.8rem;
+  }
+}

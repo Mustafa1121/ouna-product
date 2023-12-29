@@ -23,26 +23,28 @@ const NewSearchSection = ({ handleFilterProducts }) => {
         <button id="search">Search</button>
       </div>
       <div className="containRdio">
-        <input
-          onChange={() => {
-            setIsRecycle(false);
-            setIsNotRecycle(false);
-          }}
-          type="radio"
-          id="radioButtonAll"
-          name="radioGroup"
-        />
-        <label htmlFor="radioButtonAll">All</label>
-        <input
-          onChange={() => {
-            setIsRecycle(true);
-            setIsNotRecycle(false);
-          }}
-          type="radio"
-          id="radioButtonRecycled"
-          name="radioGroup"
-        />
-        <label htmlFor="radioButtonRecycled">Recycled</label>
+        <div className="radioButtons">
+          <input
+            onChange={() => {
+              setIsRecycle(false);
+              setIsNotRecycle(false);
+            }}
+            type="radio"
+            id="radioButtonAll"
+            name="radioGroup"
+          />
+          <label htmlFor="radioButtonAll">All</label>
+          <input
+            onChange={() => {
+              setIsRecycle(true);
+              setIsNotRecycle(false);
+            }}
+            type="radio"
+            id="radioButtonRecycled"
+            name="radioGroup"
+          />
+          <label htmlFor="radioButtonRecycled">Recycled</label>
+        </div>
         <input
           onChange={() => {
             setIsNotRecycle(true);
@@ -52,7 +54,9 @@ const NewSearchSection = ({ handleFilterProducts }) => {
           id="radioButtonNotRecycled"
           name="radioGroup"
         />
-        <label htmlFor="radioButtonNotRecycled">Non Recycled</label>
+        <label htmlFor="radioButtonNotRecycled" className="nonRecycledLabel">
+          Non Recycled
+        </label>
       </div>
       <div id="products"></div>
     </>

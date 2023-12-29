@@ -87,7 +87,7 @@ input {
   flex-direction: column;
   padding: 5px;
   width: fit-content;
-  /* border: 2px solid red; */
+  border: 2px solid red;
 }
 /* .phone-container input {
   width: 27em;

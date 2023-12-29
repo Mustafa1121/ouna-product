@@ -41,7 +41,6 @@ input[type="radio"]:checked + label {
 }
 
 .containRdio {
-  /* border: 2px solid yellow; */
   width: 104%;
   display: flex;
   align-items: flex-start;
@@ -68,15 +67,34 @@ input[type="radio"]:checked + label {
   border-color: #3471db;
   color: white;
 }
+.radioButtons {
+  gap: 10px;
+  display: flex;
+}
 
 @media screen and (max-width: 768px) {
   #search-container button {
     display: none;
   }
-  .contanRdio {
+  #search-container {
+    margin-top: 50px;
+  }
+  .radioButtons {
+    display: flex;
+    gap: 4px;
     width: 100%;
   }
+  .radioButtons label {
+    width: 180px;
+  }
+  .containRdio {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   .containRdio label {
-    width: 300px;
+    width: 100%;
   }
 }
