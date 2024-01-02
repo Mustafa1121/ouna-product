@@ -78,7 +78,7 @@ const App = () => {
           <PrivateRouter path="/profile" component={ProfileScreen} />
           <Route path="/cart/:id?" component={CartScreen} />
           <Route path="/terms" component={Terms} />
-          <Route path="/aboutUs" component={About} />
+          <Route path="/about" component={About} />
           <Route path="/privacyPolicy" component={PrivacyPolicy} />
           <Route path="/paymentPolicy" component={Payment} />
           <PrivateRouter path="/shipping" component={ShippingScreen} />

@@ -10,13 +10,7 @@ const About = () => {
   return (
     <>
       <Header />
-      <div className={classes.header}>
-        <div className={classes.logo}>Last Updated on 08 January 2021</div>
-        <div className={classes.title}>
-          <h1>About Us</h1>
-        </div>
-      </div>
-      <div className={classes.terms}>
+      <div className={classes.terms} style={{ marginTop: "90px" }}>
         <h5 className={classes.subHeader}>About Us</h5>
         <div className={classes.termsList}>
           <ul>

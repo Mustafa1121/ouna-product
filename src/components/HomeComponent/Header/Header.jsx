@@ -26,6 +26,22 @@ const Header = () => {
     setAnnoucement(localStorage.getItem("announcement"));
   };
 
+  const getInstagramURL = () => {
+    if (location.pathname.includes("lb")) {
+      return "https://www.instagram.com/ounaapp?utm_source=qr&igsh=MWNwcTkzMmVhamFvbA==";
+    }
+
+    return "https://www.instagram.com/ouna.egypt?utm_source=qr&igsh=dHJudm5xZ2JhazZv";
+  };
+
+  const getFacebookURL = () => {
+    if (location.pathname.includes("lb")) {
+      return "https://www.instagram.com/ounaapp?utm_source=qr&igsh=MWNwcTkzMmVhamFvbA==";
+    }
+
+    return "https://www.facebook.com/profile.php?id=100093082482722&mibextid=hIlR13";
+  };
+
   console.log(annoucement);
 
   return (
@@ -48,18 +64,12 @@ const Header = () => {
                 <p>support@ouna.app</p>
               </div>
               <div className="col-12 col-lg-6 d-flex align-items-center justify-content-end hello">
-                <Link to="">
+                <a href={getFacebookURL()}>
                   <i className="fab fa-facebook-f"></i>
-                </Link>
-                <Link to="">
+                </a>
+                <a href={getInstagramURL()}>
                   <i className="fab fa-instagram"></i>
-                </Link>
-                <Link to="">
-                  <i className="fab fa-linkedin-in"></i>
-                </Link>
-                <Link to="">
-                  <i className="fab fa-twitter"></i>
-                </Link>
+                </a>
               </div>
               <div className="Xsign">
                 <i

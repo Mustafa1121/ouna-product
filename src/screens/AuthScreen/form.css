@@ -52,7 +52,7 @@ input {
 }
 .fnameLname input {
   margin-right: 10px;
-  width: 215px;
+  width: 220px;
   margin-top: 0;
   min-width: initial;
   height: initial;
@@ -72,8 +72,11 @@ input {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 80%;
-  margin: auto;
+  width: 100%;
+}
+.css-4ij1j0-MuiFormControl-root-MuiTextField-root
+  .css-v4u5dn-MuiInputBase-root-MuiInput-root {
+  width: 27em !important;
 }
 .formM input {
   width: 27.5em !important;
@@ -110,7 +113,6 @@ input {
   flex-direction: column;
   align-items: flex-start;
   width: fit-content;
-  /* border: 2px solid red; */
 }
 
 label {
@@ -338,14 +340,19 @@ input :focus {
     position: relative;
     max-width: 100%;
   }
+  .css-4ij1j0-MuiFormControl-root-MuiTextField-root
+    .css-v4u5dn-MuiInputBase-root-MuiInput-root {
+    width: 20em !important;
+  }
 
   .formM {
-    width: 70%;
+    width: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     gap: 0px;
     margin-top: -10px;
+    margin-left: 12px;
   }
   .formM input {
     width: 19em !important;

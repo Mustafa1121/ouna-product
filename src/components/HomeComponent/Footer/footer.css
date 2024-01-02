@@ -16,7 +16,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(44, 42, 42, 0.9) ; /* Lighter background color */
+  background: rgba(44, 42, 42, 0.9); /* Lighter background color */
 }
 
 /* Center section of the footer */
@@ -77,7 +77,8 @@
   list-style: none;
   display: flex;
   padding: 0.7rem 0;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 20px;
 }
 
 .social__iconF li {
@@ -162,7 +163,7 @@
   .footerF .footer__bottomF {
     justify-content: center;
   }
-  .follow__usF{
+  .follow__usF {
     margin-left: 10%;
   }
 }

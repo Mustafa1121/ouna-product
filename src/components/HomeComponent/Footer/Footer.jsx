@@ -2,9 +2,8 @@ import React from "react";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 //Images
-import image from "../../../images/images/images.jpg";
 import image1 from "../../../images/images/image1.jpg";
 // CSS
 import "./footer.css";
@@ -14,13 +13,29 @@ import sorceCode from "../../../data/Footerdata.json";
 
 function Footer() {
   let footerItem = sorceCode.footerItem;
+  const location = useLocation();
+  const getInstagramURL = () => {
+    if (location.pathname.includes("lb")) {
+      return "https://www.instagram.com/ounaapp?utm_source=qr&igsh=MWNwcTkzMmVhamFvbA==";
+    }
+
+    return "https://www.instagram.com/ouna.egypt?utm_source=qr&igsh=dHJudm5xZ2JhazZv";
+  };
+
+  const getFacebookURL = () => {
+    if (location.pathname.includes("lb")) {
+      return "https://www.instagram.com/ounaapp?utm_source=qr&igsh=MWNwcTkzMmVhamFvbA==";
+    }
+
+    return "https://www.facebook.com/profile.php?id=100093082482722&mibextid=hIlR13";
+  };
   return (
     <React.StrictMode>
       <section className="footerF">
         <div className="footer__topF">
           <div className="centerF">
             {footerItem.map((value, index) => {
-              let { heading, item1, item3, item4 } = value;
+              let { heading, item1, item3, item4, item5 } = value;
               return (
                 <div className="categoriesF" key={index}>
                   <h4>{heading}</h4>
@@ -40,6 +55,13 @@ function Footer() {
                         <p>{item4.text}</p>
                       </Link>
                     </li>
+                    {item5 && (
+                      <li>
+                        <a href={item5.href}>
+                          <p>{item5.text}</p>
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
               );
@@ -49,29 +71,23 @@ function Footer() {
               <h4>FOLLOW US</h4>
               <ul className="social__iconF">
                 <li>
-                  <Link to="">
+                  <a href={getFacebookURL}>
                     <FacebookIcon />
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link to="">
-                    <TwitterIcon />
-                  </Link>
-                </li>
-
-                <li>
-                  <Link to="">
+                  <a href={getInstagramURL}>
                     <InstagramIcon />
-                  </Link>
+                  </a>
                 </li>
               </ul>
               <div className="download_app_optionF">
-                <Link to="">
+                {/* <Link to="">
                   <img src={image} alt="App Store" width="70px" />
-                </Link>
-                <Link to="">
+                </Link> */}
+                <a href="https://play.google.com/store/apps/details?id=com.ounasupport.ouna&pli=1">
                   <img src={image1} alt="App Store" width="70px" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
